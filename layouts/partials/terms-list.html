@@ -1,0 +1,20 @@
+{{/*
+  terms-list.html — taxonomy term rows for the tags dialog.
+
+  Parameters: a taxonomy page (page context, not a dictionary).
+
+  Terms sort alphabetically; each row links to the term page and shows the
+  number of pages assigned to it.
+*/}}
+{{- with .Pages }}
+<ul class="dialog__list">
+  {{- range .ByTitle }}
+    {{- $count := len .Pages }}
+    {{- $unit := "pages" }}
+    {{- if eq $count 1 }}{{ $unit = "page" }}{{ end }}
+    {{- partial "dialog-row.html" (dict "href" .RelPermalink "title" .Title "description" (printf "%d %s" $count $unit) "glyph" "folder") }}
+  {{- end }}
+</ul>
+{{- else }}
+<p class="dialog__empty">No entries yet.</p>
+{{- end }}

@@ -1,0 +1,28 @@
+{{/*
+  search-list.html — the server-rendered rows for the search dialog.
+
+  Parameters (single dictionary):
+    pages (slice, required): the searchable pages, already filtered the
+          same way as the JSON index (drafts excluded by Hugo; utility
+          pages by the caller).
+
+  Each row links to its page and shows its section, date and plain-text
+  summary. The links remain usable without JavaScript; the application
+  script may replace the list while filtering.
+*/}}
+{{- with .pages }}
+<ul class="dialog__list">
+  {{- range . }}
+    {{- $section := "" }}
+    {{- with .Parent }}{{ $section = .Title }}{{ end }}
+    {{- $description := printf "%s · %s" $section (.Date | time.Format ":date_long") }}
+    {{- $summary := .Summary }}
+    {{- with $summary }}
+      {{- $description = printf "%s — %s" $description ($summary | plainify | truncate 200) }}
+    {{- end }}
+    {{- partial "dialog-row.html" (dict "href" .RelPermalink "title" .Title "description" $description "glyph" "document") }}
+  {{- end }}
+</ul>
+{{- else }}
+<p class="dialog__empty">Nothing to search yet.</p>
+{{- end }}

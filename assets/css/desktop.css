@@ -25,6 +25,13 @@
   min-width: 0;
 }
 
+#desktop .dialog {
+  flex: 0 1 auto;
+  min-width: 0;
+  width: 100%;
+  max-width: 640px;
+}
+
 /* Shortcut column */
 
 .desktop-icons {

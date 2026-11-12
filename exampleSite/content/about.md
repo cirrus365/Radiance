@@ -1,6 +1,7 @@
 ---
 title: "About this site"
 description: "About the radiance example site."
+utility: true
 ---
 
 This example site demonstrates **radiance**, a Hugo theme that makes a

@@ -1,0 +1,49 @@
+{{/*
+  dialog.html — a desktop-styled utility dialog: a listing panel, not a
+  modal. It never traps focus and never hides the rest of the page.
+
+  Parameters (single dictionary):
+    title   (string, required): titlebar text and the dialog's accessible
+            name; the titlebar heading is the page's h1.
+    id      (string, required): unique, stable, HTML-safe identifier,
+            applied to the titlebar heading and referenced through
+            aria-labelledby; the search input id is derived by appending
+            "-search".
+    icon    (string, optional): supported decorative glyph identifier (see
+            partials/glyph.html).
+    search  (dict, optional): renders a labelled search field under the
+            titlebar. Keys: "label" (string, visible label text) and
+            "index" (string, Hugo-generated URL of the JSON search index).
+            The field stays hidden until the application script initialises
+            it, and only renders when an index is provided.
+    content (safe HTML, required): the bordered results area.
+    actions (safe HTML, optional): quiet footer actions, aligned right.
+*/}}
+{{- $title := .title }}
+{{- $id := .id }}
+{{- $icon := .icon }}
+{{- $search := .search }}
+{{- $content := .content }}
+<section class="dialog" aria-labelledby="{{ $id }}">
+  <header class="dialog__titlebar">
+    {{- with $icon }}{{ partial "glyph.html" (dict "name" . "class" "dialog__icon") }}{{ end }}
+    <h1 class="dialog__title" id="{{ $id }}">{{ $title }}</h1>
+  </header>
+  {{- with $search }}
+    {{- with .index }}
+    <div class="dialog__search" hidden data-search-fieldset>
+      <label class="dialog__search-label" for="{{ $id }}-search">{{ $search.label }}</label>
+      <input class="dialog__search-input" id="{{ $id }}-search" type="search" autocomplete="off" data-search-input data-search-index="{{ . }}">
+    </div>
+    <p class="dialog__status" aria-live="polite" data-search-status hidden></p>
+    {{- end }}
+  {{- end }}
+  <div class="dialog__results" data-search-results>
+{{ $content }}
+  </div>
+  {{- with .actions }}
+  <footer class="dialog__actions">
+{{ . }}
+  </footer>
+  {{- end }}
+</section>

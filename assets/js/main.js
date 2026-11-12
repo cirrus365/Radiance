@@ -11,6 +11,7 @@ import { initWindows } from "./window.js";
 import { initWindowHistory } from "./window-history.js";
 import { initDesktopShortcuts } from "./desktop-shortcuts.js";
 import { initPaletteCopy } from "./palette-copy.js";
+import { initSearch } from "./search.js";
 
 const root = document.documentElement;
 
@@ -24,3 +25,4 @@ initWindows();
 initWindowHistory();
 initDesktopShortcuts();
 initPaletteCopy();
+initSearch();

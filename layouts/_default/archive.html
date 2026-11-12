@@ -1,0 +1,12 @@
+{{/*
+  archive.html — single-page layout for the archive dialog.
+
+  Used by pages with `layout: archive`. Lists published content grouped by
+  year. Drafts are excluded by Hugo; pages flagged `utility: true` in
+  their front matter are excluded here.
+*/}}
+{{- define "main" -}}
+  {{- $pages := where site.RegularPages "Params.utility" "!=" true -}}
+  {{- $actions := printf "<a class=\"dialog-action\" href=\"%s\">Close</a>" site.Home.RelPermalink | safeHTML -}}
+  {{- partial "dialog.html" (dict "title" .Title "id" "dialog-archive" "icon" "folder" "content" (partial "archive-list.html" (dict "pages" $pages)) "actions" $actions) -}}
+{{- end -}}

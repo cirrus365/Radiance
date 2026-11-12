@@ -1,0 +1,11 @@
+{{/*
+  terms.html — taxonomy list layout (the tags-style dialog).
+
+  Applies to taxonomy pages such as /tags/ and /categories/. Term pages
+  (individual tags) keep the regular list layout. Utility pages are not
+  terms and are unaffected.
+*/}}
+{{- define "main" -}}
+  {{- $actions := printf "<a class=\"dialog-action\" href=\"%s\">Close</a>" site.Home.RelPermalink | safeHTML -}}
+  {{- partial "dialog.html" (dict "title" .Title "id" "dialog-terms" "icon" "folder" "content" (partial "terms-list.html" .) "actions" $actions) -}}
+{{- end -}}

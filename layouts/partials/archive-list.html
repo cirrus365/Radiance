@@ -1,0 +1,29 @@
+{{/*
+  archive-list.html — published content grouped by year for the archive
+  dialog.
+
+  Parameters (single dictionary):
+    pages (slice, required): the pages to list, already filtered (drafts
+          are excluded by Hugo; utility pages by the caller).
+
+  Groups sort newest year first; entries within a group sort newest first.
+  Each entry links to its page and shows its date and section.
+*/}}
+{{- with .pages }}
+{{- range .GroupByPublishDate "2006" }}
+<section class="dialog__group">
+  <h2 class="dialog__group-title">{{ .Key }}</h2>
+  <ul class="dialog__list">
+    {{- range sort .Pages "Date" "desc" }}
+      {{- $section := "" }}
+      {{- with .Parent }}{{ $section = .Title }}{{ end }}
+      {{- $glyph := "document" }}
+      {{- if eq .Type "moodboards" }}{{ $glyph = "folder" }}{{ end }}
+      {{- partial "dialog-row.html" (dict "href" .RelPermalink "title" .Title "description" (printf "%s · %s" (.Date | time.Format ":date_long") $section) "glyph" $glyph) }}
+    {{- end }}
+  </ul>
+</section>
+{{- end }}
+{{- else }}
+<p class="dialog__empty">Nothing published yet.</p>
+{{- end }}

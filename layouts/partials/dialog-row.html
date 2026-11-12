@@ -1,0 +1,27 @@
+{{/*
+  dialog-row.html — one row in a dialog listing; the whole row is a link.
+
+  Parameters (single dictionary):
+    href        (string, required): destination.
+    title       (string, required): bold row title.
+    description (string, optional): muted supporting text.
+    glyph       (string, optional): supported decorative glyph identifier
+                (see partials/glyph.html).
+
+  Rows without a usable href or title render nothing.
+*/}}
+{{- $href := .href }}
+{{- $title := .title }}
+{{- if and $href $title }}
+<li class="dialog-row">
+  <a class="dialog-row__link" href="{{ $href }}">
+    {{- with .glyph }}{{ partial "glyph.html" (dict "name" . "class" "dialog-row__glyph") }}{{ end }}
+    <span class="dialog-row__body">
+      <span class="dialog-row__title">{{ $title }}</span>
+      {{- with .description }}
+      <span class="dialog-row__description">{{ . }}</span>
+      {{- end }}
+    </span>
+  </a>
+</li>
+{{- end }}

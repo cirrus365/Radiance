@@ -1,0 +1,16 @@
+{{/*
+  search.html — single-page layout for the search dialog.
+
+  Used by pages with `layout: search`. Renders a server-generated list of
+  searchable pages (the same set as the JSON index: drafts are excluded by
+  Hugo; pages flagged `utility: true` are excluded here) plus a search
+  field that the application script wires to the JSON index. Without
+  JavaScript the server-rendered links remain usable.
+*/}}
+{{- define "main" -}}
+  {{- $pages := where site.RegularPages "Params.utility" "!=" true -}}
+  {{- $index := "" -}}
+  {{- with site.Home.OutputFormats.Get "search" }}{{ $index = .RelPermalink }}{{ end }}
+  {{- $actions := printf "<a class=\"dialog-action\" href=\"%s\">Close</a>" site.Home.RelPermalink | safeHTML -}}
+  {{- partial "dialog.html" (dict "title" .Title "id" "dialog-search" "icon" "document" "search" (dict "label" "Find:" "index" $index) "content" (partial "search-list.html" (dict "pages" $pages)) "actions" $actions) -}}
+{{- end -}}

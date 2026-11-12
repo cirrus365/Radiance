@@ -1,0 +1,22 @@
+{{- /*
+  index.search.json — the JSON search index, generated through the custom
+  "search" output format of the home page.
+
+  Each entry: title, relative permalink, section, date (ISO) and a
+  plain-text summary truncated to 200 characters. Drafts are excluded by
+  Hugo; pages flagged `utility: true` are excluded here.
+*/ -}}
+{{- $pages := where site.RegularPages "Params.utility" "!=" true -}}
+{{- $entries := slice -}}
+{{- range $pages }}
+  {{- $section := "" }}
+  {{- with .Parent }}{{ $section = .Title }}{{ end }}
+  {{- $summary := .Summary | plainify | truncate 200 }}
+  {{- $entries = $entries | append (dict
+      "title" .Title
+      "href" .RelPermalink
+      "section" $section
+      "date" (.Date | time.Format "2006-01-02")
+      "summary" $summary) }}
+{{- end -}}
+{{- $entries | jsonify -}}

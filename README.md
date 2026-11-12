@@ -124,6 +124,16 @@ the theme's contributors (procedural gradients and a synthesised tone
 bed). They carry no third-party rights and may be redistributed with the
 example site.
 
+## Listing pages
+
+The archive (`/archive/`), search (`/search/`) and taxonomy pages render
+through dialog-styled layouts (`layouts/_default/archive.html`,
+`search.html` and `terms.html`, sharing `partials/dialog.html`). Pages
+flagged `utility: true` in their front matter are excluded from the
+archive and search listings and from the JSON search index; drafts are
+always excluded. The search index is generated through a custom `search`
+output format on the home page (`index.json`).
+
 ## Development notes
 
 - All authored colour values live in `assets/css/tokens.css`; other

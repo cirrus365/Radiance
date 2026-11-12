@@ -54,6 +54,27 @@ theme = "radiance"
   [menus.places.params]
     glyph = "folder"
 
+[[menus.places]]
+  name = "Archive"
+  pageRef = "/archive"
+  weight = 30
+  [menus.places.params]
+    glyph = "folder"
+
+[[menus.places]]
+  name = "Search"
+  pageRef = "/search"
+  weight = 40
+  [menus.places.params]
+    glyph = "document"
+
+[[menus.places]]
+  name = "Tags"
+  pageRef = "/tags"
+  weight = 50
+  [menus.places.params]
+    glyph = "folder"
+
 [[menus.system]]
   name = "About this site"
   pageRef = "/about"
@@ -92,3 +113,11 @@ theme = "radiance"
 [params.trash]
   label = "Trash"
   pageRef = "/trash"
+
+# Search index: a custom output format on the home page renders index.json.
+[outputFormats]
+  [outputFormats.search]
+    mediaType = "application/json"
+
+[outputs]
+  home = ["HTML", "RSS", "search"]

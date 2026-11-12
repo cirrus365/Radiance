@@ -105,6 +105,24 @@ Home
 Posts
               </a>
             </li>
+            <li class="panel-menu__item">
+              <a class="panel-menu__link" href="/archive/">
+<svg class="panel-menu__glyph" aria-hidden="true" focusable="false"><use href="#radiance-glyph-folder"></use></svg>
+Archive
+              </a>
+            </li>
+            <li class="panel-menu__item">
+              <a class="panel-menu__link" href="/search/">
+<svg class="panel-menu__glyph" aria-hidden="true" focusable="false"><use href="#radiance-glyph-document"></use></svg>
+Search
+              </a>
+            </li>
+            <li class="panel-menu__item">
+              <a class="panel-menu__link" href="/tags/">
+<svg class="panel-menu__glyph" aria-hidden="true" focusable="false"><use href="#radiance-glyph-folder"></use></svg>
+Tags
+              </a>
+            </li>
         </ul>
       </details>
       <details class="panel-menu" data-panel-menu>
@@ -127,7 +145,7 @@ RSS feed
       </details>
   </nav>
   <div class="panel__applets">
-      <time class="applet applet--clock" datetime="10:56" data-panel-clock>10:56</time>
+      <time class="applet applet--clock" datetime="11:03" data-panel-clock>11:03</time>
       <a class="applet applet--link" href="https://gohugo.io/">Hugo website</a>
       <span class="applet applet--meter">
         <span class="applet-meter__label">Disc</span>
@@ -165,35 +183,43 @@ RSS feed
 </aside>
 
 
-<section class="window" aria-labelledby="window-list">
-  <header class="window__titlebar">
-<svg class="window__icon" aria-hidden="true" focusable="false"><use href="#radiance-glyph-folder"></use></svg>
+<section class="dialog" aria-labelledby="dialog-terms">
+  <header class="dialog__titlebar">
+<svg class="dialog__icon" aria-hidden="true" focusable="false"><use href="#radiance-glyph-folder"></use></svg>
 
-    <h1 class="window__title" id="window-list">Tags</h1>
-    <div class="window__controls">
-      <button type="button" class="window__control window__control--minimise" title="Minimise" aria-label="Minimise" aria-expanded="true" aria-controls="window-list-body">
-<svg class="window__control-glyph" aria-hidden="true" focusable="false"><use href="#radiance-glyph-minimise"></use></svg>
-</button>
-      <button type="button" class="window__control window__control--maximise" title="Maximise" aria-label="Maximise" aria-pressed="false">
-<svg class="window__control-glyph" aria-hidden="true" focusable="false"><use href="#radiance-glyph-maximise"></use></svg>
-</button>
-      <a class="window__control window__control--close" title="Close" aria-label="Close" href="/">
-<svg class="window__control-glyph" aria-hidden="true" focusable="false"><use href="#radiance-glyph-close"></use></svg>
-</a>
-    </div>
+    <h1 class="dialog__title" id="dialog-terms">Tags</h1>
   </header>
-  <div class="window__content" id="window-list-body">
+  <div class="dialog__results" data-search-results>
 
-<ul class="page-list">
-  <li class="page-list__item">
-    <a href="/tags/colour/">Colour</a>
-  </li>
-  <li class="page-list__item">
-    <a href="/tags/gnome/">Gnome</a>
-  </li>
+<ul class="dialog__list">
+<li class="dialog-row">
+  <a class="dialog-row__link" href="/tags/colour/">
+<svg class="dialog-row__glyph" aria-hidden="true" focusable="false"><use href="#radiance-glyph-folder"></use></svg>
+
+    <span class="dialog-row__body">
+      <span class="dialog-row__title">Colour</span>
+      <span class="dialog-row__description">1 page</span>
+    </span>
+  </a>
+</li>
+
+<li class="dialog-row">
+  <a class="dialog-row__link" href="/tags/gnome/">
+<svg class="dialog-row__glyph" aria-hidden="true" focusable="false"><use href="#radiance-glyph-folder"></use></svg>
+
+    <span class="dialog-row__body">
+      <span class="dialog-row__title">Gnome</span>
+      <span class="dialog-row__description">2 pages</span>
+    </span>
+  </a>
+</li>
+
 </ul>
 
   </div>
+  <footer class="dialog__actions">
+<a class="dialog-action" href="/">Close</a>
+  </footer>
 </section>
 
 </main>
