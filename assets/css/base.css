@@ -1,0 +1,134 @@
+/*
+ * radiance — base document styles.
+ *
+ * Basic typography and document defaults only; the desktop chrome is styled
+ * by desktop.css, panel.css, window.css, tiles.css and dialog.css in later
+ * steps. All colour values come from tokens.css.
+ */
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html {
+  -webkit-text-size-adjust: 100%;
+}
+
+body {
+  margin: 0;
+  background-color: var(--radiance-window-surface);
+  color: var(--radiance-text);
+  font-family: var(--radiance-font-sans);
+  line-height: 1.55;
+}
+
+::selection {
+  background-color: var(--radiance-selection);
+  color: var(--radiance-text);
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  line-height: 1.25;
+  margin: 1.5em 0 0.5em;
+}
+
+h1 {
+  margin-top: 0;
+  font-size: 1.5rem;
+}
+
+h2 {
+  font-size: 1.25rem;
+}
+
+h3 {
+  font-size: 1.1rem;
+}
+
+p,
+ul,
+ol,
+dl,
+figure,
+pre {
+  margin: 0 0 1em;
+}
+
+a {
+  color: var(--radiance-accent);
+}
+
+:focus-visible {
+  outline: 2px solid var(--radiance-accent);
+  outline-offset: 2px;
+}
+
+blockquote {
+  margin: 0 0 1em;
+  padding: 0 0 0 1em;
+  border-left: var(--radiance-border-width) solid var(--radiance-window-border);
+  color: var(--radiance-text-muted);
+}
+
+code,
+kbd,
+samp {
+  font-family: var(--radiance-font-mono);
+  font-size: 0.875em;
+}
+
+pre {
+  font-family: var(--radiance-font-mono);
+  font-size: 0.875em;
+  padding: 0.75em 1em;
+  overflow-x: auto;
+  background-color: var(--radiance-window-chrome);
+  border: var(--radiance-border-width) solid var(--radiance-window-border);
+}
+
+pre code {
+  font-size: inherit;
+}
+
+img,
+video {
+  max-width: 100%;
+  height: auto;
+}
+
+hr {
+  margin: 2em 0;
+  border: 0;
+  border-top: var(--radiance-border-width) solid var(--radiance-panel-border);
+}
+
+/* Skip link, shown when focused. */
+.skip-link {
+  position: absolute;
+  top: auto;
+  left: -9999px;
+  padding: 0.25rem 0.75rem;
+  background-color: var(--radiance-panel-bg);
+  color: var(--radiance-panel-text);
+  z-index: 100;
+}
+
+.skip-link:focus {
+  top: 0;
+  left: 0;
+}
+
+/* Shared decorative glyph sprite: kept in the document, visually hidden. */
+.icon-sprite {
+  position: absolute;
+  width: 0;
+  height: 0;
+  overflow: hidden;
+}

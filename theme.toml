@@ -1,0 +1,17 @@
+# Theme metadata for the Hugo themes gallery.
+
+name = "radiance"
+license = "MIT"
+description = "A Hugo theme that makes a content website feel like an Ubuntu desktop running GNOME 2. The default light appearance is inspired by Ubuntu Radiance; a dark, Ambiance-inspired appearance is planned."
+# Placeholder repository link. Replace OWNER with the final repository
+# location once known.
+licenselink = "https://github.com/OWNER/radiance/blob/main/LICENSE"
+min_version = "0.128.0"
+
+tags = ["desktop", "gnome", "ubuntu", "blog", "light", "dark"]
+features = ["accessible", "works-without-javascript", "colour-tokens"]
+
+[author]
+  name = "The radiance contributors"
+  # Replace with the final repository URL once known:
+  # homepage = "https://github.com/OWNER"

@@ -1,0 +1,45 @@
+{{/*
+  head.html — document <head> for radiance.
+
+  Parameters: page context (no dictionary).
+
+  Sets up the CSS and JavaScript pipelines:
+  - CSS: assets/css/tokens.css and the theme stylesheets concatenated into
+    one file, minified outside the development server.
+  - JS: assets/js/main.js bundled with js.Build, minified outside the
+    development server.
+*/}}
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+{{ hugo.Generator }}
+{{- $title := site.Title }}
+{{- if not .IsHome }}
+  {{- with .Title }}{{ $title = printf "%s · %s" . site.Title }}{{ end }}
+{{- end }}
+<title>{{ $title }}</title>
+{{- with .Description }}
+<meta name="description" content="{{ . }}">
+{{- else }}
+  {{- with site.Params.description }}
+<meta name="description" content="{{ . }}">
+  {{- end }}
+{{- end }}
+{{- with .OutputFormats.Get "rss" }}
+<link rel="alternate" type="{{ .MediaType.Type }}" href="{{ .Permalink }}" title="{{ site.Title }}">
+{{- end }}
+{{- $css := slice
+  (resources.Get "css/tokens.css")
+  (resources.Get "css/base.css")
+  (resources.Get "css/desktop.css")
+  (resources.Get "css/panel.css")
+  (resources.Get "css/window.css")
+  (resources.Get "css/tiles.css")
+  (resources.Get "css/dialog.css")
+  | resources.Concat "css/radiance.css"
+}}
+{{- if not hugo.IsServer }}
+  {{- $css = $css | minify }}
+{{- end }}
+<link rel="stylesheet" href="{{ $css.RelPermalink }}">
+{{- $js := resources.Get "js/main.js" | js.Build (dict "targetPath" "js/radiance.js" "minify" (not hugo.IsServer)) }}
+<script src="{{ $js.RelPermalink }}" defer></script>

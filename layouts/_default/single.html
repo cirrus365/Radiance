@@ -1,0 +1,8 @@
+{{- define "main" -}}
+  {{- $meta := "" -}}
+  {{- with .Date -}}
+    {{- $meta = printf "<p class=\"page-meta\">%s</p>" (. | time.Format ":date_long") | safeHTML -}}
+  {{- end -}}
+  {{- $content := printf "%s%s" $meta .Content | safeHTML -}}
+  {{- partial "window.html" (dict "title" .Title "id" "window-page" "icon" "document" "content" $content) -}}
+{{- end -}}

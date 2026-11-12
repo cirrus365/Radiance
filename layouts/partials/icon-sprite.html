@@ -1,0 +1,38 @@
+{{/*
+  icon-sprite.html — the shared decorative glyph sprite.
+
+  Parameters: page context (no dictionary). Include once per document, before
+  any glyph is rendered through partials/glyph.html. The symbols are never
+  rendered directly; they are referenced by id (#radiance-glyph-...).
+*/}}
+<svg class="icon-sprite" width="0" height="0" aria-hidden="true" focusable="false">
+  <symbol id="radiance-glyph-document" viewBox="0 0 16 16">
+    <path d="M4 1.5h5.5L12.5 4.5v10H4z"/>
+    <path d="M9.5 1.5v3h3"/>
+    <path d="M6 8h4.5M6 10.5h4.5"/>
+  </symbol>
+  <symbol id="radiance-glyph-folder" viewBox="0 0 16 16">
+    <path d="M1.5 3.5h4.5L7.5 5H14.5v8.5H1.5z"/>
+  </symbol>
+  <symbol id="radiance-glyph-home" viewBox="0 0 16 16">
+    <path d="M2 8l6-5.5L14 8"/>
+    <path d="M4 7v6.5h8V7"/>
+  </symbol>
+  <symbol id="radiance-glyph-info" viewBox="0 0 16 16">
+    <circle cx="8" cy="8" r="6"/>
+    <path d="M8 7.5V11M8 5.1v.3"/>
+  </symbol>
+  <symbol id="radiance-glyph-feed" viewBox="0 0 16 16">
+    <circle cx="4.25" cy="11.75" r="1.25" fill="currentColor" stroke="none"/>
+    <path d="M3 8a5 5 0 0 1 5 5M3 4.5A8.5 8.5 0 0 1 11.5 13"/>
+  </symbol>
+  <symbol id="radiance-glyph-minimise" viewBox="0 0 16 16">
+    <path d="M4 11.5h8"/>
+  </symbol>
+  <symbol id="radiance-glyph-maximise" viewBox="0 0 16 16">
+    <rect x="3.5" y="3.5" width="9" height="9"/>
+  </symbol>
+  <symbol id="radiance-glyph-close" viewBox="0 0 16 16">
+    <path d="M4.5 4.5l7 7M11.5 4.5l-7 7"/>
+  </symbol>
+</svg>

@@ -1,0 +1,57 @@
+/*
+ * radiance — design tokens.
+ *
+ * Every authored colour value in the theme lives here. Other stylesheets
+ * must reference the custom properties defined in this file. The exception
+ * is validated palette colours supplied by content authors, which may be
+ * rendered as inline CSS custom properties.
+ *
+ * These are starting values, not a guarantee of accessible contrast; add or
+ * adjust tokens when actual combinations need improvement.
+ */
+
+:root {
+  /* Panels */
+  --radiance-panel-bg: #f2f1ef;
+  --radiance-panel-raised: #faf9f7;
+  --radiance-panel-text: #3d3a38;
+  --radiance-panel-border: #b8b3ad;
+
+  /* Desktop */
+  --radiance-desktop-aubergine: #2c001e;
+  --radiance-desktop-purple: #77216f;
+  --radiance-desktop-orange: #e66f45;
+
+  /* Windows */
+  --radiance-window-bg: #f2f1ef;
+  --radiance-window-surface: #ffffff;
+  --radiance-window-chrome: #e9e5df;
+  --radiance-window-border: #aaa39c;
+
+  /* Tiles */
+  --radiance-tile-bg: #f7f6f4;
+  --radiance-tile-border: #d1cbc5;
+
+  /* Text */
+  --radiance-text: #33302e;
+  --radiance-text-muted: #625d59;
+
+  /* Accents */
+  --radiance-accent: #dd4814;
+  --radiance-selection: #f7dfd3;
+
+  /* Bevels */
+  --radiance-bevel-light: #ffffff;
+  --radiance-bevel-dark: #c9c2ba;
+  --radiance-bevel: inset 1px 1px 0 var(--radiance-bevel-light), inset -1px -1px 0 var(--radiance-bevel-dark);
+
+  /* Metrics */
+  --radiance-panel-height: 28px;
+  --radiance-titlebar-height: 26px;
+  --radiance-border-width: 1px;
+  --radiance-window-radius: 4px;
+
+  /* Typography. Locally installed faces only; no remote fonts are loaded. */
+  --radiance-font-sans: "Ubuntu", "Ubuntu Sans", "DejaVu Sans", "Liberation Sans", "Segoe UI", system-ui, sans-serif;
+  --radiance-font-mono: "Ubuntu Mono", "Ubuntu Sans Mono", "DejaVu Sans Mono", Menlo, Consolas, monospace;
+}

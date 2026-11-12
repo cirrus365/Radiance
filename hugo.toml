@@ -1,0 +1,13 @@
+# radiance — theme configuration.
+#
+# Hugo module metadata. The theme supports installation as a Hugo module
+# (from a site: `hugo mod get <repository-path>`) and as a Git submodule.
+#
+# The final module path is not yet known. Until it is, README.md and
+# theme.toml carry the documented placeholder "github.com/OWNER/radiance";
+# replace OWNER with the real repository path wherever the placeholder
+# appears once the theme is published.
+
+[module]
+  [module.hugoVersion]
+    min = "0.128.0"

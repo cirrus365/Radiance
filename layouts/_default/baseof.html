@@ -1,0 +1,28 @@
+{{/*
+  baseof.html — base document template for radiance.
+
+  Child templates (single.html, list.html, index.html, 404.html) define the
+  "main" block, which is rendered inside <main id="desktop"> after the
+  desktop shortcuts and before the bottom panel.
+
+  The document starts with a `no-js` class on <html>; the external
+  application script (assets/js/main.js) replaces it with `js` after
+  successful initialisation. No inline scripts are used.
+*/}}
+<!DOCTYPE html>
+<html class="no-js" lang="{{ site.Language.Lang }}">
+<head>
+{{ partial "head.html" . }}
+</head>
+<body>
+<a class="skip-link" href="#desktop">Skip to content</a>
+{{ partial "icon-sprite.html" . }}
+{{ partial "panel-top.html" . }}
+<main id="desktop">
+{{ partial "desktop-icons.html" . }}
+{{ block "main" . }}{{ end }}
+</main>
+{{ partial "panel-bottom.html" . }}
+{{ partial "footer.html" . }}
+</body>
+</html>

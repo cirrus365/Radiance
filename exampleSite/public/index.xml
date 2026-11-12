@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+	<channel>
+		<title>Welcome on radiance</title>
+		<link>http://localhost:1313/</link>
+		<description>Recent content in Welcome on radiance</description>
+		<generator>Hugo</generator>
+		<language>en-gb</language>
+		
+		
+		
+		
+			<lastBuildDate>Sun, 08 Nov 2026 00:00:00 +0000</lastBuildDate>
+		
+			<atom:link href="http://localhost:1313/index.xml" rel="self" type="application/rss+xml" />
+			<item>
+				<title>Design tokens</title>
+				<link>http://localhost:1313/posts/design-tokens/</link>
+				<pubDate>Sun, 08 Nov 2026 00:00:00 +0000</pubDate>
+				<guid>http://localhost:1313/posts/design-tokens/</guid>
+				<description>&lt;p&gt;All authored colour values in radiance live in &lt;code&gt;assets/css/tokens.css&lt;/code&gt;.&#xA;Every other stylesheet refers to the custom properties defined there, for&#xA;example:&lt;/p&gt;&#xA;&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;&#34;&gt;&lt;code class=&#34;language-css&#34; data-lang=&#34;css&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#f92672&#34;&gt;a&lt;/span&gt; {&#xA;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;  &lt;span style=&#34;color:#66d9ef&#34;&gt;color&lt;/span&gt;: &lt;span style=&#34;color:#a6e22e&#34;&gt;var&lt;/span&gt;(&lt;span style=&#34;color:#f92672&#34;&gt;--&lt;/span&gt;radiance&lt;span style=&#34;color:#f92672&#34;&gt;-&lt;/span&gt;accent);&#xA;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;}&#xA;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h2 id=&#34;starting-palette&#34;&gt;Starting palette&lt;/h2&gt;&#xA;&lt;p&gt;The starting palette takes its cues from Ubuntu&amp;rsquo;s Radiance theme:&lt;/p&gt;&#xA;&lt;ul&gt;&#xA;&lt;li&gt;Pale panels with fine borders.&lt;/li&gt;&#xA;&lt;li&gt;A deep aubergine desktop with purple and orange highlights.&lt;/li&gt;&#xA;&lt;li&gt;An orange accent for links and selection.&lt;/li&gt;&#xA;&lt;/ul&gt;&#xA;&lt;p&gt;These are starting values, not a guarantee of accessible contrast; adjust&#xA;them when a combination needs improvement.&lt;/p&gt;</description>
+			</item>
+			<item>
+				<title>Getting started</title>
+				<link>http://localhost:1313/posts/getting-started/</link>
+				<pubDate>Sun, 01 Nov 2026 00:00:00 +0000</pubDate>
+				<guid>http://localhost:1313/posts/getting-started/</guid>
+				<description>&lt;h2 id=&#34;prerequisites&#34;&gt;Prerequisites&lt;/h2&gt;&#xA;&lt;p&gt;radiance needs Hugo Extended 0.128.0 or newer. Check the installed version:&lt;/p&gt;&#xA;&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;&#34;&gt;&lt;code class=&#34;language-text&#34; data-lang=&#34;text&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;hugo version&#xA;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h2 id=&#34;build-the-example-site&#34;&gt;Build the example site&lt;/h2&gt;&#xA;&lt;p&gt;The theme repository ships an example site:&lt;/p&gt;&#xA;&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;&#34;&gt;&lt;code class=&#34;language-text&#34; data-lang=&#34;text&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;hugo --source exampleSite --themesDir ../..&#xA;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;The command assumes the theme checkout directory is named &lt;code&gt;radiance&lt;/code&gt;, so&#xA;that &lt;code&gt;../..&lt;/code&gt; resolves from &lt;code&gt;exampleSite&lt;/code&gt; to the directory containing the&#xA;theme.&lt;/p&gt;&#xA;&lt;h2 id=&#34;next-steps&#34;&gt;Next steps&lt;/h2&gt;&#xA;&lt;ul&gt;&#xA;&lt;li&gt;Read the other sample post listed under &lt;em&gt;Posts&lt;/em&gt;.&lt;/li&gt;&#xA;&lt;li&gt;Adjust the colours in &lt;code&gt;assets/css/tokens.css&lt;/code&gt;.&lt;/li&gt;&#xA;&lt;/ul&gt;</description>
+			</item>
+			<item>
+				<title>About this site</title>
+				<link>http://localhost:1313/about/</link>
+				<pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+				<guid>http://localhost:1313/about/</guid>
+				<description>&lt;p&gt;This example site demonstrates &lt;strong&gt;radiance&lt;/strong&gt;, a Hugo theme that makes a&#xA;content website feel like an Ubuntu desktop running GNOME 2.&lt;/p&gt;&#xA;&lt;h2 id=&#34;the-theme&#34;&gt;The theme&lt;/h2&gt;&#xA;&lt;ul&gt;&#xA;&lt;li&gt;The default light appearance is inspired by Ubuntu Radiance.&lt;/li&gt;&#xA;&lt;li&gt;An Ambiance-inspired dark appearance is planned.&lt;/li&gt;&#xA;&lt;li&gt;All authored colour values live in &lt;code&gt;assets/css/tokens.css&lt;/code&gt;.&lt;/li&gt;&#xA;&lt;/ul&gt;&#xA;&lt;h2 id=&#34;this-site&#34;&gt;This site&lt;/h2&gt;&#xA;&lt;p&gt;The top panel provides Applications, Places and System menus; the applets&#xA;on the right show the time, a link and a text meter. The sample posts cover&#xA;getting started and the design tokens.&lt;/p&gt;</description>
+			</item>
+	</channel>
+</rss>

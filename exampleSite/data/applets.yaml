@@ -1,0 +1,22 @@
+# Applets for the top panel (layouts/partials/panel-top.html), sorted by
+# weight.
+#
+# Supported types:
+#   clock: the current time; rendered at build time as a fallback and
+#          updated to the visitor's local time by JavaScript. No extra keys.
+#   link:  a text link; keys "label" (the visible text and accessible name)
+#          and "url".
+#   meter: a compact label and text value; keys "label" and "value".
+
+- type: clock
+  weight: 10
+
+- type: link
+  weight: 20
+  label: "Hugo website"
+  url: "https://gohugo.io/"
+
+- type: meter
+  weight: 30
+  label: "Disc"
+  value: "62 GiB free"

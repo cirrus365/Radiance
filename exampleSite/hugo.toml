@@ -1,0 +1,63 @@
+# Example site for the radiance Hugo theme.
+# Build with: hugo --source exampleSite --themesDir ../..
+
+baseURL = "http://localhost:1313/"
+title = "radiance"
+# The language key doubles as the document language (lang="en-gb").
+defaultContentLanguage = "en-gb"
+theme = "radiance"
+
+[params]
+  description = "A Hugo theme that makes a content website feel like an Ubuntu desktop running GNOME 2."
+
+# Top panel menus: Applications, Places and System.
+
+[[menus.applications]]
+  name = "Posts"
+  pageRef = "/posts"
+  weight = 10
+  [menus.applications.params]
+    glyph = "document"
+
+[[menus.applications]]
+  name = "Getting started"
+  pageRef = "/posts/getting-started"
+  weight = 20
+  [menus.applications.params]
+    glyph = "document"
+
+[[menus.applications]]
+  name = "Design tokens"
+  pageRef = "/posts/design-tokens"
+  weight = 30
+  [menus.applications.params]
+    glyph = "document"
+
+[[menus.places]]
+  name = "Home"
+  pageRef = "/"
+  weight = 10
+  [menus.places.params]
+    glyph = "home"
+
+[[menus.places]]
+  name = "Posts"
+  pageRef = "/posts"
+  weight = 20
+  [menus.places.params]
+    glyph = "folder"
+
+[[menus.system]]
+  name = "About this site"
+  pageRef = "/about"
+  weight = 10
+  [menus.system.params]
+    glyph = "info"
+
+[[menus.system]]
+  name = "RSS feed"
+  pageRef = "/"
+  weight = 20
+  [menus.system.params]
+    glyph = "feed"
+    feed = true

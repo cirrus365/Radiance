@@ -1,0 +1,4 @@
+{{- define "main" -}}
+  {{- $content := printf "<p>The page you requested could not be found.</p><p><a href=\"%s\">Return to the home page</a>.</p>" site.Home.RelPermalink | safeHTML -}}
+  {{- partial "window.html" (dict "title" "Page not found" "id" "window-404" "icon" "info" "content" $content) -}}
+{{- end -}}

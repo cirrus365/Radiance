@@ -1,0 +1,89 @@
+{{/*
+  panel-top.html — the top panel: application menus and applets.
+
+  Parameters: page context (no dictionary).
+
+  Menus come from the site menu configuration, by menu name:
+    applications, places, system
+  A menu button renders only when its menu has entries. Each entry renders
+  as a decorative glyph plus a text link. Entry keys used:
+    glyph (params, optional): a supported decorative icon identifier (see
+          partials/glyph.html); anything else renders as text only.
+    feed  (params, optional): links the entry to the home page's RSS output
+          instead of the entry URL; the entry is skipped when no RSS output
+          is configured.
+
+  Applets come from the site data key "applets" (data/applets.yaml), sorted
+  by "weight"; supported types: clock, link, meter. The data is read via
+  hugo.Data on Hugo 0.156 and later, and via site.Data on older releases
+  (site.Data is deprecated from 0.156; hugo.Data does not exist before it).
+
+  The System menu reserves a place, after its entries and above a separator,
+  for an appearance selector to be added in a later step.
+*/}}
+<header class="panel panel--top">
+  <nav class="panel__menus" aria-label="Panel menus">
+    {{- $menus := slice
+      (dict "id" "applications" "label" "Applications")
+      (dict "id" "places" "label" "Places")
+      (dict "id" "system" "label" "System")
+    }}
+    {{- $glyphs := slice }}
+    {{- range $menus }}
+      {{- $menu := . }}
+      {{- with index site.Menus $menu.id }}
+      <details class="panel-menu" data-panel-menu>
+        <summary class="panel-menu__summary">{{ $menu.label }}</summary>
+        <ul class="panel-menu__list">
+          {{- range . }}
+            {{- $entry := . }}
+            {{- $url := $entry.URL }}
+            {{- $glyph := "" }}
+            {{- with $entry.Params.glyph }}{{ $glyph = . }}{{ end }}
+            {{- if $entry.Params.feed }}
+              {{- with site.Home.OutputFormats.Get "rss" }}
+                {{- $url = .Permalink }}
+              {{- else }}
+                {{- $url = "" }}
+              {{- end }}
+            {{- end }}
+            {{- with $url }}
+            <li class="panel-menu__item">
+              <a class="panel-menu__link" href="{{ . }}">
+                {{- with $glyph }}{{ partial "glyph.html" (dict "name" . "class" "panel-menu__glyph") }}{{ end }}{{ $entry.Name }}
+              </a>
+            </li>
+            {{- end }}
+          {{- end }}
+          {{- if eq $menu.id "system" }}
+            {{/* Appearance selector slot: a later step renders a separator
+                and the appearance selector here, at the end of the menu. */}}
+          {{- end }}
+        </ul>
+      </details>
+      {{- end }}
+    {{- end }}
+  </nav>
+  {{- $applets := slice }}
+  {{- if ge hugo.Version "0.156.0" }}
+    {{- with hugo.Data.applets }}{{ $applets = . }}{{ end }}
+  {{- else }}
+    {{- with site.Data.applets }}{{ $applets = . }}{{ end }}
+  {{- end }}
+  {{- with $applets }}
+  <div class="panel__applets">
+    {{- range sort . "weight" "asc" }}
+      {{- if eq .type "clock" }}
+      <time class="applet applet--clock" datetime="{{ now.Format "15:04" }}" data-panel-clock>{{ now.Format "15:04" }}</time>
+      {{- else if eq .type "link" }}
+      <a class="applet applet--link" href="{{ .url }}">{{ .label }}</a>
+      {{- else if eq .type "meter" }}
+      <span class="applet applet--meter">
+        <span class="applet-meter__label">{{ .label }}</span>
+        <span class="applet-meter__value">{{ .value }}</span>
+      </span>
+      {{- end }}
+    {{- end }}
+  </div>
+  {{- end }}
+</header>

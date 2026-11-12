@@ -1,0 +1,25 @@
+{{/*
+  page-list.html — a page's intro content followed by a linked list of its
+  child pages.
+
+  Parameters: a home or list page (page context, not a dictionary). Used by
+  index.html and _default/list.html; the rendered result is passed to
+  window.html as the "content" key.
+*/}}
+{{- with .Content }}
+<div class="page-list__intro">
+{{ . }}
+</div>
+{{- end }}
+{{- with .Pages }}
+<ul class="page-list">
+  {{- range . }}
+  <li class="page-list__item">
+    <a href="{{ .RelPermalink }}">{{ .Title }}</a>
+    {{- with .Description }}
+    <p class="page-list__description">{{ . }}</p>
+    {{- end }}
+  </li>
+  {{- end }}
+</ul>
+{{- end }}

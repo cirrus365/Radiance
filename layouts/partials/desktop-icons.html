@@ -1,0 +1,16 @@
+{{/*
+  desktop-icons.html — the left-hand desktop shortcut column.
+
+  Parameters: page context (no dictionary).
+
+  Placeholder: desktop shortcuts with icons are implemented in a later step.
+  Currently renders plain links to the home page and top-level sections.
+*/}}
+<aside class="desktop-icons" aria-label="Desktop shortcuts">
+  <ul class="desktop-icons__list">
+    <li class="desktop-icons__item"><a href="{{ site.Home.RelPermalink }}">Home</a></li>
+    {{- range site.Sections }}
+    <li class="desktop-icons__item"><a href="{{ .RelPermalink }}">{{ .Title }}</a></li>
+    {{- end }}
+  </ul>
+</aside>

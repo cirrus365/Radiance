@@ -1,0 +1,20 @@
+/*
+ * radiance — application entry point.
+ *
+ * Bundled with Hugo's js.Build. Core content and navigation work without
+ * this script; it only applies progressive enhancements.
+ */
+
+import { initPanelMenus } from "./panel-menu.js";
+import { initPanelClock } from "./panel-clock.js";
+import { initWindows } from "./window.js";
+
+const root = document.documentElement;
+
+// Signal that the application script has initialised successfully.
+root.classList.remove("no-js");
+root.classList.add("js");
+
+initPanelMenus();
+initPanelClock();
+initWindows();

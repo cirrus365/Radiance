@@ -1,0 +1,125 @@
+/*
+ * radiance — window styles.
+ *
+ * Application windows: a warm light-grey frame, pale compact titlebar with
+ * a subtle highlight and bevel, and a white content surface. The Minimise,
+ * Maximise and Close controls stay hidden until the application script has
+ * initialised; without JavaScript the full window body remains visible.
+ * All colour values come from tokens.css.
+ */
+
+.window {
+  background-color: var(--radiance-window-bg);
+  border: var(--radiance-border-width) solid var(--radiance-window-border);
+  border-radius: var(--radiance-window-radius);
+}
+
+/* Titlebar */
+
+.window__titlebar {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  height: var(--radiance-titlebar-height);
+  padding: 0 4px 0 8px;
+  background-color: var(--radiance-window-chrome);
+  box-shadow: var(--radiance-bevel);
+  border-bottom: var(--radiance-border-width) solid var(--radiance-window-border);
+  border-radius: calc(var(--radiance-window-radius) - var(--radiance-border-width)) calc(var(--radiance-window-radius) - var(--radiance-border-width)) 0 0;
+}
+
+.window__icon {
+  width: 16px;
+  height: 16px;
+  flex: none;
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 1.25;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  color: var(--radiance-panel-text);
+}
+
+.window__title {
+  flex: 1;
+  min-width: 0;
+  margin: 0;
+  overflow: hidden;
+  font-size: 0.8125rem;
+  font-weight: 700;
+  line-height: 1;
+  color: var(--radiance-panel-text);
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+
+.window__controls {
+  display: none;
+  align-items: center;
+  gap: 2px;
+}
+
+.js .window__controls {
+  display: flex;
+}
+
+.window__control {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 20px;
+  height: 16px;
+  padding: 0;
+  border: var(--radiance-border-width) solid transparent;
+  border-radius: 3px;
+  background-color: transparent;
+  color: var(--radiance-text);
+  font: inherit;
+  cursor: default;
+}
+
+.window__control:hover {
+  background-color: var(--radiance-panel-raised);
+  border-color: var(--radiance-panel-border);
+}
+
+.window__control:focus-visible {
+  outline: var(--radiance-border-width) dotted var(--radiance-panel-text);
+  outline-offset: -1px;
+}
+
+.window__control--close {
+  color: var(--radiance-accent);
+}
+
+.window__control--close:hover {
+  background-color: var(--radiance-selection);
+  border-color: var(--radiance-accent);
+}
+
+.window__control-glyph {
+  width: 14px;
+  height: 14px;
+  flex: none;
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 1.5;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+/* Body */
+
+.window__content {
+  margin: 0 8px 8px;
+  padding: 12px 16px 16px;
+  background-color: var(--radiance-window-surface);
+  border-radius: 0 0 calc(var(--radiance-window-radius) - var(--radiance-border-width)) calc(var(--radiance-window-radius) - var(--radiance-border-width));
+}
+
+/* Maximised state: the application script toggles has-maximised-window on
+   <html> and window--maximised on the current window. */
+
+html.has-maximised-window .window--maximised {
+  min-height: calc(100vh - 2 * var(--radiance-panel-height));
+}

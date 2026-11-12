@@ -1,0 +1,3 @@
+{{- define "main" -}}
+  {{- partial "window.html" (dict "title" .Title "id" "window-list" "icon" "folder" "content" (partial "page-list.html" .)) -}}
+{{- end -}}

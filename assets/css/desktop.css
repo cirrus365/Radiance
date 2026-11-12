@@ -1,0 +1,11 @@
+/*
+ * radiance — desktop styles.
+ *
+ * The desktop background and the left-hand shortcut column are styled in a
+ * later step. A maximised window enlarges within the desktop area and hides
+ * the shortcut column. All colour values come from tokens.css.
+ */
+
+html.has-maximised-window .desktop-icons {
+  display: none;
+}
