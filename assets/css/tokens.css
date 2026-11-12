@@ -38,8 +38,12 @@
   --radiance-text-muted: #625d59;
 
   /* Accents */
-  --radiance-accent: #dd4814;
+  --radiance-accent: #c2410e;
   --radiance-selection: #f7dfd3;
+
+  /* Control boundaries: strong enough to separate controls from the
+     surfaces they sit on (3:1 non-text contrast). */
+  --radiance-control-border: #8a8378;
 
   /* Bevels */
   --radiance-bevel-light: #ffffff;

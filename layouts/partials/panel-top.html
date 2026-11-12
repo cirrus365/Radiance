@@ -5,20 +5,20 @@
 
   Menus come from the site menu configuration, by menu name:
     applications, places, system
-  A menu button renders only when its menu has entries. Each entry renders
-  as a decorative glyph plus a text link. Entry keys used:
-    glyph (params, optional): a supported decorative icon identifier (see
-          partials/glyph.html); anything else renders as text only.
-    feed  (params, optional): links the entry to the home page's RSS output
-          instead of the entry URL; the entry is skipped when no RSS output
-          is configured.
+  A menu button renders only when its menu has entries; entries render
+  through partials/panel-menu-entries.html.
+
+  Below 1024px (see assets/css/panel.css) the three menus are replaced by
+  one combined "Applications" menu containing every entry, and applets
+  other than the clock are hidden. Both menu representations exist in the
+  document, but only one is rendered and focusable at a time.
 
   Applets come from the site data key "applets" (data/applets.yaml), read
   through partials/site-data.html, sorted by "weight"; supported types:
   clock, link, meter.
 
-  The System menu reserves a place, after its entries and above a separator,
-  for an appearance selector to be added in a later step.
+  The System menu reserves a place, after its entries and above a
+  separator, for an appearance selector to be added in a later step.
 */}}
 <header class="panel panel--top">
   <nav class="panel__menus" aria-label="Panel menus">
@@ -27,33 +27,13 @@
       (dict "id" "places" "label" "Places")
       (dict "id" "system" "label" "System")
     }}
-    {{- $glyphs := slice }}
     {{- range $menus }}
       {{- $menu := . }}
       {{- with index site.Menus $menu.id }}
       <details class="panel-menu" data-panel-menu>
         <summary class="panel-menu__summary">{{ $menu.label }}</summary>
         <ul class="panel-menu__list">
-          {{- range . }}
-            {{- $entry := . }}
-            {{- $url := $entry.URL }}
-            {{- $glyph := "" }}
-            {{- with $entry.Params.glyph }}{{ $glyph = . }}{{ end }}
-            {{- if $entry.Params.feed }}
-              {{- with site.Home.OutputFormats.Get "rss" }}
-                {{- $url = .Permalink }}
-              {{- else }}
-                {{- $url = "" }}
-              {{- end }}
-            {{- end }}
-            {{- with $url }}
-            <li class="panel-menu__item">
-              <a class="panel-menu__link" href="{{ . }}">
-                {{- with $glyph }}{{ partial "glyph.html" (dict "name" . "class" "panel-menu__glyph") }}{{ end }}{{ $entry.Name }}
-              </a>
-            </li>
-            {{- end }}
-          {{- end }}
+          {{- partial "panel-menu-entries.html" (dict "entries" .) }}
           {{- if eq $menu.id "system" }}
             {{/* Appearance selector slot: a later step renders a separator
                 and the appearance selector here, at the end of the menu. */}}
@@ -61,6 +41,23 @@
         </ul>
       </details>
       {{- end }}
+    {{- end }}
+    {{- $hasEntries := false }}
+    {{- range $menus }}
+      {{- with index site.Menus .id }}{{ $hasEntries = true }}{{ end }}
+    {{- end }}
+    {{- if $hasEntries }}
+      {{- /* Combined menu for narrow viewports; hidden above 1024px. */}}
+      <details class="panel-menu panel-menu--combined" data-panel-menu>
+        <summary class="panel-menu__summary">Applications</summary>
+        <ul class="panel-menu__list">
+          {{- range $menus }}
+            {{- with index site.Menus .id }}
+              {{- partial "panel-menu-entries.html" (dict "entries" .) }}
+            {{- end }}
+          {{- end }}
+        </ul>
+      </details>
     {{- end }}
   </nav>
   {{- with partial "site-data.html" (dict "key" "applets") }}

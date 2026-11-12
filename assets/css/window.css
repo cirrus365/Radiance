@@ -80,7 +80,7 @@
 
 .window__control:hover {
   background-color: var(--radiance-panel-raised);
-  border-color: var(--radiance-panel-border);
+  border-color: var(--radiance-control-border);
 }
 
 .window__control:focus-visible {

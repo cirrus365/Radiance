@@ -180,6 +180,32 @@ hr {
   margin: 0 0 12px;
 }
 
+/* Visually hidden, still available to assistive technology. */
+.visually-hidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  margin: -1px;
+  padding: 0;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+/* Reduced motion: no nonessential transitions or animation. The theme
+   defines none today; the guard keeps it that way if any are added. */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    transition-duration: 0.01ms !important;
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    scroll-behavior: auto !important;
+  }
+}
+
 /* Shared decorative glyph sprite: kept in the document, visually hidden. */
 .icon-sprite {
   position: absolute;

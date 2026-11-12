@@ -66,7 +66,7 @@
   display: block;
   min-width: 0;
   padding: 2px 8px;
-  border: var(--radiance-border-width) solid var(--radiance-panel-border);
+  border: var(--radiance-border-width) solid var(--radiance-control-border);
   border-radius: 3px;
   background-color: var(--radiance-panel-bg);
   box-shadow: var(--radiance-bevel);
@@ -155,7 +155,7 @@
 
 .workspaces__link[aria-current="page"] {
   background-color: var(--radiance-panel-raised);
-  border-color: var(--radiance-panel-border);
+  border-color: var(--radiance-control-border);
   box-shadow: var(--radiance-bevel-sunken);
   font-weight: 700;
 }
@@ -188,6 +188,51 @@
 .trash:focus-visible {
   outline: var(--radiance-border-width) dotted var(--radiance-panel-text);
   outline-offset: -1px;
+}
+
+/* Visually hidden announcement region for window-list changes. */
+.window-list__status {
+  margin: 0;
+}
+
+/* Responsive collapse of the desktop metaphor.
+
+   Below 1024px the three top menus are replaced by one combined menu and
+   only the clock applet remains; both menu representations stay in the
+   document but only one renders and is focusable at a time. */
+
+@media (max-width: 1023.98px) {
+  .panel-menu:not(.panel-menu--combined) {
+    display: none;
+  }
+
+  .panel__applets .applet:not(.applet--clock) {
+    display: none;
+  }
+}
+
+@media (min-width: 1024px) {
+  .panel-menu--combined {
+    display: none;
+  }
+}
+
+/* Below 768px the desktop shortcuts and workspace links are hidden;
+   windows use the available width and the bottom panel keeps the window
+   list and optional Trash link. */
+
+@media (max-width: 767.98px) {
+  .workspaces {
+    display: none;
+  }
+}
+
+/* Below 480px the panels compact to 24px. */
+
+@media (max-width: 479.98px) {
+  .panel {
+    height: 24px;
+  }
 }
 
 
@@ -227,7 +272,7 @@
 .panel-menu__summary:hover,
 .panel-menu[open] .panel-menu__summary {
   background-color: var(--radiance-panel-raised);
-  border-color: var(--radiance-panel-border);
+  border-color: var(--radiance-control-border);
 }
 
 .panel-menu__summary:focus-visible,

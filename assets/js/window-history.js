@@ -49,9 +49,16 @@ export function initWindowHistory() {
   const list = document.querySelector("[data-window-list]");
   const activeEntry = list ? list.querySelector("[data-window-entry]") : null;
   const activeLink = activeEntry ? activeEntry.querySelector("a") : null;
+  const status = document.querySelector("[data-window-list-status]");
   if (!list || !activeEntry || !activeLink) {
     return;
   }
+
+  const announce = (message) => {
+    if (status) {
+      status.textContent = message;
+    }
+  };
 
   const current = {
     title: activeLink.textContent.trim(),
@@ -69,10 +76,12 @@ export function initWindowHistory() {
   }
   writeHistory(history);
 
+  let added = 0;
   readHistory().forEach((item) => {
     if (item.url === current.url) {
       return;
     }
+    added += 1;
 
     const entry = document.createElement("li");
     entry.className = "window-list__entry";
@@ -98,6 +107,7 @@ export function initWindowHistory() {
 
     remove.addEventListener("click", () => {
       entry.remove();
+      announce("Entry removed.");
       writeHistory(readHistory().filter((stored) => stored.url !== item.url));
     });
 
@@ -105,4 +115,8 @@ export function initWindowHistory() {
     entry.appendChild(remove);
     list.insertBefore(entry, activeEntry);
   });
+
+  if (added > 0) {
+    announce(added === 1 ? "1 earlier page added to the window list." : added + " earlier pages added to the window list.");
+  }
 }

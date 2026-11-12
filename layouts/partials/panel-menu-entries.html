@@ -1,0 +1,33 @@
+{{/*
+  panel-menu-entries.html — the entries of one panel menu.
+
+  Parameters (single dictionary):
+    entries (slice, required): a Hugo menu (site.Menus.<name>).
+
+  Each entry renders as a decorative glyph plus a text link. Entry keys:
+    glyph (params, optional): supported glyph identifier (see
+          partials/glyph.html); anything else renders as text only.
+    feed  (params, optional): links the entry to the home page's RSS output
+          instead of the entry URL; the entry is skipped when no RSS output
+          is configured.
+*/}}
+{{- range .entries }}
+  {{- $entry := . }}
+  {{- $url := $entry.URL }}
+  {{- $glyph := "" }}
+  {{- with $entry.Params.glyph }}{{ $glyph = . }}{{ end }}
+  {{- if $entry.Params.feed }}
+    {{- with site.Home.OutputFormats.Get "rss" }}
+      {{- $url = .Permalink }}
+    {{- else }}
+      {{- $url = "" }}
+    {{- end }}
+  {{- end }}
+  {{- with $url }}
+  <li class="panel-menu__item">
+    <a class="panel-menu__link" href="{{ . }}">
+      {{- with $glyph }}{{ partial "glyph.html" (dict "name" . "class" "panel-menu__glyph") }}{{ end }}{{ $entry.Name }}
+    </a>
+  </li>
+  {{- end }}
+{{- end }}
