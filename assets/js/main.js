@@ -10,6 +10,7 @@ import { initPanelClock } from "./panel-clock.js";
 import { initWindows } from "./window.js";
 import { initWindowHistory } from "./window-history.js";
 import { initDesktopShortcuts } from "./desktop-shortcuts.js";
+import { initPaletteCopy } from "./palette-copy.js";
 
 const root = document.documentElement;
 
@@ -22,3 +23,4 @@ initPanelClock();
 initWindows();
 initWindowHistory();
 initDesktopShortcuts();
+initPaletteCopy();

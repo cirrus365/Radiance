@@ -1,5 +1,231 @@
 /*
  * radiance — tile styles.
  *
- * Tiles are styled in a later step. All colour values come from tokens.css.
+ * Moodboard tiles: warm grey surfaces, one-pixel borders and square
+ * corners in a dense grid with an 8px gap and a 56px base row unit. Rows
+ * grow for content; tiles are never clipped to force a gapless grid. All
+ * colour values come from tokens.css.
  */
+
+.tile-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  grid-auto-rows: minmax(56px, auto);
+  gap: 8px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.tile {
+  margin: 0;
+  padding: 8px;
+  min-width: 0;
+  background-color: var(--radiance-tile-bg);
+  border: var(--radiance-border-width) solid var(--radiance-tile-border);
+}
+
+.tile--span-2x1 {
+  grid-column: span 2;
+}
+
+.tile--span-2x2 {
+  grid-column: span 2;
+  grid-row: span 2;
+}
+
+/* Images */
+
+.tile__media {
+  margin: 0;
+}
+
+.tile__media img {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
+.tile__caption {
+  margin: 4px 0 0;
+  font-size: 0.8125rem;
+  color: var(--radiance-text-muted);
+}
+
+/* Notes */
+
+.tile__note-title {
+  margin: 0 0 4px;
+  font-size: 0.875rem;
+}
+
+.tile__note-body {
+  margin: 0;
+  font-size: 0.8125rem;
+  line-height: 1.45;
+  overflow-wrap: break-word;
+}
+
+/* Palettes */
+
+.tile__palette {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.tile__palette-title {
+  font-size: 0.875rem;
+  font-weight: 700;
+}
+
+.tile__swatch {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.tile__swatch-chip {
+  width: 24px;
+  height: 24px;
+  flex: none;
+  background-color: var(--tile-swatch, transparent);
+  border: var(--radiance-border-width) solid var(--radiance-tile-border);
+}
+
+.tile__swatch-value {
+  font-family: var(--radiance-font-mono);
+  font-size: 0.75rem;
+}
+
+.tile__swatch-copy {
+  margin-left: auto;
+  padding: 1px 6px;
+  border: var(--radiance-border-width) solid var(--radiance-tile-border);
+  background-color: var(--radiance-window-surface);
+  color: var(--radiance-text);
+  font: inherit;
+  font-size: 0.75rem;
+  cursor: default;
+}
+
+.tile__swatch-copy:hover {
+  background-color: var(--radiance-panel-raised);
+  border-color: var(--radiance-panel-border);
+}
+
+.tile__swatch-copy:focus-visible {
+  outline: var(--radiance-border-width) dotted var(--radiance-panel-text);
+  outline-offset: -1px;
+}
+
+/* Offscreen textarea used by the clipboard fallback. */
+.tile__copy-area {
+  position: absolute;
+  left: -9999px;
+  top: 0;
+}
+
+/* Quotes */
+
+.tile__quote {
+  margin: 0;
+}
+
+.tile__quote-text {
+  margin: 0;
+  font-size: 0.875rem;
+  line-height: 1.45;
+  overflow-wrap: break-word;
+}
+
+.tile__quote-attribution {
+  margin: 4px 0 0;
+  font-size: 0.8125rem;
+  color: var(--radiance-text-muted);
+}
+
+/* Links */
+
+.tile__link {
+  display: block;
+  color: var(--radiance-text);
+  text-decoration: none;
+}
+
+.tile__link-title {
+  display: block;
+  font-size: 0.875rem;
+  font-weight: 700;
+  color: var(--radiance-accent);
+}
+
+.tile__link:hover .tile__link-title {
+  text-decoration: underline;
+}
+
+.tile__link-description {
+  display: block;
+  margin-top: 2px;
+  font-size: 0.8125rem;
+  color: var(--radiance-text-muted);
+  overflow-wrap: break-word;
+}
+
+/* Audio */
+
+.tile__audio {
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.tile__audio audio {
+  width: 100%;
+}
+
+/* Responsive columns: four in a wide container, two in a narrower one and
+   one in a small container, where container queries are supported. The
+   media-query fallback below keeps the grid usable without them. */
+
+@container (max-width: 719.98px) {
+  .tile-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@container (max-width: 479.98px) {
+  .tile-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .tile--span-2x1,
+  .tile--span-2x2 {
+    grid-column: auto;
+    grid-row: auto;
+  }
+}
+
+@supports not (container-type: inline-size) {
+  @media (max-width: 767.98px) {
+    .tile-grid {
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
+
+  @media (max-width: 479.98px) {
+    .tile-grid {
+      grid-template-columns: 1fr;
+    }
+
+    .tile--span-2x1,
+    .tile--span-2x2 {
+      grid-column: auto;
+      grid-row: auto;
+    }
+  }
+}

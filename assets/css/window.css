@@ -115,6 +115,9 @@
   padding: 12px 16px 16px;
   background-color: var(--radiance-window-surface);
   border-radius: 0 0 calc(var(--radiance-window-radius) - var(--radiance-border-width)) calc(var(--radiance-window-radius) - var(--radiance-border-width));
+  /* The window content is the inline-size query container for the reusable
+     tile grid (see assets/css/tiles.css). */
+  container-type: inline-size;
 }
 
 /* Maximised state: the application script toggles has-maximised-window on

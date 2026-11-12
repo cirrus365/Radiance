@@ -1,0 +1,39 @@
+{{/*
+  tiles/palette.html — a colour palette moodboard tile.
+
+  Parameters (single dictionary):
+    page (page, required): the owning page; named in build warnings.
+    tile (map, required):
+      title   (string, optional): palette heading.
+      colours (list, required): hex colour strings ("#rgb" or "#rrggbb").
+            Each colour is validated; invalid entries are dropped with a
+            build warning naming the page. Validated colours are emitted as
+            inline custom properties on the swatch items.
+    span is accepted for a uniform signature and unused here.
+
+  Each swatch shows the hex value as text and a copy control that stays
+  hidden until the application script initialises it.
+*/}}
+{{- $page := .page }}
+{{- $tile := .tile }}
+{{- with $tile.colours }}
+<ul class="tile__palette">
+  {{- with $tile.title }}
+  <li class="tile__palette-title">{{ . }}</li>
+  {{- end }}
+  {{- $hexPattern := "^#[0-9a-fA-F]{3}$|^#[0-9a-fA-F]{6}$" }}
+  {{- range . }}
+    {{- if and (eq (printf "%T" .) "string") (findRE $hexPattern .) }}
+    <li class="tile__swatch" style="--tile-swatch: {{ . }}">
+      <span class="tile__swatch-chip" aria-hidden="true"></span>
+      <code class="tile__swatch-value">{{ . }}</code>
+      <button type="button" class="tile__swatch-copy" data-copy-value="{{ . }}" aria-live="polite" hidden>Copy</button>
+    </li>
+    {{- else }}
+      {{- warnf "radiance: palette tile on page %s has an invalid colour %q; the swatch is skipped." $page.RelPermalink (printf "%v" .) }}
+    {{- end }}
+  {{- end }}
+</ul>
+{{- else }}
+  {{- warnf "radiance: palette tile on page %s has no colours; the tile is skipped." $page.RelPermalink }}
+{{- end }}

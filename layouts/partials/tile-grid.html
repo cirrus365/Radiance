@@ -1,0 +1,20 @@
+{{/*
+  tile-grid.html — renders a moodboard tile grid.
+
+  Parameters (single dictionary):
+    page  (page, required): the page that owns the tiles; passed through
+          to each tile for resource resolution and warnings.
+    tiles (slice, required): tile data; each item is dispatched through
+          partials/tile.html, which warns about and skips invalid tiles.
+
+  The grid is a reusable component; its responsive column count comes from
+  container queries (see assets/css/tiles.css).
+*/}}
+{{- $page := .page }}
+{{- with .tiles }}
+<ul class="tile-grid">
+  {{- range . }}
+    {{- partial "tile.html" (dict "page" $page "tile" .) }}
+  {{- end }}
+</ul>
+{{- end }}

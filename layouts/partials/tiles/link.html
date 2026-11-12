@@ -1,0 +1,35 @@
+{{/*
+  tiles/link.html — a link moodboard tile.
+
+  Parameters (single dictionary):
+    page (page, required): the owning page; named in build warnings.
+    tile (map, required):
+      title       (string, required): the link text; without it the tile is
+                  skipped with a build warning.
+      description (string, optional): short supporting text.
+      href        (string, required): a site-absolute path, resolved with
+                  relURL so subpath deployments work, or an absolute
+                  external URL; without it the tile is skipped with a
+                  build warning.
+    span is accepted for a uniform signature and unused here.
+*/}}
+{{- $page := .page }}
+{{- $tile := .tile }}
+{{- $href := "" }}
+{{- if isset $tile "href" }}
+  {{- with $tile.href }}
+    {{- if eq (printf "%T" .) "string" }}{{ $href = . }}{{ end }}
+  {{- end }}
+{{- end }}
+{{- if not $tile.title }}
+  {{- warnf "radiance: link tile on page %s has no title; the tile is skipped." $page.RelPermalink }}
+{{- else if not $href }}
+  {{- warnf "radiance: link tile %q on page %s has no usable href; the tile is skipped." $tile.title $page.RelPermalink }}
+{{- else }}
+<a class="tile__link" href="{{ $href | relURL }}">
+  <span class="tile__link-title">{{ $tile.title }}</span>
+  {{- with $tile.description }}
+  <span class="tile__link-description">{{ . }}</span>
+  {{- end }}
+</a>
+{{- end }}

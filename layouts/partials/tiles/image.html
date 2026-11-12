@@ -1,0 +1,70 @@
+{{/*
+  tiles/image.html — an image moodboard tile.
+
+  Parameters (single dictionary):
+    page (page, required): the owning page; the image resolves against its
+         page bundle.
+    tile (map, required):
+      src   (string, required): path of a page-bundle resource.
+      alt   (string, optional): meaningful alternative text; falls back to
+            "title" (with a build warning) when absent.
+      title (string, optional): visible caption; also the alt fallback.
+    span (string, informational): the validated tile span, used to pick a
+         sensible sizes attribute for the srcset.
+
+  Raster images get 480px, 800px and 1200px WebP variants served through a
+  srcset, plus intrinsic dimensions, lazy loading and async decoding. SVG
+  files are never resized.
+*/}}
+{{- $page := .page }}
+{{- $tile := .tile }}
+{{- $span := .span }}
+{{- $resource := "" }}
+{{- if isset $tile "src" }}
+  {{- with $tile.src }}
+    {{- if eq (printf "%T" .) "string" }}
+      {{- $resource = $page.Resources.Get . }}
+    {{- end }}
+  {{- end }}
+{{- end }}
+{{- if not $resource }}
+  {{- warnf "radiance: image tile on page %s: resource %q not found; the tile is skipped." $page.RelPermalink ($tile.src | default "") }}
+{{- else }}
+  {{- $alt := $tile.alt | default $tile.title | default "" }}
+  {{- if not $tile.alt }}
+    {{- warnf "radiance: image tile %q on page %s has no alt text; falling back to the title, or to an empty alt text." ($tile.title | default $tile.src) $page.RelPermalink }}
+  {{- end }}
+  {{- $src := $resource.RelPermalink }}
+  {{- $width := $resource.Width }}
+  {{- $height := $resource.Height }}
+  {{- $srcset := "" }}
+  {{- if ne $resource.MediaType.Type "image/svg+xml" }}
+    {{- $processed := slice }}
+    {{- range $width := slice 480 800 1200 }}
+      {{- if lt $width $resource.Width }}
+        {{- $processed = $processed | append ($resource.Resize (printf "%dx webp" $width)) }}
+      {{- end }}
+    {{- end }}
+    {{- with $processed }}
+      {{- $smallest := index . 0 }}
+      {{- $src = $smallest.RelPermalink }}
+      {{- $width = $smallest.Width }}
+      {{- $height = $smallest.Height }}
+      {{- $parts := slice }}
+      {{- range . }}
+        {{- $parts = $parts | append (printf "%s %dw" .RelPermalink .Width) }}
+      {{- end }}
+      {{- $srcset = delimit $parts ", " }}
+    {{- end }}
+  {{- end }}
+  {{- $sizes := "(min-width: 768px) 23vw, 92vw" }}
+  {{- if or (eq $span "2x1") (eq $span "2x2") }}
+    {{- $sizes = "(min-width: 768px) 45vw, 92vw" }}
+  {{- end }}
+  <figure class="tile__media">
+    <img src="{{ $src }}"{{ with $srcset }} srcset="{{ . }}"{{ end }} sizes="{{ $sizes }}" width="{{ $width }}" height="{{ $height }}" loading="lazy" decoding="async" alt="{{ $alt }}">
+    {{- with $tile.title }}
+    <figcaption class="tile__caption">{{ . }}</figcaption>
+    {{- end }}
+  </figure>
+{{- end }}

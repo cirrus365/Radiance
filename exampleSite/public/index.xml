@@ -42,6 +42,13 @@
 				<description>&lt;p&gt;This archive will collect past posts. It is a placeholder page for the&#xA;example site; a later step can replace its contents.&lt;/p&gt;</description>
 			</item>
 			<item>
+				<title>Moodboard</title>
+				<link>http://localhost:1313/moodboard/</link>
+				<pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+				<guid>http://localhost:1313/moodboard/</guid>
+				<description>&lt;p&gt;A working moodboard assembled from tiles: images, notes, a palette, links,&#xA;audio and a quotation. The tiles use the radiance tile grid — warm grey&#xA;surfaces, one-pixel borders and square corners.&lt;/p&gt;</description>
+			</item>
+			<item>
 				<title>Trash</title>
 				<link>http://localhost:1313/trash/</link>
 				<pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>

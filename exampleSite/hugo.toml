@@ -33,6 +33,13 @@ theme = "radiance"
   [menus.applications.params]
     glyph = "document"
 
+[[menus.applications]]
+  name = "Moodboard"
+  pageRef = "/moodboard"
+  weight = 40
+  [menus.applications.params]
+    glyph = "document"
+
 [[menus.places]]
   name = "Home"
   pageRef = "/"

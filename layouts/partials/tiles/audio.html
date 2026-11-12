@@ -1,0 +1,34 @@
+{{/*
+  tiles/audio.html — an audio moodboard tile.
+
+  Parameters (single dictionary):
+    page (page, required): the owning page; the audio resolves against its
+         page bundle and is named in build warnings.
+    tile (map, required):
+      src   (string, required): path of a page-bundle resource.
+      title (string, required): the caption; without it the tile is
+            skipped with a build warning.
+    span is accepted for a uniform signature and unused here.
+
+  The audio renders with native controls and never autoplays.
+*/}}
+{{- $page := .page }}
+{{- $tile := .tile }}
+{{- $resource := "" }}
+{{- if isset $tile "src" }}
+  {{- with $tile.src }}
+    {{- if eq (printf "%T" .) "string" }}
+      {{- $resource = $page.Resources.Get . }}
+    {{- end }}
+  {{- end }}
+{{- end }}
+{{- if not $tile.title }}
+  {{- warnf "radiance: audio tile on page %s has no title to caption it; the tile is skipped." $page.RelPermalink }}
+{{- else if not $resource }}
+  {{- warnf "radiance: audio tile on page %s: resource %q not found; the tile is skipped." $page.RelPermalink ($tile.src | default "") }}
+{{- else }}
+<figure class="tile__audio">
+  <audio controls preload="metadata" src="{{ $resource.RelPermalink }}"></audio>
+  <figcaption class="tile__caption">{{ $tile.title }}</figcaption>
+</figure>
+{{- end }}

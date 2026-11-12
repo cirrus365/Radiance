@@ -1,0 +1,53 @@
+{{/*
+  tile.html — dispatches one moodboard tile to its type partial.
+
+  Parameters (single dictionary):
+    page (page, required): the page that owns the tile; used to resolve
+         bundle resources and named in build warnings.
+    tile (map, required): tile data. Type-specific keys are documented in
+         layouts/partials/tiles/<type>.html. Common keys:
+           type (string, required): "image", "note", "palette", "link",
+                "audio" or "quote"; anything else warns and renders nothing.
+           span (string, optional): "1x1" (the default), "2x1" or "2x2";
+                anything else warns and falls back to 1x1.
+
+  The tile is rendered as a grid item (<li>) with validated modifier
+  classes; invalid tiles render nothing.
+*/}}
+{{- $page := .page }}
+{{- $tile := .tile }}
+{{- if not (reflect.IsMap $tile) }}
+  {{- warnf "radiance: tile on page %s is not a map; the tile is skipped." $page.RelPermalink }}
+{{- else }}
+  {{- $types := dict "image" true "note" true "palette" true "link" true "audio" true "quote" true }}
+  {{- $spans := dict "1x1" true "2x1" true "2x2" true }}
+  {{- $type := "" }}
+  {{- with $tile.type }}
+    {{- if eq (printf "%T" .) "string" }}
+      {{- if index $types . }}
+        {{- $type = . }}
+      {{- else }}
+        {{- warnf "radiance: tile on page %s has unsupported type %q; the tile is skipped." $page.RelPermalink . }}
+      {{- end }}
+    {{- else }}
+      {{- warnf "radiance: tile on page %s has an unsupported type value; the tile is skipped." $page.RelPermalink }}
+    {{- end }}
+  {{- end }}
+  {{- $span := "1x1" }}
+  {{- with $tile.span }}
+    {{- if eq (printf "%T" .) "string" }}
+      {{- if index $spans . }}
+        {{- $span = . }}
+      {{- else }}
+        {{- warnf "radiance: tile %q on page %s has unsupported span %q; falling back to 1x1." ($tile.title | default $tile.src | default "untitled") $page.RelPermalink . }}
+      {{- end }}
+    {{- else }}
+      {{- warnf "radiance: tile %q on page %s has an unsupported span value; falling back to 1x1." ($tile.title | default $tile.src | default "untitled") $page.RelPermalink }}
+    {{- end }}
+  {{- end }}
+  {{- with $type }}
+  <li class="tile tile--{{ . }} tile--span-{{ $span }}">
+    {{- partial (printf "tiles/%s.html" .) (dict "page" $page "tile" $tile "span" $span) }}
+  </li>
+  {{- end }}
+{{- end }}

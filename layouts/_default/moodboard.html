@@ -1,0 +1,13 @@
+{{/*
+  moodboard.html — single-page layout for moodboard boards.
+
+  Used by pages with `layout: moodboard` in their front matter. The tile
+  data comes from the page's "tiles" front matter slice; each item is
+  dispatched through partials/tile.html. This front matter schema is a
+  working example, pending the full content-model work.
+*/}}
+{{- define "main" -}}
+  {{- $grid := partial "tile-grid.html" (dict "page" . "tiles" .Params.tiles) -}}
+  {{- $content := printf "%s%s" .Content $grid | safeHTML -}}
+  {{- partial "window.html" (dict "title" .Title "id" "window-moodboard" "icon" "document" "content" $content) -}}
+{{- end -}}

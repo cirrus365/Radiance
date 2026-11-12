@@ -1,0 +1,18 @@
+{{/*
+  tiles/note.html — a text note moodboard tile.
+
+  Parameters (single dictionary):
+    tile (map, required):
+      title (string, optional): short note heading.
+      body  (string, required): the note text, rendered as plain text.
+    page and span are accepted for a uniform signature and unused here.
+*/}}
+{{- $tile := .tile }}
+<div class="tile__note">
+  {{- with $tile.title }}
+  <h3 class="tile__note-title">{{ . }}</h3>
+  {{- end }}
+  {{- with $tile.body }}
+  <p class="tile__note-body">{{ . }}</p>
+  {{- end }}
+</div>

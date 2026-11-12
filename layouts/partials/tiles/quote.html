@@ -1,0 +1,23 @@
+{{/*
+  tiles/quote.html — a quotation moodboard tile.
+
+  Parameters (single dictionary):
+    page (page, required): the owning page; named in build warnings.
+    tile (map, required):
+      text        (string, required): the quotation; without it the tile
+                  is skipped with a build warning.
+      attribution (string, optional): the quoted source.
+    span is accepted for a uniform signature and unused here.
+*/}}
+{{- $page := .page }}
+{{- $tile := .tile }}
+{{- if not $tile.text }}
+  {{- warnf "radiance: quote tile on page %s has no text; the tile is skipped." $page.RelPermalink }}
+{{- else }}
+<blockquote class="tile__quote">
+  <p class="tile__quote-text">{{ $tile.text }}</p>
+  {{- with $tile.attribution }}
+  <footer class="tile__quote-attribution"><cite>{{ . }}</cite></footer>
+  {{- end }}
+</blockquote>
+{{- end }}
