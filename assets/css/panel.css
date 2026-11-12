@@ -295,6 +295,52 @@
   border: var(--radiance-border-width) solid var(--radiance-panel-border);
 }
 
+.panel-menu__rule {
+  height: var(--radiance-border-width);
+  margin: 2px 6px;
+  background-color: var(--radiance-panel-border);
+}
+
+/* Appearance selector: revealed by the application script. */
+
+.panel-menu__appearance {
+  padding: 2px 6px 4px;
+}
+
+.appearance {
+  margin: 0;
+  padding: 4px 6px 6px;
+  border: var(--radiance-border-width) solid var(--radiance-panel-border);
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 2px 10px;
+}
+
+.appearance__legend {
+  padding: 0 2px;
+  font-size: 0.75rem;
+  color: var(--radiance-text-muted);
+}
+
+.appearance__options {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 2px 8px;
+}
+
+.appearance__option {
+  margin: 0;
+  accent-color: var(--radiance-accent);
+}
+
+.appearance__label {
+  font-size: 0.8125rem;
+  color: var(--radiance-panel-text);
+  white-space: nowrap;
+}
+
 .panel-menu__link {
   display: flex;
   align-items: center;

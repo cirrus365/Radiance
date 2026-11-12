@@ -6,11 +6,22 @@
  * is validated palette colours supplied by content authors, which may be
  * rendered as inline CSS custom properties.
  *
- * These are starting values, not a guarantee of accessible contrast; add or
- * adjust tokens when actual combinations need improvement.
+ * Radiance (light) tokens are the base values. Ambiance (dark) tokens are
+ * supplied twice with identical declarations: once for the operating
+ * system preference (no explicit choice set) and once for an explicit
+ * Ambiance selection (the application script sets data-appearance on
+ * <html>). Keep the two dark blocks in sync. Component styles never
+ * duplicate per appearance.
+ *
+ * These are starting values, not a guarantee of accessible contrast; add
+ * or adjust tokens when actual combinations need improvement. Text,
+ * control and focus combinations in both appearances have been checked
+ * against WCAG contrast thresholds (see README).
  */
 
 :root {
+  color-scheme: light;
+
   /* Panels */
   --radiance-panel-bg: #f2f1ef;
   --radiance-panel-raised: #faf9f7;
@@ -42,7 +53,7 @@
   --radiance-selection: #f7dfd3;
 
   /* Control boundaries: strong enough to separate controls from the
-     surfaces they sit on (3:1 non-text contrast). */
+     surfaces they sit on (3:1 non-text contrast) in both appearances. */
   --radiance-control-border: #8a8378;
 
   /* Bevels */
@@ -60,4 +71,74 @@
   /* Typography. Locally installed faces only; no remote fonts are loaded. */
   --radiance-font-sans: "Ubuntu", "Ubuntu Sans", "DejaVu Sans", "Liberation Sans", "Segoe UI", system-ui, sans-serif;
   --radiance-font-mono: "Ubuntu Mono", "Ubuntu Sans Mono", "DejaVu Sans Mono", Menlo, Consolas, monospace;
+}
+
+/* Ambiance (dark) tokens for System mode: the operating system prefers
+   dark and no explicit choice is set. The application script only sets
+   data-appearance for explicit choices, so System mode keeps following the
+   operating system without a reload. */
+
+@media (prefers-color-scheme: dark) {
+  :root:not([data-appearance="light"]) {
+    color-scheme: dark;
+
+    --radiance-panel-bg: #33312e;
+    --radiance-panel-raised: #3d3a35;
+    --radiance-panel-text: #f0eeea;
+    --radiance-panel-border: #5a554e;
+
+    --radiance-desktop-aubergine: #1c0114;
+    --radiance-desktop-purple: #4a2166;
+    --radiance-desktop-orange: #a84a2c;
+
+    --radiance-window-bg: #33312e;
+    --radiance-window-surface: #2b2926;
+    --radiance-window-chrome: #3d3a35;
+    --radiance-window-border: #5a554e;
+
+    --radiance-tile-bg: #363431;
+    --radiance-tile-border: #57524b;
+
+    --radiance-text: #f0eeea;
+    --radiance-text-muted: #b3aca2;
+
+    --radiance-accent: #ef8f57;
+    --radiance-selection: #5a3c2c;
+
+    --radiance-bevel-light: #4a463f;
+    --radiance-bevel-dark: #232120;
+  }
+}
+
+/* Explicit Ambiance selection: overrides the system preference. Keep this
+   block in sync with the media-query block above. */
+
+:root[data-appearance="dark"] {
+  color-scheme: dark;
+
+  --radiance-panel-bg: #33312e;
+  --radiance-panel-raised: #3d3a35;
+  --radiance-panel-text: #f0eeea;
+  --radiance-panel-border: #5a554e;
+
+  --radiance-desktop-aubergine: #1c0114;
+  --radiance-desktop-purple: #4a2166;
+  --radiance-desktop-orange: #a84a2c;
+
+  --radiance-window-bg: #33312e;
+  --radiance-window-surface: #2b2926;
+  --radiance-window-chrome: #3d3a35;
+  --radiance-window-border: #5a554e;
+
+  --radiance-tile-bg: #363431;
+  --radiance-tile-border: #57524b;
+
+  --radiance-text: #f0eeea;
+  --radiance-text-muted: #b3aca2;
+
+  --radiance-accent: #ef8f57;
+  --radiance-selection: #5a3c2c;
+
+  --radiance-bevel-light: #4a463f;
+  --radiance-bevel-dark: #232120;
 }

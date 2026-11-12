@@ -9,6 +9,7 @@
 <title>Posts · radiance</title>
 <meta name="description" content="A Hugo theme that makes a content website feel like an Ubuntu desktop running GNOME 2.">
 <link rel="alternate" type="application/rss&#43;xml" href="http://localhost:1313/posts/index.xml" title="radiance">
+<script src="/js/appearance-early.js"></script>
 <link rel="stylesheet" href="/css/radiance.min.css">
 <script src="/js/radiance.js" defer></script>
 
@@ -143,7 +144,21 @@ RSS feed
     </a>
   </li>
 
-            
+          <li class="panel-menu__rule" aria-hidden="true"></li>
+          <li class="panel-menu__appearance" hidden data-appearance-control>
+<fieldset class="appearance" data-appearance-fieldset>
+  <legend class="appearance__legend">Appearance</legend>
+  <div class="appearance__options">
+    <input class="appearance__option" type="radio" id="system-menu-system" name="appearance" value="system" checked>
+    <label class="appearance__label" for="system-menu-system">System</label>
+    <input class="appearance__option" type="radio" id="system-menu-light" name="appearance" value="light">
+    <label class="appearance__label" for="system-menu-light">Radiance (light)</label>
+    <input class="appearance__option" type="radio" id="system-menu-dark" name="appearance" value="dark">
+    <label class="appearance__label" for="system-menu-dark">Ambiance (dark)</label>
+  </div>
+</fieldset>
+
+          </li>
         </ul>
       </details>
       <details class="panel-menu panel-menu--combined" data-panel-menu>
@@ -218,11 +233,26 @@ RSS feed
     </a>
   </li>
 
+          <li class="panel-menu__rule" aria-hidden="true"></li>
+          <li class="panel-menu__appearance" hidden data-appearance-control>
+<fieldset class="appearance" data-appearance-fieldset>
+  <legend class="appearance__legend">Appearance</legend>
+  <div class="appearance__options">
+    <input class="appearance__option" type="radio" id="combined-menu-system" name="appearance" value="system" checked>
+    <label class="appearance__label" for="combined-menu-system">System</label>
+    <input class="appearance__option" type="radio" id="combined-menu-light" name="appearance" value="light">
+    <label class="appearance__label" for="combined-menu-light">Radiance (light)</label>
+    <input class="appearance__option" type="radio" id="combined-menu-dark" name="appearance" value="dark">
+    <label class="appearance__label" for="combined-menu-dark">Ambiance (dark)</label>
+  </div>
+</fieldset>
+
+          </li>
         </ul>
       </details>
   </nav>
   <div class="panel__applets">
-      <time class="applet applet--clock" datetime="11:09" data-panel-clock>11:09</time>
+      <time class="applet applet--clock" datetime="11:15" data-panel-clock>11:15</time>
       <a class="applet applet--link" href="https://gohugo.io/">Hugo website</a>
       <span class="applet applet--meter">
         <span class="applet-meter__label">Disc</span>

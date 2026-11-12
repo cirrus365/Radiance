@@ -27,6 +27,8 @@
 {{- with .OutputFormats.Get "rss" }}
 <link rel="alternate" type="{{ .MediaType.Type }}" href="{{ .Permalink }}" title="{{ site.Title }}">
 {{- end }}
+{{- $appearanceJs := resources.Get "js/appearance-early.js" | js.Build (dict "targetPath" "js/appearance-early.js" "minify" (not hugo.IsServer)) }}
+<script src="{{ $appearanceJs.RelPermalink }}"></script>
 {{- $css := slice
   (resources.Get "css/tokens.css")
   (resources.Get "css/base.css")

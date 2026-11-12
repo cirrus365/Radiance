@@ -1,0 +1,1 @@
+(()=>{(function(){"use strict";var e=null;try{e=window.localStorage.getItem("radiance-appearance")}catch{e=null}(e==="light"||e==="dark")&&document.documentElement.setAttribute("data-appearance",e)})();})();

@@ -124,6 +124,24 @@ the theme's contributors (procedural gradients and a synthesised tone
 bed). They carry no third-party rights and may be redistributed with the
 example site.
 
+## Appearance
+
+The theme has three appearance modes, selected from the System menu:
+
+- **System** (default) — follows the visitor's operating-system preference
+  through the `prefers-color-scheme` media query, including live changes.
+- **Radiance (light)** — always the light appearance.
+- **Ambiance (dark)** — always the dark appearance.
+
+Radiance tokens are the base values in `assets/css/tokens.css`; Ambiance
+tokens are supplied for the system preference and for an explicit choice
+(the application script sets `data-appearance` on `<html>`). Component
+styles are shared between the appearances. An explicit choice is stored in
+`localStorage` under `radiance-appearance` and applied before first paint
+by a small blocking script; choosing System removes the stored override.
+Preferences are never sent to a server. Without JavaScript the selector is
+not shown and the page follows `prefers-color-scheme`.
+
 ## Listing pages
 
 The archive (`/archive/`), search (`/search/`) and taxonomy pages render
