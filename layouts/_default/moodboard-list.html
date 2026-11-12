@@ -1,0 +1,12 @@
+{{/*
+  moodboard-list.html — section list layout for moodboards.
+
+  Used by content/moodboards/_index.md via `layout: moodboard-list`. The
+  section's boards render through partials/board-list.html inside the
+  window. Board front matter used here: cover (page-resource filename,
+  optional).
+*/}}
+{{- define "main" -}}
+  {{- $content := partial "board-list.html" . -}}
+  {{- partial "window.html" (dict "title" .Title "id" "window-moodboards" "icon" "folder" "content" $content) -}}
+{{- end -}}

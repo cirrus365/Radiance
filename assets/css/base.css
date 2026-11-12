@@ -125,6 +125,61 @@ hr {
   left: 0;
 }
 
+/* Page metadata and taxonomy links inside a window. */
+.page-meta {
+  margin: 0 0 1em;
+  font-size: 0.8125rem;
+  color: var(--radiance-text-muted);
+}
+
+.page-taxonomy {
+  margin: 0 0 1em;
+  font-size: 0.8125rem;
+  color: var(--radiance-text-muted);
+}
+
+/* Moodboard section list. */
+.board-list {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+  gap: 8px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.board-list__item {
+  margin: 0;
+  padding: 8px;
+  background-color: var(--radiance-tile-bg);
+  border: var(--radiance-border-width) solid var(--radiance-tile-border);
+}
+
+.board-list__cover-link {
+  display: block;
+}
+
+.board-list__cover {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
+.board-list__title {
+  margin: 6px 0 2px;
+  font-size: 0.9375rem;
+}
+
+.board-list__description {
+  margin: 0;
+  font-size: 0.8125rem;
+  color: var(--radiance-text-muted);
+}
+
+.board-list__intro {
+  margin: 0 0 12px;
+}
+
 /* Shared decorative glyph sprite: kept in the document, visually hidden. */
 .icon-sprite {
   position: absolute;

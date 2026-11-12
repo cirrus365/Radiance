@@ -1,6 +1,7 @@
 ---
 title: "Design tokens"
 date: 2026-11-08
+tags: ["colour", "gnome"]
 description: "How radiance keeps its colours in one place."
 ---
 

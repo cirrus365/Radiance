@@ -1,0 +1,46 @@
+{{/*
+  board-list.html — a list of moodboard boards with covers and summaries.
+
+  Parameters: a moodboards section page (page context, not a dictionary).
+
+  Boards are the section's pages in weight order. Each entry shows the
+  board's cover (front matter "cover", a page bundle resource, rendered at
+  480px width with a WebP variant; SVG covers are never resized), its
+  title and its description, all linking to the board.
+*/}}
+{{- with .Content }}
+<div class="board-list__intro">
+{{ . }}
+</div>
+{{- end }}
+<ul class="board-list">
+  {{- range .Pages }}
+  <li class="board-list__item">
+    {{- $board := . }}
+    {{- $cover := "" }}
+    {{- with $board.Params.cover }}
+      {{- if eq (printf "%T" .) "string" }}{{ $cover = . }}{{ end }}
+    {{- end }}
+    {{- with $cover }}
+      {{- with $board.Resources.Get . }}
+        {{- if ne .MediaType.Type "image/svg+xml" }}
+          {{- $coverResized := .Resize "480x webp" }}
+          <a class="board-list__cover-link" href="{{ $board.RelPermalink }}" tabindex="-1" aria-hidden="true">
+            <img class="board-list__cover" src="{{ $coverResized.RelPermalink }}" width="{{ $coverResized.Width }}" height="{{ $coverResized.Height }}" loading="lazy" decoding="async" alt="">
+          </a>
+        {{- else }}
+        <a class="board-list__cover-link" href="{{ $board.RelPermalink }}" tabindex="-1" aria-hidden="true">
+          <img class="board-list__cover" src="{{ .RelPermalink }}" width="{{ .Width }}" height="{{ .Height }}" loading="lazy" decoding="async" alt="">
+        </a>
+        {{- end }}
+      {{- else }}
+        {{- warnf "radiance: board %s: cover resource %q not found." $board.RelPermalink $cover }}
+      {{- end }}
+    {{- end }}
+    <h2 class="board-list__title"><a href="{{ $board.RelPermalink }}">{{ $board.Title }}</a></h2>
+    {{- with $board.Description }}
+    <p class="board-list__description">{{ . }}</p>
+    {{- end }}
+  </li>
+  {{- end }}
+</ul>

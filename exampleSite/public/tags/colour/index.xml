@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Colour on radiance</title>
+    <link>http://localhost:1313/tags/colour/</link>
+    <description>Recent content in Colour on radiance</description>
+    <generator>Hugo</generator>
+    <language>en-gb</language>
+    <lastBuildDate>Sun, 08 Nov 2026 00:00:00 +0000</lastBuildDate>
+    <atom:link href="http://localhost:1313/tags/colour/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Design tokens</title>
+      <link>http://localhost:1313/posts/design-tokens/</link>
+      <pubDate>Sun, 08 Nov 2026 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/posts/design-tokens/</guid>
+      <description>All authored colour values in radiance live in assets/css/tokens.css. Every other stylesheet refers to the custom properties defined there, for example:&#xA;a { color: var(--radiance-accent); } Starting palette The starting palette takes its cues from Ubuntu&amp;rsquo;s Radiance theme:&#xA;Pale panels with fine borders. A deep aubergine desktop with purple and orange highlights. An orange accent for links and selection. These are starting values, not a guarantee of accessible contrast; adjust them when a combination needs improvement.</description>
+    </item>
+  </channel>
+</rss>

@@ -1,0 +1,16 @@
+# Tile data for this moodboard: a list of tiles.
+#
+# The layout reads this file (the `tiles` front matter field may point at
+# a different filename). See the tile schema table in the theme README for
+# every field. Reference resources inside this bundle, e.g.
+# images/placeholder.png.
+
+- type: image
+  span: 2x2
+  src: images/placeholder.png
+  alt: "A quiet warm-grey placeholder image generated for new boards."
+  title: "Placeholder"
+- type: note
+  span: 1x1
+  title: "Replace me"
+  body: "Describe the board: what it gathers and why."

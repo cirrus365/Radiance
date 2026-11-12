@@ -1,6 +1,7 @@
 ---
 title: "Getting started"
 date: 2026-11-01
+tags: ["gnome"]
 description: "Install the radiance theme and build the example site."
 ---
 

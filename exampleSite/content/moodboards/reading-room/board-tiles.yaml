@@ -1,0 +1,28 @@
+# Tile data for the Reading room moodboard.
+#
+# The board's front matter sets `tiles: board-tiles.yaml`, so the layout
+# reads this file instead of the default tiles.yaml. This file is a list
+# of tiles; see the tile schema table in the theme README for every field.
+
+- type: image
+  span: 2x2
+  src: images/paper.png
+  alt: "Warm paper texture with faint horizontal fold lines."
+  title: "Morning paper"
+- type: link
+  span: 1x1
+  title: "GNOME"
+  description: "The desktop environment this theme borrows from."
+  href: "https://www.gnome.org/"
+- type: link
+  span: 1x1
+  title: "Getting started"
+  description: "The sample post on building the example site."
+  href: "/posts/getting-started/"
+- type: quote
+  span: 2x1
+  text: "Read the room, then read the page."
+  attribution: "Reading room noticeboard"
+- type: note
+  span: 1x1
+  body: "Boards are for gathering; the reading happens elsewhere."

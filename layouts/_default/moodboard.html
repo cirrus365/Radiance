@@ -1,13 +1,40 @@
 {{/*
   moodboard.html — single-page layout for moodboard boards.
 
-  Used by pages with `layout: moodboard` in their front matter. The tile
-  data comes from the page's "tiles" front matter slice; each item is
-  dispatched through partials/tile.html. This front matter schema is a
-  working example, pending the full content-model work.
+  Used by pages under content/moodboards/ with `layout: moodboard` in
+  their front matter. A board is a page bundle.
+
+  Front matter read by this layout:
+    tiles   (string, optional): page-resource filename holding the tile
+            list; defaults to "tiles.yaml". A missing resource, or one that
+            does not contain a list, warns and renders an empty grid.
+    palette (list, optional): validated hex colours, appended as a palette
+            tile at the end of the grid.
+    cover   (string, optional): page-resource filename, used by the
+            moodboard list layout (layouts/_default/moodboard-list.html).
+    title, description, date, weight, draft: standard Hugo page fields.
+
+  The tile list itself is documented in the theme README; every tile is
+  dispatched and validated by partials/tile.html.
 */}}
 {{- define "main" -}}
-  {{- $grid := partial "tile-grid.html" (dict "page" . "tiles" .Params.tiles) -}}
+  {{- $page := . }}
+  {{- $tiles := slice }}
+  {{- $tilesFile := .Params.tiles | default "tiles.yaml" }}
+  {{- with $page.Resources.Get $tilesFile }}
+    {{- $parsed := . | transform.Unmarshal }}
+    {{- if reflect.IsSlice $parsed }}
+      {{- $tiles = $parsed }}
+    {{- else }}
+      {{- warnf "radiance: moodboard %s: tiles resource %q does not contain a list; the grid will be empty." $page.RelPermalink $tilesFile }}
+    {{- end }}
+  {{- else }}
+    {{- warnf "radiance: moodboard %s has no tiles resource %q; the grid will be empty." $page.RelPermalink $tilesFile }}
+  {{- end }}
+  {{- with .Params.palette }}
+    {{- $tiles = $tiles | append (dict "type" "palette" "span" "1x1" "title" "Palette" "colours" .) }}
+  {{- end }}
+  {{- $grid := partial "tile-grid.html" (dict "page" $page "tiles" $tiles) -}}
   {{- $content := printf "%s%s" .Content $grid | safeHTML -}}
   {{- partial "window.html" (dict "title" .Title "id" "window-moodboard" "icon" "document" "content" $content) -}}
 {{- end -}}
