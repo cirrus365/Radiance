@@ -202,7 +202,7 @@
    document but only one renders and is focusable at a time. */
 
 @media (max-width: 1023.98px) {
-  .panel-menu:not(.panel-menu--combined) {
+  .panel-menu:not(.panel-menu--combined):not(.panel-menu--appearance) {
     display: none;
   }
 

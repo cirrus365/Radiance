@@ -4,7 +4,8 @@
 
   Parameters: a home or list page (page context, not a dictionary). Used by
   index.html and _default/list.html; the rendered result is passed to
-  window.html as the "content" key.
+  window.html as the "content" key. A page with no children renders a
+  muted empty-state message.
 */}}
 {{- with .Content }}
 <div class="page-list__intro">
@@ -22,4 +23,6 @@
   </li>
   {{- end }}
 </ul>
+{{- else }}
+<p class="dialog__empty">Nothing published yet.</p>
 {{- end }}
