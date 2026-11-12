@@ -8,6 +8,7 @@
 import { initPanelMenus } from "./panel-menu.js";
 import { initPanelClock } from "./panel-clock.js";
 import { initWindows } from "./window.js";
+import { initWindowHistory } from "./window-history.js";
 
 const root = document.documentElement;
 
@@ -18,3 +19,4 @@ root.classList.add("js");
 initPanelMenus();
 initPanelClock();
 initWindows();
+initWindowHistory();

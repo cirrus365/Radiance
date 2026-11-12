@@ -44,6 +44,7 @@
   --radiance-bevel-light: #ffffff;
   --radiance-bevel-dark: #c9c2ba;
   --radiance-bevel: inset 1px 1px 0 var(--radiance-bevel-light), inset -1px -1px 0 var(--radiance-bevel-dark);
+  --radiance-bevel-sunken: inset 1px 1px 0 var(--radiance-bevel-dark), inset -1px -1px 0 var(--radiance-bevel-light);
 
   /* Metrics */
   --radiance-panel-height: 28px;

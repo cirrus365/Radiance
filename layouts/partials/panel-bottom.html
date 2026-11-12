@@ -1,12 +1,60 @@
 {{/*
   panel-bottom.html — the bottom panel: window list, workspace links and an
-  optional Trash link.
+  optional Trash link, from left to right.
 
   Parameters: page context (no dictionary).
 
-  Placeholder: the window list, workspace links and Trash link are
-  implemented in a later step.
+  Window list: the current page renders server-side as the active entry,
+  using its title and relative permalink. With JavaScript, previously
+  visited pages are inserted before it — up to six pages are tracked per
+  browser session in sessionStorage, oldest first — each with a labelled
+  Remove button (a sibling of the link, never nested inside it) that only
+  removes the entry from the list. Without JavaScript only the active
+  entry renders. Activating the active entry restores a minimised window,
+  by mouse or keyboard.
+
+  Workspaces: up to four entries from site params "workspaces", each with
+  "label" and "pageRef"; entries whose pageRef does not resolve are
+  skipped. Matching rule: a workspace is current only when the current
+  page's relative permalink equals the target page's relative permalink —
+  child pages and taxonomy term pages do not match. The current workspace
+  gets aria-current="page".
+
+  Trash: rendered only when site params "trash" configure a resolvable
+  "pageRef"; the label comes from "label" and defaults to "Trash".
 */}}
 <div class="panel panel--bottom">
-  <p class="panel__placeholder">Window list placeholder</p>
+  <nav class="window-list" aria-label="Window list">
+    <ul class="window-list__entries" data-window-list>
+      {{- /* Visited pages are inserted here by the application script. */}}
+      <li class="window-list__entry window-list__entry--active" data-window-entry>
+        <a class="window-list__link" href="{{ .RelPermalink }}" aria-current="page" data-window-restore>{{ .Title }}</a>
+      </li>
+    </ul>
+  </nav>
+  <nav class="workspaces" aria-label="Workspaces">
+    <ul class="workspaces__list">
+      {{- $current := .RelPermalink }}
+      {{- with site.Params.workspaces }}
+        {{- range first 4 . }}
+          {{- $workspace := . }}
+          {{- with .pageRef }}
+            {{- with site.GetPage . }}
+            <li class="workspaces__entry">
+              <a class="workspaces__link" href="{{ .RelPermalink }}"{{ if eq $current .RelPermalink }} aria-current="page"{{ end }}>{{ $workspace.label }}</a>
+            </li>
+            {{- end }}
+          {{- end }}
+        {{- end }}
+      {{- end }}
+    </ul>
+  </nav>
+  {{- with site.Params.trash }}
+    {{- $trash := . }}
+    {{- with .pageRef }}
+      {{- with site.GetPage . }}
+      <a class="trash" href="{{ .RelPermalink }}">{{ default "Trash" $trash.label }}</a>
+      {{- end }}
+    {{- end }}
+  {{- end }}
 </div>

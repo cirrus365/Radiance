@@ -110,7 +110,7 @@ RSS feed
       </details>
   </nav>
   <div class="panel__applets">
-      <time class="applet applet--clock" datetime="10:33" data-panel-clock>10:33</time>
+      <time class="applet applet--clock" datetime="10:40" data-panel-clock>10:40</time>
       <a class="applet applet--link" href="https://gohugo.io/">Hugo website</a>
       <span class="applet applet--meter">
         <span class="applet-meter__label">Disc</span>
@@ -154,7 +154,30 @@ RSS feed
 </main>
 
 <div class="panel panel--bottom">
-  <p class="panel__placeholder">Window list placeholder</p>
+  <nav class="window-list" aria-label="Window list">
+    <ul class="window-list__entries" data-window-list>
+      <li class="window-list__entry window-list__entry--active" data-window-entry>
+        <a class="window-list__link" href="/404.html" aria-current="page" data-window-restore>404 Page not found</a>
+      </li>
+    </ul>
+  </nav>
+  <nav class="workspaces" aria-label="Workspaces">
+    <ul class="workspaces__list">
+            <li class="workspaces__entry">
+              <a class="workspaces__link" href="/">Home</a>
+            </li>
+            <li class="workspaces__entry">
+              <a class="workspaces__link" href="/archive/">Archive</a>
+            </li>
+            <li class="workspaces__entry">
+              <a class="workspaces__link" href="/tags/">Tags</a>
+            </li>
+            <li class="workspaces__entry">
+              <a class="workspaces__link" href="/about/">About</a>
+            </li>
+    </ul>
+  </nav>
+      <a class="trash" href="/trash/">Trash</a>
 </div>
 
 
