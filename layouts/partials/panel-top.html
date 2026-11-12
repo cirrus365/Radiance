@@ -13,10 +13,9 @@
           instead of the entry URL; the entry is skipped when no RSS output
           is configured.
 
-  Applets come from the site data key "applets" (data/applets.yaml), sorted
-  by "weight"; supported types: clock, link, meter. The data is read via
-  hugo.Data on Hugo 0.156 and later, and via site.Data on older releases
-  (site.Data is deprecated from 0.156; hugo.Data does not exist before it).
+  Applets come from the site data key "applets" (data/applets.yaml), read
+  through partials/site-data.html, sorted by "weight"; supported types:
+  clock, link, meter.
 
   The System menu reserves a place, after its entries and above a separator,
   for an appearance selector to be added in a later step.
@@ -64,13 +63,7 @@
       {{- end }}
     {{- end }}
   </nav>
-  {{- $applets := slice }}
-  {{- if ge hugo.Version "0.156.0" }}
-    {{- with hugo.Data.applets }}{{ $applets = . }}{{ end }}
-  {{- else }}
-    {{- with site.Data.applets }}{{ $applets = . }}{{ end }}
-  {{- end }}
-  {{- with $applets }}
+  {{- with partial "site-data.html" (dict "key" "applets") }}
   <div class="panel__applets">
     {{- range sort . "weight" "asc" }}
       {{- if eq .type "clock" }}

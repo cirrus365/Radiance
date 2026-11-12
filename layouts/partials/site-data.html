@@ -1,0 +1,19 @@
+{{/*
+  site-data.html — reads a site data key across supported Hugo versions.
+
+  Parameters (single dictionary):
+    key (string, required): the site data key to read (data/<key>.yaml or
+          similar).
+
+  Returns the data value, or nil when the key does not exist. .Site.Data is
+  deprecated from Hugo 0.156 (replaced by hugo.Data), and hugo.Data does not
+  exist before 0.156, so the read is version-branched here.
+*/}}
+{{- $key := .key }}
+{{- $value := "" }}
+{{- if ge hugo.Version "0.156.0" }}
+  {{- $value = index hugo.Data $key }}
+{{- else }}
+  {{- $value = index site.Data $key }}
+{{- end }}
+{{- return $value }}

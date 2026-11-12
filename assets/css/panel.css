@@ -281,6 +281,8 @@
   display: flex;
   align-items: stretch;
   height: 100%;
+  min-width: 0;
+  overflow: hidden;
 }
 
 .applet {

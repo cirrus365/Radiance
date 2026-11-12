@@ -1,0 +1,24 @@
+# Desktop shortcuts (layouts/partials/desktop-icons.html), sorted by weight.
+#
+# Keys per entry:
+#   label:  the visible text and accessible name.
+#   href:   a site-absolute path (resolved with relURL so subpath
+#           deployments work) or an absolute external URL.
+#   icon:   "computer", "home" or "trash"; anything else renders without
+#           a glyph.
+#   weight: optional sort order; entries without one sort first.
+
+- label: "Computer"
+  href: "/about/"
+  icon: "computer"
+  weight: 10
+
+- label: "Home"
+  href: "/"
+  icon: "home"
+  weight: 20
+
+- label: "Trash"
+  href: "/trash/"
+  icon: "trash"
+  weight: 30

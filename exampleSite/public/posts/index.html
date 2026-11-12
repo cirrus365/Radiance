@@ -46,6 +46,16 @@
   <symbol id="radiance-glyph-close" viewBox="0 0 16 16">
     <path d="M4.5 4.5l7 7M11.5 4.5l-7 7"/>
   </symbol>
+  <symbol id="radiance-glyph-computer" viewBox="0 0 16 16">
+    <rect x="2" y="2.5" width="12" height="8.5"/>
+    <path d="M8 11v2.5M5 13.5h6"/>
+  </symbol>
+  <symbol id="radiance-glyph-trash" viewBox="0 0 16 16">
+    <path d="M3.5 4.5h9"/>
+    <path d="M6.5 4.5V3h3v1.5"/>
+    <path d="M4.5 4.5l.7 9.5h5.6l.7-9.5"/>
+    <path d="M6.8 7v4.8M9.2 7v4.8"/>
+  </symbol>
 </svg>
 
 
@@ -111,7 +121,7 @@ RSS feed
       </details>
   </nav>
   <div class="panel__applets">
-      <time class="applet applet--clock" datetime="10:40" data-panel-clock>10:40</time>
+      <time class="applet applet--clock" datetime="10:44" data-panel-clock>10:44</time>
       <a class="applet applet--link" href="https://gohugo.io/">Hugo website</a>
       <span class="applet applet--meter">
         <span class="applet-meter__label">Disc</span>
@@ -122,10 +132,29 @@ RSS feed
 
 <main id="desktop">
 
-<aside class="desktop-icons" aria-label="Desktop shortcuts">
+<aside class="desktop-icons" aria-label="Desktop shortcuts" data-desktop-shortcuts>
   <ul class="desktop-icons__list">
-    <li class="desktop-icons__item"><a href="/">Home</a></li>
-    <li class="desktop-icons__item"><a href="/posts/">Posts</a></li>
+    <li class="desktop-icons__item">
+      <a class="desktop-shortcut" href="/about/" data-desktop-shortcut>
+<svg class="desktop-shortcut__icon" aria-hidden="true" focusable="false"><use href="#radiance-glyph-computer"></use></svg>
+
+        <span class="desktop-shortcut__label">Computer</span>
+      </a>
+    </li>
+    <li class="desktop-icons__item">
+      <a class="desktop-shortcut" href="/" data-desktop-shortcut>
+<svg class="desktop-shortcut__icon" aria-hidden="true" focusable="false"><use href="#radiance-glyph-home"></use></svg>
+
+        <span class="desktop-shortcut__label">Home</span>
+      </a>
+    </li>
+    <li class="desktop-icons__item">
+      <a class="desktop-shortcut" href="/trash/" data-desktop-shortcut>
+<svg class="desktop-shortcut__icon" aria-hidden="true" focusable="false"><use href="#radiance-glyph-trash"></use></svg>
+
+        <span class="desktop-shortcut__label">Trash</span>
+      </a>
+    </li>
   </ul>
 </aside>
 

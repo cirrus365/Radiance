@@ -3,14 +3,30 @@
 
   Parameters: page context (no dictionary).
 
-  Placeholder: desktop shortcuts with icons are implemented in a later step.
-  Currently renders plain links to the home page and top-level sections.
+  Shortcuts come from the site data key "desktop" (data/desktop.yaml), read
+  through partials/site-data.html and sorted by "weight". Each entry:
+    label  (string, required): the visible text and accessible name.
+    href   (string, required): a site-absolute path, resolved with relURL
+           so subpath deployments work, or an absolute external URL.
+    icon   (string, optional): a supported decorative icon identifier (see
+           partials/glyph.html); anything else renders without a glyph.
+    weight (number, optional): sort order; entries without one sort first.
+
+  The shortcuts are ordinary links. With JavaScript, clicking marks a
+  shortcut selected before normal navigation and Arrow Up and Arrow Down
+  move focus and selection within the group. The column is hidden below
+  768px.
 */}}
-<aside class="desktop-icons" aria-label="Desktop shortcuts">
+<aside class="desktop-icons" aria-label="Desktop shortcuts" data-desktop-shortcuts>
+  {{- $shortcuts := partial "site-data.html" (dict "key" "desktop") }}
   <ul class="desktop-icons__list">
-    <li class="desktop-icons__item"><a href="{{ site.Home.RelPermalink }}">Home</a></li>
-    {{- range site.Sections }}
-    <li class="desktop-icons__item"><a href="{{ .RelPermalink }}">{{ .Title }}</a></li>
+    {{- range sort $shortcuts "weight" "asc" }}
+    <li class="desktop-icons__item">
+      <a class="desktop-shortcut" href="{{ .href | relURL }}" data-desktop-shortcut>
+        {{- with .icon }}{{ partial "glyph.html" (dict "name" . "class" "desktop-shortcut__icon") }}{{ end }}
+        <span class="desktop-shortcut__label">{{ .label }}</span>
+      </a>
+    </li>
     {{- end }}
   </ul>
 </aside>

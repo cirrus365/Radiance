@@ -1,11 +1,102 @@
 /*
  * radiance — desktop styles.
  *
- * The desktop background and the left-hand shortcut column are styled in a
- * later step. A maximised window enlarges within the desktop area and hides
- * the shortcut column. All colour values come from tokens.css.
+ * The desktop is the area behind the windows: a deep aubergine background
+ * with purple towards the right and a soft orange glow towards the lower
+ * left, drawn with local CSS gradients, plus the left-hand shortcut
+ * column. The gradient colours are mixed from tokens; no remote assets.
+ * All colour values come from tokens.css.
  */
 
-html.has-maximised-window .desktop-icons {
-  display: none;
+#desktop {
+  display: flex;
+  align-items: flex-start;
+  gap: 16px;
+  min-height: calc(100vh - 2 * var(--radiance-panel-height));
+  padding: 16px;
+  background-color: var(--radiance-desktop-aubergine);
+  background-image:
+    radial-gradient(85% 70% at 5% 100%, color-mix(in srgb, var(--radiance-desktop-orange) 45%, transparent), transparent 65%),
+    linear-gradient(to right, transparent 35%, color-mix(in srgb, var(--radiance-desktop-purple) 85%, transparent) 100%);
+}
+
+#desktop .window {
+  flex: 1 1 auto;
+  min-width: 0;
+}
+
+/* Shortcut column */
+
+.desktop-icons {
+  display: flex;
+  flex-direction: column;
+  flex: none;
+  width: 108px;
+}
+
+.desktop-icons__list {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.desktop-shortcut {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 4px;
+  padding: 6px 4px;
+  border: var(--radiance-border-width) solid transparent;
+  border-radius: 3px;
+  color: var(--radiance-desktop-text);
+  text-align: center;
+  text-decoration: none;
+}
+
+.desktop-shortcut:hover {
+  background-color: color-mix(in srgb, var(--radiance-desktop-purple) 30%, transparent);
+}
+
+.desktop-shortcut:focus-visible {
+  outline: var(--radiance-border-width) dotted var(--radiance-desktop-text);
+  outline-offset: 1px;
+}
+
+.desktop-shortcut.is-selected {
+  background-color: color-mix(in srgb, var(--radiance-desktop-purple) 45%, transparent);
+  outline: var(--radiance-border-width) solid color-mix(in srgb, var(--radiance-desktop-text) 70%, transparent);
+  outline-offset: -1px;
+}
+
+.desktop-shortcut__icon {
+  width: 24px;
+  height: 24px;
+  flex: none;
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 1.25;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+.desktop-shortcut__label {
+  display: block;
+  max-width: 100%;
+  line-height: 1.2;
+  color: var(--radiance-desktop-text);
+  text-shadow: 0 1px 0 var(--radiance-desktop-aubergine);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+/* The shortcut column is hidden below 768px; the main content stays. */
+
+@media (max-width: 767.98px) {
+  .desktop-icons {
+    display: none;
+  }
 }
