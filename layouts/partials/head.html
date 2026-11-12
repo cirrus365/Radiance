@@ -4,10 +4,16 @@
   Parameters: page context (no dictionary).
 
   Sets up the CSS and JavaScript pipelines:
-  - CSS: assets/css/tokens.css and the theme stylesheets concatenated into
-    one file, minified outside the development server.
-  - JS: assets/js/main.js bundled with js.Build, minified outside the
+  - CSS: assets/css/tokens.css and the theme stylesheets (including
+    print.css) concatenated into one file, minified outside the
     development server.
+  - JS: assets/js/appearance-early.js (blocking, applies a stored
+    appearance before first paint) and assets/js/main.js (deferred entry
+    point), both bundled with js.Build and minified outside the
+    development server.
+
+  Also emits the favicon, Open Graph and Twitter card metadata (see
+  partials/opengraph.html) and links the RSS feed when available.
 */}}
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -27,8 +33,8 @@
 {{- with .OutputFormats.Get "rss" }}
 <link rel="alternate" type="{{ .MediaType.Type }}" href="{{ .Permalink }}" title="{{ site.Title }}">
 {{- end }}
-{{- $appearanceJs := resources.Get "js/appearance-early.js" | js.Build (dict "targetPath" "js/appearance-early.js" "minify" (not hugo.IsServer)) }}
-<script src="{{ $appearanceJs.RelPermalink }}"></script>
+<link rel="icon" type="image/svg+xml" href="{{ "favicon.svg" | relURL }}">
+{{- partial "opengraph.html" . }}
 {{- $css := slice
   (resources.Get "css/tokens.css")
   (resources.Get "css/base.css")
@@ -37,6 +43,7 @@
   (resources.Get "css/window.css")
   (resources.Get "css/tiles.css")
   (resources.Get "css/dialog.css")
+  (resources.Get "css/print.css")
   | resources.Concat "css/radiance.css"
 }}
 {{- if not hugo.IsServer }}

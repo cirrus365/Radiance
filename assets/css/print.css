@@ -1,0 +1,102 @@
+/*
+ * radiance — print styles.
+ *
+ * Printing hides the desktop panels, shortcuts and window chrome, shows
+ * page content in normal flow, and prints tile grids as one column.
+ * Printing forces light, print-friendly token values so the output stays
+ * readable in either appearance, without printing dark backgrounds. All
+ * colour values come from tokens.css.
+ */
+
+@media print {
+  :root,
+  :root[data-appearance="dark"] {
+    color-scheme: light;
+    --radiance-panel-bg: #ffffff;
+    --radiance-panel-raised: #ffffff;
+    --radiance-panel-text: #000000;
+    --radiance-panel-border: #767676;
+    --radiance-window-bg: #ffffff;
+    --radiance-window-surface: #ffffff;
+    --radiance-window-chrome: #ffffff;
+    --radiance-window-border: #767676;
+    --radiance-tile-bg: #ffffff;
+    --radiance-tile-border: #767676;
+    --radiance-text: #000000;
+    --radiance-text-muted: #444444;
+    --radiance-accent: #c2410e;
+    --radiance-selection: #ffffff;
+    --radiance-bevel-light: #ffffff;
+    --radiance-bevel-dark: #ffffff;
+    --radiance-control-border: #767676;
+  }
+
+  /* Desktop chrome: panels, shortcuts and window controls. */
+  .panel,
+  .desktop-icons,
+  .skip-link,
+  .window__titlebar,
+  .window__controls,
+  .dialog__titlebar,
+  .dialog__search,
+  .dialog__status,
+  .dialog__actions {
+    display: none !important;
+  }
+
+  /* Content in normal flow, without the desktop backdrop. */
+  #desktop {
+    display: block;
+    min-height: 0;
+    padding: 0;
+    background: none;
+  }
+
+  #desktop .window,
+  #desktop .dialog {
+    max-width: none;
+    border: 0;
+    border-radius: 0;
+    background: none;
+  }
+
+  .window__content {
+    margin: 0;
+    padding: 0;
+    background: none;
+    border-radius: 0;
+  }
+
+  .dialog__results {
+    margin: 0;
+    padding: 0;
+    border: 0;
+    background: none;
+  }
+
+  /* A maximised window must not stretch the printout. */
+  html.has-maximised-window .window--maximised {
+    min-height: 0;
+  }
+
+  /* Tile grids print as one column with spans flattened. */
+  .tile-grid,
+  .board-list {
+    grid-template-columns: 1fr;
+  }
+
+  .tile--span-2x1,
+  .tile--span-2x2 {
+    grid-column: auto;
+    grid-row: auto;
+  }
+
+  .tile {
+    background: none;
+  }
+
+  /* Metadata images keep their intrinsic size. */
+  img {
+    max-width: 100%;
+  }
+}

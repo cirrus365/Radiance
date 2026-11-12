@@ -10,7 +10,7 @@ content website feel like an Ubuntu desktop running GNOME 2.
 ## The theme
 
 - The default light appearance is inspired by Ubuntu Radiance.
-- An Ambiance-inspired dark appearance is planned.
+- The Ambiance dark appearance is its darker companion.
 - All authored colour values live in `assets/css/tokens.css`.
 
 ## This site

@@ -28,4 +28,6 @@ them when a combination needs improvement.
 
 ## Dark appearance
 
-An Ambiance-inspired dark appearance is planned for a later release.
+The Ambiance dark appearance ships alongside the light one: choose it from
+the System menu, or let the operating system decide. Both appearances are
+built from the same tokens file.

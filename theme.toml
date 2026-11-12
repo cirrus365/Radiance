@@ -2,7 +2,7 @@
 
 name = "radiance"
 license = "MIT"
-description = "A Hugo theme that makes a content website feel like an Ubuntu desktop running GNOME 2. The default light appearance is inspired by Ubuntu Radiance; a dark, Ambiance-inspired appearance is planned."
+description = "A Hugo theme that makes a content website feel like an Ubuntu desktop running GNOME 2. The light appearance is inspired by Ubuntu Radiance and the dark appearance by Ubuntu Ambiance."
 # Placeholder repository link. Replace OWNER with the final repository
 # location once known.
 licenselink = "https://github.com/OWNER/radiance/blob/main/LICENSE"

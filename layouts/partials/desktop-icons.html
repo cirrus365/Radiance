@@ -19,8 +19,9 @@
 */}}
 <aside class="desktop-icons" aria-label="Desktop shortcuts" data-desktop-shortcuts>
   {{- $shortcuts := partial "site-data.html" (dict "key" "desktop") }}
+  {{- with $shortcuts }}
   <ul class="desktop-icons__list">
-    {{- range sort $shortcuts "weight" "asc" }}
+    {{- range sort . "weight" "asc" }}
     <li class="desktop-icons__item">
       <a class="desktop-shortcut" href="{{ .href | relURL }}" data-desktop-shortcut>
         {{- with .icon }}{{ partial "glyph.html" (dict "name" . "class" "desktop-shortcut__icon") }}{{ end }}
@@ -29,4 +30,5 @@
     </li>
     {{- end }}
   </ul>
+  {{- end }}
 </aside>
