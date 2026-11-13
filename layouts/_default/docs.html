@@ -2,35 +2,11 @@
   docs.html — layout for a handbook chapter.
 
   Used by pages under content/docs/ with `layout: docs` in their front
-  matter. Chapters are page bundles ordered by weight.
-
-  The window content is a two-column layout: a sidebar listing every
-  chapter (wide screens), the chapter body and Previous / Next links at
-  the foot. Below 1024px the sidebar is replaced by a native
-  <details> contents control; both representations are in the document
-  and only one renders at a time (no script required).
+  matter. Chapters are page bundles ordered by weight. The handbook
+  shell — chapter list, contents control and Previous / Next links — is
+  shared with the reference appendix through partials/docs-shell.html.
 */}}
 {{- define "main" -}}
-  {{- $current := . }}
-  {{- $nav := partial "docs-nav.html" (dict "current" $current) -}}
-  {{- $pages := where site.RegularPages "Section" "docs" }}
-  {{- $prev := "" }}
-  {{- $next := "" }}
-  {{- range $index, $page := $pages }}
-    {{- if eq $page.RelPermalink $current.RelPermalink }}
-      {{- if gt $index 0 }}{{ $prev = index $pages (sub $index 1) }}{{ end }}
-      {{- if lt (add $index 1) (len $pages) }}{{ $next = index $pages (add $index 1) }}{{ end }}
-    {{- end }}
-  {{- end }}
-  {{- $pagination := "" }}
-  {{- with $prev }}
-    {{- $pagination = printf "%s<a class=\"docs-pagination__link\" href=\"%s\" rel=\"prev\"><span class=\"docs-pagination__label\" aria-hidden=\"true\">Previous</span><span class=\"docs-pagination__title\">%s</span></a>" $pagination .RelPermalink .Title }}
-  {{- end }}
-  {{- with $next }}
-    {{- $pagination = printf "%s<a class=\"docs-pagination__link docs-pagination__link--next\" href=\"%s\" rel=\"next\"><span class=\"docs-pagination__label\" aria-hidden=\"true\">Next</span><span class=\"docs-pagination__title\">%s</span></a>" $pagination .RelPermalink .Title }}
-  {{- end }}
-  {{- $pagination = printf "<nav class=\"docs__pagination\" aria-label=\"Handbook pagination\">%s</nav>" $pagination }}
-  {{- $article := printf "%s%s" .Content $pagination | safeHTML -}}
-  {{- $content := printf "<div class=\"docs\"><details class=\"docs__contents\"><summary class=\"docs__contents-summary\">Contents</summary><nav class=\"docs__contents-nav\" aria-label=\"Handbook contents\">%s</nav></details><nav class=\"docs__sidebar\" aria-label=\"Handbook\">%s</nav><article class=\"docs__article\">%s</article></div>" $nav $nav $article | safeHTML -}}
+  {{- $content := partial "docs-shell.html" (dict "page" . "content" .Content) -}}
   {{- partial "window.html" (dict "title" .Title "id" "window-docs" "icon" "document" "content" $content) -}}
 {{- end -}}

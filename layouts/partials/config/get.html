@@ -11,36 +11,42 @@
 
   A parameter absent from the schema is not readable: the partial warns
   and returns nil. This is the only door to site.Params in the theme.
+
+  The return statement sits at the top level of the partial: Hugo's
+  minimum supported version (0.128.0) only accepts returns with a value
+  there.
 */}}
 {{- $key := .key }}
 {{- $schema := partial "site-data.html" (dict "key" "schema") }}
 {{- $entry := "" }}
 {{- with $schema }}{{ $entry = index . $key }}{{ end }}
+{{- $result := "" }}
 {{- if not $entry }}
   {{- warnf "config: site param %q is not listed in data/schema.yaml; the theme cannot read it." $key }}
-  {{- return "" }}
-{{- end }}
-{{- $configured := "" }}
-{{- with index site.Params $key }}{{ $configured = . }}{{ end }}
-{{- if $configured }}
-  {{- $typeMap := dict
-      "string" (slice "string")
-      "boolean" (slice "bool")
-      "number" (slice "int" "float64")
-      "list" (slice "[]interface {}")
-      "map" (slice "map[string]interface {}")
-  }}
-  {{- $allowed := index $typeMap (index $entry "type") }}
-  {{- $ok := false }}
-  {{- range $candidate := $allowed }}
-    {{- if eq $candidate (printf "%T" $configured) }}{{ $ok = true }}{{ end }}
+{{- else }}
+  {{- $configured := "" }}
+  {{- with index site.Params $key }}{{ $configured = . }}{{ end }}
+  {{- if $configured }}
+    {{- $typeMap := dict
+        "string" (slice "string")
+        "boolean" (slice "bool")
+        "number" (slice "int" "float64")
+        "list" (slice "[]interface {}")
+        "map" (slice "map[string]interface {}")
+    }}
+    {{- $allowed := index $typeMap (index $entry "type") }}
+    {{- $ok := false }}
+    {{- range $candidate := $allowed }}
+      {{- if eq $candidate (printf "%T" $configured) }}{{ $ok = true }}{{ end }}
+    {{- end }}
+    {{- if $ok }}
+      {{- $result = $configured }}
+    {{- else }}
+      {{- warnf "config: site param %q is %s, expected %s; using the default %v." $key (printf "%T" $configured) (index $entry "type") (index $entry "default") }}
+    {{- end }}
   {{- end }}
-  {{- if not $ok }}
-    {{- warnf "config: site param %q is %s, expected %s; using the default %v." $key (printf "%T" $configured) (index $entry "type") (index $entry "default") }}
-    {{- $configured = "" }}
+  {{- if not $result }}
+    {{- $result = index $entry "default" }}
   {{- end }}
 {{- end }}
-{{- with $configured }}
-  {{- return . }}
-{{- end }}
-{{- return index $entry "default" }}
+{{- return $result }}

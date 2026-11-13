@@ -18,4 +18,6 @@
     {{- $out = printf "%s<a class=\"profile-door\" href=\"%s\">%s</a>" $out ($href | relURL) ($label | transform.XMLEscape) }}
   {{- end }}
 {{- end }}
-{{- with $out }}{{ return (printf "<div class=\"profile__doors\">%s</div>" . | safeHTML) }}{{ end }}
+{{- $result := "" }}
+{{- with $out }}{{ $result = printf "<div class=\"profile__doors\">%s</div>" . | safeHTML }}{{ end }}
+{{- return $result }}

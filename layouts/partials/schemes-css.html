@@ -97,6 +97,6 @@
 {{- else }}
   {{- warnf "schemes-css: no colour schemes found under data/schemes" }}
 {{- end }}
-{{- with $css }}
-  {{- return (resources.FromString "css/schemes.css" . | minify | fingerprint) }}
-{{- end }}
+{{- $result := "" }}
+{{- with $css }}{{ $result = resources.FromString "css/schemes.css" . | minify | fingerprint }}{{ end }}
+{{- return $result }}

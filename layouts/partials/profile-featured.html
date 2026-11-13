@@ -22,4 +22,6 @@
     {{- end }}
   {{- end }}
 {{- end }}
-{{- with $items }}{{ return (printf "<div class=\"profile-featured\"><h2 class=\"profile-featured__title\">Elsewhere on this site</h2><ul class=\"profile-featured__list\">%s</ul></div>" . | safeHTML) }}{{ end }}
+{{- $result := "" }}
+{{- with $items }}{{ $result = printf "<div class=\"profile-featured\"><h2 class=\"profile-featured__title\">Elsewhere on this site</h2><ul class=\"profile-featured__list\">%s</ul></div>" . | safeHTML }}{{ end }}
+{{- return $result }}
