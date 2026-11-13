@@ -55,9 +55,12 @@
 {{- if not hugo.IsServer }}
   {{- $css = $css | minify }}
 {{- end }}
+{{- /* Fingerprinted so a deploy is never masked by a cached copy of an
+   unchanged asset name. */}}
+{{- $css = $css | fingerprint }}
 <link rel="stylesheet" href="{{ $css.RelPermalink }}">
 {{- with partial "scheme-init.html" }}
 <script>{{ .Content | safe.JS }}</script>
 {{- end }}
-{{- $js := resources.Get "js/main.js" | js.Build (dict "targetPath" "js/radiance.js" "minify" (not hugo.IsServer)) }}
+{{- $js := resources.Get "js/main.js" | js.Build (dict "targetPath" "js/radiance.js" "minify" (not hugo.IsServer)) | fingerprint }}
 <script src="{{ $js.RelPermalink }}" defer></script>
