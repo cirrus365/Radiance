@@ -1,0 +1,11 @@
+{{/*
+  docs-index.html — layout for the handbook's section landing page.
+
+  Used by content/docs/_index.md with `layout: docs-index`. Renders the
+  section's own content followed by the chapter contents list.
+*/}}
+{{- define "main" -}}
+  {{- $nav := partial "docs-nav.html" (dict "current" .) -}}
+  {{- $content := printf "%s%s" .Content $nav | safeHTML -}}
+  {{- partial "window.html" (dict "title" .Title "id" "window-docs" "icon" "folder" "content" $content) -}}
+{{- end -}}

@@ -35,6 +35,11 @@ theme = "radiance"
   weight = 40
 
 [[menus.main]]
+  name = "Docs"
+  pageRef = "/docs"
+  weight = 40
+
+[[menus.main]]
   name = "About"
   pageRef = "/about"
   weight = 50

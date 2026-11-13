@@ -77,6 +77,9 @@
           <a class="panel__nav-link" href="/archive/">Archive</a>
         </li>
         <li class="panel__nav-item">
+          <a class="panel__nav-link" href="/docs/">Docs</a>
+        </li>
+        <li class="panel__nav-item">
           <a class="panel__nav-link" href="/tags/">Tags</a>
         </li>
         <li class="panel__nav-item">
@@ -155,6 +158,17 @@
 </li>
 
 <li class="dialog-row">
+  <a class="dialog-row__link" href="/docs/getting-started/">
+<svg class="dialog-row__glyph" aria-hidden="true" focusable="false"><use href="#radiance-glyph-document"></use></svg>
+
+    <span class="dialog-row__body">
+      <span class="dialog-row__title">Getting started</span>
+      <span class="dialog-row__description">The radiance handbook · 1 January 1 — Requirements Hugo Extended, 0.128.0 or newer (the extended build, for image processing and Sass-free Hugo Pipes). Git, for installation as a submodule or Hugo module. Nothing else. There is no npm, no …</span>
+    </span>
+  </a>
+</li>
+
+<li class="dialog-row">
   <a class="dialog-row__link" href="/moodboards/workshop/">
 <svg class="dialog-row__glyph" aria-hidden="true" focusable="false"><use href="#radiance-glyph-document"></use></svg>
 
@@ -167,6 +181,17 @@
 </li>
 
 <li class="dialog-row">
+  <a class="dialog-row__link" href="/docs/appearance/">
+<svg class="dialog-row__glyph" aria-hidden="true" focusable="false"><use href="#radiance-glyph-document"></use></svg>
+
+    <span class="dialog-row__body">
+      <span class="dialog-row__title">Appearance and colour schemes</span>
+      <span class="dialog-row__description">The radiance handbook · 1 January 1 — The toggle The top panel carries one compact appearance control at its far right. With two colour schemes installed it swaps between them; with three or more it opens a small menu instead. The control …</span>
+    </span>
+  </a>
+</li>
+
+<li class="dialog-row">
   <a class="dialog-row__link" href="/moodboards/reading-room/">
 <svg class="dialog-row__glyph" aria-hidden="true" focusable="false"><use href="#radiance-glyph-document"></use></svg>
 
@@ -174,6 +199,112 @@
       <span class="dialog-row__title">Reading room</span>
       <span class="dialog-row__description">Moodboards · 11 November 2026 — Where the desktop conventions come from, and where to read more. This board keeps its tile data in board-tiles.yaml to show the optional tiles front matter field at work.
 </span>
+    </span>
+  </a>
+</li>
+
+<li class="dialog-row">
+  <a class="dialog-row__link" href="/docs/making-it-yours/">
+<svg class="dialog-row__glyph" aria-hidden="true" focusable="false"><use href="#radiance-glyph-document"></use></svg>
+
+    <span class="dialog-row__body">
+      <span class="dialog-row__title">Making it yours</span>
+      <span class="dialog-row__description">The radiance handbook · 1 January 1 — Site name Set title in hugo.toml. It appears as the panel title (linking home), in window and dialog text, in the footer and in feed metadata.
+Navigation The panel reads one primary menu, main: …</span>
+    </span>
+  </a>
+</li>
+
+<li class="dialog-row">
+  <a class="dialog-row__link" href="/docs/writing/">
+<svg class="dialog-row__glyph" aria-hidden="true" focusable="false"><use href="#radiance-glyph-document"></use></svg>
+
+    <span class="dialog-row__body">
+      <span class="dialog-row__title">Writing</span>
+      <span class="dialog-row__description">The radiance handbook · 1 January 1 — Posts Ordinary Markdown pages render in a window with the title, the date, taxonomy links and the body:
+--- title: &amp;#34;My first post&amp;#34; date: 2026-01-17 description: &amp;#34;A one-line summary used in …</span>
+    </span>
+  </a>
+</li>
+
+<li class="dialog-row">
+  <a class="dialog-row__link" href="/docs/photography/">
+<svg class="dialog-row__glyph" aria-hidden="true" focusable="false"><use href="#radiance-glyph-document"></use></svg>
+
+    <span class="dialog-row__body">
+      <span class="dialog-row__title">Photography</span>
+      <span class="dialog-row__description">The radiance handbook · 1 January 1 — What the theme does with images The theme processes images only in two places — moodboard image tiles and social-card covers — and always with Hugo&amp;rsquo;s built-in imaging, so no external service is …</span>
+    </span>
+  </a>
+</li>
+
+<li class="dialog-row">
+  <a class="dialog-row__link" href="/docs/moodboards/">
+<svg class="dialog-row__glyph" aria-hidden="true" focusable="false"><use href="#radiance-glyph-document"></use></svg>
+
+    <span class="dialog-row__body">
+      <span class="dialog-row__title">Moodboards</span>
+      <span class="dialog-row__description">The radiance handbook · 1 January 1 — Creating a board A moodboard is a page bundle under content/moodboards/. Scaffold one:
+hugo new --kind moodboards content/moodboards/my-board This creates index.md, tiles.yaml and …</span>
+    </span>
+  </a>
+</li>
+
+<li class="dialog-row">
+  <a class="dialog-row__link" href="/docs/customising/">
+<svg class="dialog-row__glyph" aria-hidden="true" focusable="false"><use href="#radiance-glyph-document"></use></svg>
+
+    <span class="dialog-row__body">
+      <span class="dialog-row__title">Customising</span>
+      <span class="dialog-row__description">The radiance handbook · 1 January 1 — Template overrides Every partial and layout can be overridden from the site: create the same path under your site&amp;rsquo;s layouts/ directory and Hugo uses yours. Common overrides: …</span>
+    </span>
+  </a>
+</li>
+
+<li class="dialog-row">
+  <a class="dialog-row__link" href="/docs/publishing/">
+<svg class="dialog-row__glyph" aria-hidden="true" focusable="false"><use href="#radiance-glyph-document"></use></svg>
+
+    <span class="dialog-row__body">
+      <span class="dialog-row__title">Publishing and maintenance</span>
+      <span class="dialog-row__description">The radiance handbook · 1 January 1 — Deployment The theme emits a plain static site into public/; any static host works. Two things keep it portable:
+all URLs are Hugo-generated or relURL-resolved, so the site deploys below a subpath …</span>
+    </span>
+  </a>
+</li>
+
+<li class="dialog-row">
+  <a class="dialog-row__link" href="/docs/reference/">
+<svg class="dialog-row__glyph" aria-hidden="true" focusable="false"><use href="#radiance-glyph-document"></use></svg>
+
+    <span class="dialog-row__body">
+      <span class="dialog-row__title">Reference</span>
+      <span class="dialog-row__description">The radiance handbook · 1 January 1 — This appendix is generated from the theme&amp;rsquo;s data files at build time — the tables below are never transcribed by hand.
+</span>
+    </span>
+  </a>
+</li>
+
+<li class="dialog-row">
+  <a class="dialog-row__link" href="/docs/who-radiance-is-for/">
+<svg class="dialog-row__glyph" aria-hidden="true" focusable="false"><use href="#radiance-glyph-document"></use></svg>
+
+    <span class="dialog-row__body">
+      <span class="dialog-row__title">Who Radiance is for, and who it isn&#39;t</span>
+      <span class="dialog-row__description">The radiance handbook · 1 January 1 — Who it is for Radiance suits people publishing for themselves:
+Personal homepages — a place that says who you are, what you are making and how to reach you. Blogs — ordinary posts in ordinary windows, …</span>
+    </span>
+  </a>
+</li>
+
+<li class="dialog-row">
+  <a class="dialog-row__link" href="/docs/appendix/">
+<svg class="dialog-row__glyph" aria-hidden="true" focusable="false"><use href="#radiance-glyph-document"></use></svg>
+
+    <span class="dialog-row__body">
+      <span class="dialog-row__title">Appendix: telling people about it</span>
+      <span class="dialog-row__description">The radiance handbook · 1 January 1 — A factual checklist for distributing the theme. Nothing here is a promise of results; it is the list of places that make sense and the preparation each one needs.
+Hugo themes gallery The theme&amp;rsquo;s …</span>
     </span>
   </a>
 </li>

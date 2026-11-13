@@ -1,0 +1,20 @@
+{{/*
+  docs-nav.html — the handbook's chapter list.
+
+  Parameters (single dictionary):
+    current (page, optional): the current page, marked with
+          aria-current="page".
+
+  Returns the chapter list as safe HTML: every regular page under the
+  docs section, ordered by weight.
+*/}}
+{{- $current := .current }}
+{{- $pages := where site.RegularPages "Section" "docs" }}
+{{- $out := "<ul class=\"docs-nav__list\">" }}
+{{- range $pages }}
+  {{- $currentAttr := "" }}
+  {{- if and $current (eq .RelPermalink $current.RelPermalink) }}{{ $currentAttr = " aria-current=\"page\"" }}{{ end }}
+  {{- $out = printf "%s<li><a class=\"docs-nav__link\" href=\"%s\"%s>%s</a></li>" $out .RelPermalink $currentAttr .Title }}
+{{- end }}
+{{- $out = printf "%s</ul>" $out }}
+{{- return ($out | safeHTML) }}

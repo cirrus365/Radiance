@@ -1,0 +1,104 @@
+{{/*
+  reference.html — the handbook's generated reference appendix.
+
+  Used by content/docs/reference/index.md with `layout: reference`. Every
+  table is generated from the theme's data files; nothing here is
+  transcribed:
+  - site parameters from data/schema.yaml;
+  - colour tokens from data/schemes/*.yaml (one value column per scheme,
+    in file-name order);
+  - tile types from data/tiles.yaml;
+  - the contrast report from data/generated/contrast.yaml, which
+    scripts/contrast.py regenerates.
+*/}}
+{{- define "main" -}}
+  {{- $schema := partial "site-data.html" (dict "key" "schema") }}
+  {{- $schemes := partial "site-data.html" (dict "key" "schemes") }}
+  {{- $tiles := partial "site-data.html" (dict "key" "tiles") }}
+  {{- /* data/generated/contrast.yaml nests under the directory key. */}}
+  {{- $generated := partial "site-data.html" (dict "key" "generated") }}
+  {{- $contrast := "" }}
+  {{- with $generated }}{{ $contrast = index . "contrast" }}{{ end }}
+
+  {{- /* Site parameters. */}}
+  {{- $rows := "<table class=\"reference__table\"><thead><tr><th scope=\"col\">Parameter</th><th scope=\"col\">Type</th><th scope=\"col\">Default</th><th scope=\"col\">Purpose</th></tr></thead><tbody>" }}
+  {{- $keys := slice }}
+  {{- range $key, $_ := $schema }}{{ $keys = $keys | append $key }}{{ end }}
+  {{- range sort $keys }}
+    {{- $entry := index $schema . }}
+    {{- $default := index $entry "default" }}
+    {{- $defaultText := "" }}
+    {{- with $default }}{{ $defaultText = . }}{{ else }}{{ $defaultText = "“” (empty string)" }}{{ end }}
+    {{- $rows = printf "%s<tr><th scope=\"row\"><code>%s</code></th><td>%s</td><td><code>%s</code></td><td>%s</td></tr>" $rows . (index $entry "type") $defaultText (index $entry "description") }}
+  {{- end }}
+  {{- $rows = printf "%s</tbody></table>" $rows }}
+  {{- $config := printf "<h2 id=\"site-parameters\">Site parameters</h2><p>Read through <code>layouts/partials/config/get.html</code>; a parameter absent from <code>data/schema.yaml</code> is not readable. This table is generated from the schema.</p>%s" $rows }}
+
+  {{- /* Colour tokens: one value column per scheme, file-name order. */}}
+  {{- $schemeNames := slice }}
+  {{- range $name, $_ := $schemes }}{{ $schemeNames = $schemeNames | append $name }}{{ end }}
+  {{- $schemeNames = sort $schemeNames }}
+  {{- $head := "<tr><th scope=\"col\">Token</th>" }}
+  {{- range $name := $schemeNames }}
+    {{- $head = printf "%s<th scope=\"col\">%s</th>" $head (index (index $schemes $name) "label") }}
+  {{- end }}
+  {{- $head = printf "%s</tr>" $head }}
+  {{- $rows = printf "<table class=\"reference__table\"><thead>%s</thead><tbody>" $head }}
+  {{- $first := index $schemes (index $schemeNames 0) }}
+  {{- $groups := slice }}
+  {{- range $group, $_ := $first }}{{ if eq (printf "%T" (index $first $group)) "map[string]interface {}" }}{{ $groups = $groups | append $group }}{{ end }}{{ end }}
+  {{- range sort $groups }}
+    {{- $group := . }}
+    {{- $groupKeys := slice }}
+    {{- range $key, $_ := index $first $group }}{{ $groupKeys = $groupKeys | append $key }}{{ end }}
+    {{- range sort $groupKeys }}
+      {{- $key := . }}
+      {{- $prefix := $group }}
+      {{- if strings.HasSuffix $prefix "s" }}{{ $prefix = strings.TrimSuffix "s" $prefix }}{{ end }}
+      {{- $token := printf "--%s-%s" $prefix (replace $key "_" "-") }}
+      {{- $cells := "" }}
+      {{- range $name := $schemeNames }}
+        {{- $value := index (index (index $schemes $name) $group) $key }}
+        {{- $cells = printf "%s<td><code>%s</code></td>" $cells $value }}
+      {{- end }}
+      {{- $rows = printf "%s<tr><th scope=\"row\"><code>%s</code></th>%s</tr>" $rows $token $cells }}
+    {{- end }}
+  {{- end }}
+  {{- $rows = printf "%s</tbody></table>" $rows }}
+  {{- $tokens := printf "<h2 id=\"colour-tokens\">Colour tokens</h2><p>Generated from <code>data/schemes/*.yaml</code>; changing a value there moves the site, the toggle and this table together. See the appearance chapter for the derivation rules.</p>%s" $rows }}
+
+  {{- /* Tile types. */}}
+  {{- $rows := "<table class=\"reference__table\"><thead><tr><th scope=\"col\">Type</th><th scope=\"col\">Required fields</th><th scope=\"col\">Purpose</th><th scope=\"col\">Partial</th></tr></thead><tbody>" }}
+  {{- $tileNames := slice }}
+  {{- range $type, $_ := $tiles }}{{ $tileNames = $tileNames | append $type }}{{ end }}
+  {{- range sort $tileNames }}
+    {{- $entry := index $tiles . }}
+    {{- $rows = printf "%s<tr><th scope=\"row\"><code>%s</code></th><td><code>%s</code></td><td>%s</td><td><code>%s</code></td></tr>" $rows . (delimit (index $entry "required") ", ") (index $entry "description") (index $entry "partial") }}
+  {{- end }}
+  {{- $rows = printf "%s</tbody></table>" $rows }}
+  {{- $tilesHtml := printf "<h2 id=\"tile-types\">Tile types</h2><p>Generated from <code>data/tiles.yaml</code>; the dispatcher routes from the same list.</p>%s" $rows }}
+
+  {{- /* Contrast report. */}}
+  {{- $rows := "<table class=\"reference__table reference__table--contrast\"><thead><tr><th scope=\"col\">Scheme</th><th scope=\"col\">Pair</th><th scope=\"col\">Ratio</th><th scope=\"col\">Requirement</th><th scope=\"col\">Pass</th></tr></thead><tbody>" }}
+  {{- if not $contrast }}
+    {{- warnf "reference: data/generated/contrast.yaml is missing; run scripts/contrast.py to generate it." }}
+  {{- end }}
+  {{- $cNames := slice }}
+  {{- range $name, $_ := $contrast.schemes }}{{ $cNames = $cNames | append $name }}{{ end }}
+  {{- range sort $cNames }}
+    {{- $scheme := index $contrast.schemes . }}
+    {{- $pairNames := slice }}
+    {{- range $pair, $_ := $scheme.pairs }}{{ $pairNames = $pairNames | append $pair }}{{ end }}
+    {{- range sort $pairNames }}
+      {{- $pair := index $scheme.pairs . }}
+      {{- $pass := "no" }}
+      {{- if $pair.pass }}{{ $pass = "yes" }}{{ end }}
+      {{- $rows = printf "%s<tr><th scope=\"row\">%s</th><td>%s</td><td>%v:1</td><td>%v:1</td><td>%s</td></tr>" $rows (index $scheme "label") . (index $pair "ratio") (index $pair "requirement") $pass }}
+    {{- end }}
+  {{- end }}
+  {{- $rows = printf "%s</tbody></table>" $rows }}
+  {{- $contrastHtml := printf "<h2 id=\"contrast\">Contrast</h2><p>Generated by <code>scripts/contrast.py</code> into <code>data/generated/contrast.yaml</code>; this table renders that report. Body text must reach 4.5:1; borders and focus rings 3:1.</p>%s" $rows }}
+
+  {{- $content := printf "%s%s%s%s%s" .Content $config $tokens $tilesHtml $contrastHtml | safeHTML -}}
+  {{- partial "window.html" (dict "title" .Title "id" "window-reference" "icon" "info" "content" $content) -}}
+{{- end -}}

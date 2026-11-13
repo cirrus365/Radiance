@@ -1,0 +1,207 @@
+
+<!DOCTYPE html>
+<html lang="en-gb">
+<head>
+
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="generator" content="Hugo 0.169.0">
+<title>Publishing and maintenance · radiance</title>
+<meta name="description" content="Deployment, updates, breaking changes, troubleshooting.">
+<link rel="icon" type="image/svg+xml" href="/favicon.svg">
+<meta property="og:title" content="Publishing and maintenance">
+<meta property="og:url" content="http://localhost:1313/docs/publishing/">
+<meta property="og:site_name" content="radiance">
+<meta property="og:type" content="article">
+<meta property="og:description" content="Deployment, updates, breaking changes, troubleshooting.">
+<meta name="twitter:card" content="summary">
+
+<link rel="stylesheet" href="/css/schemes.min.dd845b8c915a7e5c6a0c0b6c54beedb25a9977c3ac4afd4b286bef6208aa907b.css">
+<link rel="stylesheet" href="/css/radiance.min.css">
+<script>(function(){"use strict";var e,t=["ambiance","radiance"];try{e=localStorage.getItem("radiance-appearance")}catch{}e&&t.indexOf(e)!==-1&&document.documentElement.setAttribute("data-theme",e)})()</script>
+<script src="/js/radiance.js" defer></script>
+
+</head>
+<body>
+<a class="skip-link" href="#desktop">Skip to content</a>
+
+<svg class="icon-sprite" width="0" height="0" aria-hidden="true" focusable="false">
+  <symbol id="radiance-glyph-document" viewBox="0 0 16 16">
+    <path d="M4 1.5h5.5L12.5 4.5v10H4z"/>
+    <path d="M9.5 1.5v3h3"/>
+    <path d="M6 8h4.5M6 10.5h4.5"/>
+  </symbol>
+  <symbol id="radiance-glyph-folder" viewBox="0 0 16 16">
+    <path d="M1.5 3.5h4.5L7.5 5H14.5v8.5H1.5z"/>
+  </symbol>
+  <symbol id="radiance-glyph-home" viewBox="0 0 16 16">
+    <path d="M2 8l6-5.5L14 8"/>
+    <path d="M4 7v6.5h8V7"/>
+  </symbol>
+  <symbol id="radiance-glyph-info" viewBox="0 0 16 16">
+    <circle cx="8" cy="8" r="6"/>
+    <path d="M8 7.5V11M8 5.1v.3"/>
+  </symbol>
+  <symbol id="radiance-glyph-feed" viewBox="0 0 16 16">
+    <circle cx="4.25" cy="11.75" r="1.25" fill="currentColor" stroke="none"/>
+    <path d="M3 8a5 5 0 0 1 5 5M3 4.5A8.5 8.5 0 0 1 11.5 13"/>
+  </symbol>
+  <symbol id="radiance-glyph-appearance" viewBox="0 0 16 16">
+    <circle cx="8" cy="8" r="6"/>
+    <path d="M8 2a6 6 0 0 1 0 12z" fill="currentColor" stroke="none"/>
+  </symbol>
+  <symbol id="radiance-glyph-computer" viewBox="0 0 16 16">
+    <rect x="2" y="2.5" width="12" height="8.5"/>
+    <path d="M8 11v2.5M5 13.5h6"/>
+  </symbol>
+  <symbol id="radiance-glyph-trash" viewBox="0 0 16 16">
+    <path d="M3.5 4.5h9"/>
+    <path d="M6.5 4.5V3h3v1.5"/>
+    <path d="M4.5 4.5l.7 9.5h5.6l.7-9.5"/>
+    <path d="M6.8 7v4.8M9.2 7v4.8"/>
+  </symbol>
+</svg>
+
+
+<header class="panel panel--top">
+  <a class="panel__title" href="/">radiance</a>
+  <nav class="panel__nav" aria-label="Primary">
+    <ul class="panel__nav-list">
+        <li class="panel__nav-item">
+          <a class="panel__nav-link" href="/posts/">Posts</a>
+        </li>
+        <li class="panel__nav-item">
+          <a class="panel__nav-link" href="/moodboards/">Moodboards</a>
+        </li>
+        <li class="panel__nav-item">
+          <a class="panel__nav-link" href="/archive/">Archive</a>
+        </li>
+        <li class="panel__nav-item">
+          <a class="panel__nav-link" href="/docs/" aria-current="page">Docs</a>
+        </li>
+        <li class="panel__nav-item">
+          <a class="panel__nav-link" href="/tags/">Tags</a>
+        </li>
+        <li class="panel__nav-item">
+          <a class="panel__nav-link" href="/about/">About</a>
+        </li>
+        <li class="panel__nav-item">
+          <a class="panel__nav-link" href="http://localhost:1313/index.xml">RSS</a>
+        </li>
+    </ul>
+  </nav>
+  <div class="panel__end">
+    <a class="panel__link" href="/search/">Search</a>
+    <button type="button" class="panel__appearance" hidden data-appearance-toggle
+      data-appearance-schemes="ambiance,radiance"
+      data-appearance-dark="ambiance"
+      data-appearance-default="radiance" aria-pressed="false">
+<svg class="panel__appearance-glyph" aria-hidden="true" focusable="false"><use href="#radiance-glyph-appearance"></use></svg>
+<span class="visually-hidden">Appearance</span>
+    </button>
+  </div>
+</header>
+
+<main id="desktop">
+
+<aside class="desktop-icons" aria-label="Desktop shortcuts" data-desktop-shortcuts>
+  <ul class="desktop-icons__list">
+    <li class="desktop-icons__item">
+      <a class="desktop-shortcut" href="/about/" data-desktop-shortcut>
+<svg class="desktop-shortcut__icon" aria-hidden="true" focusable="false"><use href="#radiance-glyph-computer"></use></svg>
+
+        <span class="desktop-shortcut__label">Computer</span>
+      </a>
+    </li>
+    <li class="desktop-icons__item">
+      <a class="desktop-shortcut" href="/" data-desktop-shortcut>
+<svg class="desktop-shortcut__icon" aria-hidden="true" focusable="false"><use href="#radiance-glyph-home"></use></svg>
+
+        <span class="desktop-shortcut__label">Home</span>
+      </a>
+    </li>
+    <li class="desktop-icons__item">
+      <a class="desktop-shortcut" href="/trash/" data-desktop-shortcut>
+<svg class="desktop-shortcut__icon" aria-hidden="true" focusable="false"><use href="#radiance-glyph-trash"></use></svg>
+
+        <span class="desktop-shortcut__label">Trash</span>
+      </a>
+    </li>
+  </ul>
+</aside>
+
+
+<section class="window" aria-labelledby="window-docs">
+  <header class="window__titlebar">
+<svg class="window__icon" aria-hidden="true" focusable="false"><use href="#radiance-glyph-document"></use></svg>
+
+    <h1 class="window__title" id="window-docs">Publishing and maintenance</h1>
+  </header>
+  <div class="window__content" id="window-docs-body">
+<div class="docs"><details class="docs__contents"><summary class="docs__contents-summary">Contents</summary><nav class="docs__contents-nav" aria-label="Handbook contents"><ul class="docs-nav__list"><li><a class="docs-nav__link" href="/docs/getting-started/">Getting started</a></li><li><a class="docs-nav__link" href="/docs/appearance/">Appearance and colour schemes</a></li><li><a class="docs-nav__link" href="/docs/making-it-yours/">Making it yours</a></li><li><a class="docs-nav__link" href="/docs/writing/">Writing</a></li><li><a class="docs-nav__link" href="/docs/photography/">Photography</a></li><li><a class="docs-nav__link" href="/docs/moodboards/">Moodboards</a></li><li><a class="docs-nav__link" href="/docs/customising/">Customising</a></li><li><a class="docs-nav__link" href="/docs/publishing/" aria-current="page">Publishing and maintenance</a></li><li><a class="docs-nav__link" href="/docs/reference/">Reference</a></li><li><a class="docs-nav__link" href="/docs/who-radiance-is-for/">Who Radiance is for, and who it isn't</a></li><li><a class="docs-nav__link" href="/docs/appendix/">Appendix: telling people about it</a></li></ul></nav></details><nav class="docs__sidebar" aria-label="Handbook"><ul class="docs-nav__list"><li><a class="docs-nav__link" href="/docs/getting-started/">Getting started</a></li><li><a class="docs-nav__link" href="/docs/appearance/">Appearance and colour schemes</a></li><li><a class="docs-nav__link" href="/docs/making-it-yours/">Making it yours</a></li><li><a class="docs-nav__link" href="/docs/writing/">Writing</a></li><li><a class="docs-nav__link" href="/docs/photography/">Photography</a></li><li><a class="docs-nav__link" href="/docs/moodboards/">Moodboards</a></li><li><a class="docs-nav__link" href="/docs/customising/">Customising</a></li><li><a class="docs-nav__link" href="/docs/publishing/" aria-current="page">Publishing and maintenance</a></li><li><a class="docs-nav__link" href="/docs/reference/">Reference</a></li><li><a class="docs-nav__link" href="/docs/who-radiance-is-for/">Who Radiance is for, and who it isn't</a></li><li><a class="docs-nav__link" href="/docs/appendix/">Appendix: telling people about it</a></li></ul></nav><article class="docs__article"><h2 id="deployment">Deployment</h2>
+<p>The theme emits a plain static site into <code>public/</code>; any static host
+works. Two things keep it portable:</p>
+<ul>
+<li>all URLs are Hugo-generated or <code>relURL</code>-resolved, so the site deploys
+below a subpath unchanged;</li>
+<li>no remote assets are fetched at build time or run time, so the build
+is reproducible on CI.</li>
+</ul>
+<h3 id="github-pages">GitHub Pages</h3>
+<p>The demo repository deploys to GitHub Pages with Actions. The shape of
+that workflow is: check out the repository (with submodules), install
+Hugo Extended, run
+<code>hugo --source exampleSite --themesDir ../..</code> and publish
+<code>exampleSite/public</code> as the artifact. A complete guardrail workflow
+ships with the theme in <code>.github/workflows/</code>; it also fails the build on
+the checks listed in the reference appendix&rsquo;s maintenance notes.</p>
+<p>For a project-pages deployment, set <code>baseURL</code> to the repository URL
+(including any subpath) in the build step, or leave the local value and
+pass <code>--baseURL</code> on the command line.</p>
+<h2 id="updates">Updates</h2>
+<p>The theme is installed as a submodule or a Hugo module, so updates are
+the ordinary Git operations for that choice:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-sh" data-lang="sh"><span style="display:flex;"><span><span style="color:#75715e"># submodule</span>
+</span></span><span style="display:flex;"><span>git submodule update --remote themes/radiance
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># module</span>
+</span></span><span style="display:flex;"><span>hugo mod get -u github.com/OWNER/radiance
+</span></span></code></pre></div><p>Rebuild and read the release notes before deploying; the breaking-change
+policy below tells you what to expect.</p>
+<h2 id="breaking-changes">Breaking changes</h2>
+<p>Changes to these are breaking and are called out in release notes:</p>
+<ul>
+<li>the key set of <code>data/schemes/*.yaml</code>;</li>
+<li>the schema in <code>data/schema.yaml</code> (removals or type changes);</li>
+<li>the tile registry in <code>data/tiles.yaml</code> (type or field removals);</li>
+<li>the site-parameter names the theme reads;</li>
+<li>the custom-property names generated from schemes.</li>
+</ul>
+<p>Everything else — visual tuning, new optional fields, new glyphs — aims
+to be additive.</p>
+<h2 id="troubleshooting">Troubleshooting</h2>
+<ul>
+<li><strong>Build warns about scheme keys</strong> — a scheme file&rsquo;s key set differs
+from the first scheme&rsquo;s; copy the missing keys across.</li>
+<li><strong>Build warns that a site param is not in the schema</strong> — the theme
+only reads parameters listed in <code>data/schema.yaml</code>; add the parameter
+there or spell it correctly.</li>
+<li><strong>A tile is skipped with a warning</strong> — the warning names the tiles
+file and, for missing fields, the field; fix the named field.</li>
+<li><strong>Contrast check fails</strong> — the failing pair and scheme are printed;
+adjust the scheme values until the ratio passes.</li>
+<li><strong>Colours look wrong under a subpath</strong> — check that <code>baseURL</code> matches
+the deployment path; the theme resolves its own assets with <code>relURL</code>.</li>
+</ul>
+<nav class="docs__pagination" aria-label="Handbook pagination"><a class="docs-pagination__link" href="/docs/customising/" rel="prev"><span class="docs-pagination__label" aria-hidden="true">Previous</span><span class="docs-pagination__title">Customising</span></a><a class="docs-pagination__link docs-pagination__link--next" href="/docs/reference/" rel="next"><span class="docs-pagination__label" aria-hidden="true">Next</span><span class="docs-pagination__title">Reference</span></a></nav></article></div>
+  </div>
+</section>
+
+</main>
+
+<footer class="footer">
+  <p>&copy; 2026 radiance. Powered by <a href="https://gohugo.io/">Hugo</a>.</p>
+</footer>
+
+</body>
+</html>
