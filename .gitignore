@@ -1,0 +1,6 @@
+# Build output and local caches are not tracked; deploys come from the
+# Actions workflows.
+.DS_Store
+exampleSite/public/
+exampleSite/resources/
+exampleSite/.hugo_build.lock

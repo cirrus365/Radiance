@@ -1,0 +1,59 @@
+# Builds the example site and deploys it to GitHub Pages.
+#
+# The demo IS the example site: this workflow builds exampleSite with
+# the theme from the same checkout and publishes it. The checkout
+# directory must be named "radiance" (see the CI workflow note on
+# case-sensitive theme resolution). The public URL is passed with
+# --baseURL; the local baseURL in exampleSite/hugo.toml stays the
+# development address.
+
+name: Demo site
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+concurrency:
+  group: pages
+  cancel-in-progress: true
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          path: radiance
+
+      - name: Install Hugo Extended
+        uses: peaceiris/actions-hugo@v3
+        with:
+          hugo-version: "0.169.0"
+          extended: true
+
+      - name: Build the example site
+        run: hugo --source exampleSite --themesDir ../.. --gc --minify --panicOnWarning --baseURL https://cirrus365.github.io/Radiance/
+        working-directory: radiance
+
+      - name: Upload the site
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: radiance/exampleSite/public
+
+  deploy:
+    needs: build
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4

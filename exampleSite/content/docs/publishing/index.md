@@ -17,17 +17,19 @@ works. Two things keep it portable:
 
 ### GitHub Pages
 
-The demo repository deploys to GitHub Pages with Actions. The shape of
-that workflow is: check out the repository (with submodules), install
-Hugo Extended, run
-`hugo --source exampleSite --themesDir ../..` and publish
-`exampleSite/public` as the artifact. A complete guardrail workflow
-ships with the theme in `.github/workflows/`; it also fails the build on
-the checks listed in the reference appendix's maintenance notes.
+The theme's own repository deploys its demo (the example site) to GitHub
+Pages with Actions. Two workflows ship in `.github/workflows/`:
 
-For a project-pages deployment, set `baseURL` to the repository URL
-(including any subpath) in the build step, or leave the local value and
-pass `--baseURL` on the command line.
+- `ci.yml` — the guardrail checks, on every push and pull request;
+- `pages.yml` — builds `exampleSite` with the theme from the same
+  checkout and publishes it to Pages, on pushes to the default branch.
+
+The checkout directory must be named `radiance` (the example site
+resolves the theme through `themesDir` by that name, and Linux is
+case-sensitive), and the public URL is passed with `--baseURL` in the
+build step — the local `baseURL` in `exampleSite/hugo.toml` stays the
+development address. Enable Pages once in the repository settings
+(*Settings → Pages → Build and deployment → Source: GitHub Actions*).
 
 ## Updates
 
