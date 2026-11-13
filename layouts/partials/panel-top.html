@@ -11,10 +11,12 @@
     page named "search" exists) and the appearance toggle in the far
     right position.
 
-  Menu entry keys (params):
-    feed (optional): links the entry to the home page's RSS output
-          instead of the entry URL; the entry is skipped when no RSS
-          output is configured.
+  Below 1024px the links are replaced by a native <details> menu behind
+  one "Menu" button; both representations are in the document but only
+  one renders at a time, and the panel stays a single row that does not
+  wrap. The menu works without JavaScript.
+
+  Menu entry keys (params) are handled by partials/panel-nav-entries.html.
 
   The current section is marked with aria-current through Hugo's menu
   matching.
@@ -43,24 +45,16 @@
   {{- with site.Menus.main }}
   <nav class="panel__nav" aria-label="Primary">
     <ul class="panel__nav-list">
-      {{- range . }}
-        {{- $entry := . }}
-        {{- $url := $entry.URL }}
-        {{- with $entry.Params.feed }}
-          {{- with site.Home.OutputFormats.Get "rss" }}
-            {{- $url = .Permalink }}
-          {{- else }}
-            {{- $url = "" }}
-          {{- end }}
-        {{- end }}
-        {{- with $url }}
-        <li class="panel__nav-item">
-          <a class="panel__nav-link" href="{{ . }}"{{ if or ($.IsMenuCurrent "main" $entry) ($.HasMenuCurrent "main" $entry) }} aria-current="page"{{ end }}>{{ $entry.Name }}</a>
-        </li>
-        {{- end }}
-      {{- end }}
+      {{- partial "panel-nav-entries.html" (dict "entries" . "page" $ "class" "panel__nav") }}
     </ul>
   </nav>
+  {{- /* One menu button below 1024px (see assets/css/panel.css). */}}
+  <details class="panel__menu">
+    <summary class="panel__menu-summary">Menu</summary>
+    <ul class="panel__menu-list">
+      {{- partial "panel-nav-entries.html" (dict "entries" . "page" $ "class" "panel__menu") }}
+    </ul>
+  </details>
   {{- end }}
   <div class="panel__end">
     {{- with site.GetPage "search" }}

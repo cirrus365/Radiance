@@ -62,3 +62,13 @@
      tile grid (see assets/css/tiles.css). */
   container-type: inline-size;
 }
+
+/* Below 768px the desktop margin is gone (see desktop.css); the body
+   padding shrinks with it. */
+
+@media (max-width: 767.98px) {
+  .window__content {
+    margin: 0;
+    padding: 12px;
+  }
+}

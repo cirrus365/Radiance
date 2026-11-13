@@ -209,6 +209,96 @@
   margin-left: 12px;
 }
 
+/* Collapsed navigation: one "Menu" button below 1024px, the ordinary
+   links above it. Both representations are in the document; only one
+   renders at a time, and the panel never wraps. */
+
+.panel__menu {
+  position: relative;
+  height: 100%;
+}
+
+.panel__menu-summary {
+  display: flex;
+  align-items: center;
+  height: 100%;
+  padding: 0 10px;
+  border: var(--radiance-border-width) solid transparent;
+  list-style: none;
+  white-space: nowrap;
+  cursor: default;
+  user-select: none;
+}
+
+.panel__menu-summary::-webkit-details-marker {
+  display: none;
+}
+
+.panel__menu-summary::marker {
+  content: "";
+}
+
+.panel__menu-summary:hover,
+.panel__menu[open] .panel__menu-summary {
+  background-color: var(--surface-panel-raised);
+  border-color: var(--control-border);
+}
+
+.panel__menu-summary:focus-visible {
+  outline: var(--radiance-border-width) dotted var(--text-inverse);
+  outline-offset: -1px;
+}
+
+.panel__menu-list {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  z-index: 10;
+  min-width: 12rem;
+  margin: 0;
+  padding: 2px 0;
+  list-style: none;
+  background-color: var(--surface-window);
+  border: var(--radiance-border-width) solid var(--chrome-border);
+}
+
+.panel__menu .panel__menu-item {
+  display: block;
+}
+
+.panel__menu-link {
+  display: block;
+  padding: 4px 14px;
+  color: var(--text-primary);
+  text-decoration: none;
+  white-space: nowrap;
+}
+
+.panel__menu-link:hover {
+  background-color: var(--accent-selection);
+}
+
+.panel__menu-link[aria-current] {
+  font-weight: 700;
+}
+
+.panel__menu-link:focus-visible {
+  outline: var(--radiance-border-width) dotted var(--text-primary);
+  outline-offset: -1px;
+}
+
+@media (max-width: 1023.98px) {
+  .panel__nav {
+    display: none;
+  }
+}
+
+@media (min-width: 1024px) {
+  .panel__menu {
+    display: none;
+  }
+}
+
 /* Below 480px the panel compacts to 24px. */
 
 @media (max-width: 479.98px) {

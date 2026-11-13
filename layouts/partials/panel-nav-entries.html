@@ -1,0 +1,33 @@
+{{/*
+  panel-nav-entries.html — the entries of the primary navigation.
+
+  Parameters (single dictionary):
+    entries (slice, required): a Hugo menu (site.Menus.main).
+    page    (page, required): the current page, for aria-current matching.
+    class   (string, required): the base class for the entries, either
+          "panel__nav" or "panel__menu"; item and link classes are
+          derived from it.
+
+  Entry keys (params):
+    feed (optional): links the entry to the home page's RSS output
+          instead of the entry URL; the entry is skipped when no RSS
+          output is configured.
+*/}}
+{{- $page := .page }}
+{{- $class := .class }}
+{{- range .entries }}
+  {{- $entry := . }}
+  {{- $url := $entry.URL }}
+  {{- with $entry.Params.feed }}
+    {{- with site.Home.OutputFormats.Get "rss" }}
+      {{- $url = .Permalink }}
+    {{- else }}
+      {{- $url = "" }}
+    {{- end }}
+  {{- end }}
+  {{- with $url }}
+  <li class="{{ $class }}-item">
+    <a class="{{ $class }}-link" href="{{ . }}"{{ if or ($page.IsMenuCurrent "main" $entry) ($page.HasMenuCurrent "main" $entry) }} aria-current="page"{{ end }}>{{ $entry.Name }}</a>
+  </li>
+  {{- end }}
+{{- end }}

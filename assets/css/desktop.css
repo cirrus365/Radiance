@@ -107,3 +107,19 @@
     display: none;
   }
 }
+
+/* Below 768px the desktop margin is removed by subtraction: the window
+   runs edge to edge, square-cornered, with reduced body padding (see
+   window.css). */
+
+@media (max-width: 767.98px) {
+  #desktop {
+    padding: 0;
+    gap: 0;
+  }
+
+  #desktop .window,
+  #desktop .dialog {
+    border-radius: 0;
+  }
+}
