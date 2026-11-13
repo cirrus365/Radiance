@@ -40,9 +40,14 @@ theme = "radiance"
   weight = 40
 
 [[menus.main]]
+  name = "Work with me"
+  pageRef = "/work-with-me"
+  weight = 50
+
+[[menus.main]]
   name = "About"
   pageRef = "/about"
-  weight = 50
+  weight = 60
 
 [[menus.main]]
   name = "RSS"

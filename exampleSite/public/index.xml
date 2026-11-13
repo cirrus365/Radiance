@@ -10,7 +10,7 @@
 		
 		
 		
-			<lastBuildDate>Wed, 11 Nov 2026 00:00:00 +0000</lastBuildDate>
+			<lastBuildDate>Thu, 12 Nov 2026 00:00:00 +0000</lastBuildDate>
 		
 			<atom:link href="http://localhost:1313/index.xml" rel="self" type="application/rss+xml" />
 			<item>
@@ -112,6 +112,13 @@
 				<description>&lt;p&gt;A factual checklist for distributing the theme. Nothing here is a&#xA;promise of results; it is the list of places that make sense and the&#xA;preparation each one needs.&lt;/p&gt;&#xA;&lt;h2 id=&#34;hugo-themes-gallery&#34;&gt;Hugo themes gallery&lt;/h2&gt;&#xA;&lt;p&gt;The theme&amp;rsquo;s &lt;code&gt;theme.toml&lt;/code&gt; already carries the metadata the gallery&#xA;lists: name, licence, description, minimum Hugo version, tags and&#xA;features. Before submitting, replace the &lt;code&gt;OWNER&lt;/code&gt; placeholders with the&#xA;real repository path, confirm the live demo URL and check the gallery&amp;rsquo;s&#xA;submission guidance for screenshot requirements.&lt;/p&gt;</description>
 			</item>
 			<item>
+				<title>A week on the Skye trail</title>
+				<link>http://localhost:1313/posts/a-week-on-the-skye-trail/</link>
+				<pubDate>Thu, 12 Nov 2026 00:00:00 +0000</pubDate>
+				<guid>http://localhost:1313/posts/a-week-on-the-skye-trail/</guid>
+				<description>&lt;p&gt;I did not expect to come back with any photographs at all. The forecast&#xA;for the week read like a dare — five days of &amp;ldquo;showers&amp;rdquo;, two of &amp;ldquo;rain&amp;rdquo; —&#xA;and Skye does not need encouragement to live up to it. But the weather&#xA;on the island moves faster than the forecast, and between the fronts the&#xA;light arrived in short, unbelievable bursts.&lt;/p&gt;&#xA;&lt;p&gt;&lt;img src=&#34;images/road.jpg&#34; alt=&#34;A winding single-track road seen from above, cutting through green moorland under a dramatic sky&#34;&gt;&lt;/p&gt;</description>
+			</item>
+			<item>
 				<title>Design tokens</title>
 				<link>http://localhost:1313/posts/design-tokens/</link>
 				<pubDate>Sun, 08 Nov 2026 00:00:00 +0000</pubDate>
@@ -152,6 +159,13 @@
 				<pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
 				<guid>http://localhost:1313/trash/</guid>
 				<description>&lt;p&gt;Removed pages would be listed here. This is a placeholder page for the&#xA;example site.&lt;/p&gt;</description>
+			</item>
+			<item>
+				<title>Work with me</title>
+				<link>http://localhost:1313/work-with-me/</link>
+				<pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+				<guid>http://localhost:1313/work-with-me/</guid>
+				<description>&lt;p&gt;This page is a case study in the shape of a decision log — the record of&#xA;how radiance was designed and, just as importantly, what was removed&#xA;from it. It is &lt;strong&gt;self-initiated work&lt;/strong&gt;: nobody commissioned this theme;&#xA;it exists because a desktop metaphor seemed worth building properly and&#xA;then worth cutting back honestly.&lt;/p&gt;&#xA;&lt;h2 id=&#34;the-original-concept&#34;&gt;The original concept&lt;/h2&gt;&#xA;&lt;p&gt;The first sketch was a desktop simulator: pages as windows that could be&#xA;minimised, maximised and closed; a bottom panel with a window list, four&#xA;workspaces and a trash; state kept in session storage so your windows&#xA;came back when you returned. It was fun to build and, for about a week,&#xA;fun to use.&lt;/p&gt;</description>
 			</item>
 	</channel>
 </rss>

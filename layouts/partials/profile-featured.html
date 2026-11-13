@@ -1,0 +1,25 @@
+{{/*
+  profile-featured.html — the surfaced links of the homepage profile card.
+
+  Parameters (single dictionary):
+    featured (list, optional): front matter "featured" entries; each
+          carries "pageRef" (string, required, resolved with site.GetPage)
+          and optional "label" (string, overriding the page title).
+          Entries whose pageRef does not resolve are skipped.
+
+  Rendered as a short titled list below the recent posts.
+*/}}
+{{- $items := "" }}
+{{- range .featured }}
+  {{- $label := "" }}
+  {{- if and (isset . "label") (eq (printf "%T" .label) "string") }}{{ $label = .label }}{{ end }}
+  {{- with .pageRef }}
+    {{- with site.GetPage . }}
+      {{- $title := $label | default .Title }}
+      {{- $desc := "" }}
+      {{- with .Description }}{{ $desc = printf "<span class=\"profile-featured__desc\">%s</span>" (. | transform.XMLEscape) }}{{ end }}
+      {{- $items = printf "%s<li class=\"profile-featured__item\"><a class=\"profile-featured__link\" href=\"%s\">%s</a>%s</li>" $items .RelPermalink ($title | transform.XMLEscape) $desc }}
+    {{- end }}
+  {{- end }}
+{{- end }}
+{{- with $items }}{{ return (printf "<div class=\"profile-featured\"><h2 class=\"profile-featured__title\">Elsewhere on this site</h2><ul class=\"profile-featured__list\">%s</ul></div>" . | safeHTML) }}{{ end }}

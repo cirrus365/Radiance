@@ -68,6 +68,68 @@
   font-variant-numeric: tabular-nums;
 }
 
+/* Doors: the two prominent actions under the intro. */
+
+.profile__doors {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin: 0 0 1em;
+}
+
+.profile-door {
+  padding: 6px 14px;
+  border: var(--radiance-border-width) solid var(--control-border);
+  border-radius: 3px;
+  background-color: var(--recessed);
+  box-shadow: var(--bevel);
+  color: var(--text-primary);
+  font-size: 0.875rem;
+  font-weight: 700;
+  text-decoration: none;
+}
+
+.profile-door:hover {
+  background-color: var(--accent-selection);
+}
+
+.profile-door:focus-visible {
+  outline: var(--radiance-border-width) dotted var(--text-primary);
+  outline-offset: -1px;
+}
+
+/* Surfaced links below the recent posts. */
+
+.profile-featured__title {
+  margin: 1.25em 0 0.35em;
+  font-size: 0.9375rem;
+}
+
+.profile-featured__list {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.profile-featured__item {
+  padding: 4px 0;
+  border-bottom: var(--radiance-border-width) solid var(--tile-border);
+}
+
+.profile-featured__item:last-child {
+  border-bottom: 0;
+}
+
+.profile-featured__link {
+  font-weight: 700;
+}
+
+.profile-featured__desc {
+  display: block;
+  font-size: 0.8125rem;
+  color: var(--text-muted);
+}
+
 /* Status bar along the bottom of the window. */
 
 .window__statusbar {

@@ -52,11 +52,14 @@ the theme.
 ## Repository facts
 
 - Theme code is MIT licensed (see `LICENSE`).
-- All example images and audio in `exampleSite` were generated
-  programmatically by the theme's contributors (procedural gradients and
-  a synthesised tone bed); they carry no third-party rights and may be
-  redistributed with the example site. The favicon is original theme
-  artwork.
+- The example site's media has two distinct sets of terms:
+  - the moodboard images and audio were generated programmatically by
+    the theme's contributors (procedural gradients and a synthesised
+    tone bed); they carry no third-party rights and may be redistributed
+    with the example site;
+  - the travel post's photographs are from [Unsplash](https://unsplash.com),
+    credited to their photographers in each caption and used under the
+    [Unsplash licence](https://unsplash.com/license).
 - No external fonts, scripts, tracking or image services are used; fonts
   are local font stacks.
 - `theme.toml` and the handbook installation instructions carry the
