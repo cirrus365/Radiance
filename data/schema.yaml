@@ -1,0 +1,15 @@
+# The theme's site-parameter schema: every site param the theme reads,
+# with its type, its default and a one-line description. This file is the
+# single source of defaults — templates read site parameters only through
+# partials/config/get.html, which applies the default declared here.
+#
+# A parameter absent from this file is not readable by the theme. New
+# parameters must be added here, where they are automatically documented
+# in the reference appendix.
+#
+# Types: string, boolean, number, list, map.
+
+description:
+  type: string
+  default: ""
+  description: "Site description for the meta description and Open Graph fallback."

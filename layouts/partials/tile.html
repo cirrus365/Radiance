@@ -4,34 +4,41 @@
   Parameters (single dictionary):
     page (page, required): the page that owns the tile; used to resolve
          bundle resources and named in build warnings.
-    tile (map, required): tile data. Type-specific keys are documented in
-         layouts/partials/tiles/<type>.html. Common keys:
-           type (string, required): "image", "note", "palette", "link",
-                "audio" or "quote"; anything else warns and renders nothing.
-           span (string, optional): "1x1" (the default), "2x1" or "2x2";
+    tile (map, required): tile data. Common keys:
+          type  (string, required): a type named in data/tiles.yaml;
+                anything else warns (naming the tiles file) and renders
+                nothing.
+          span  (string, optional): "1x1" (the default), "2x1" or "2x2";
                 anything else warns and falls back to 1x1.
+          Type-specific keys are listed in data/tiles.yaml and documented
+          in the partial named there. When a required field is missing
+          the dispatcher warns (naming the field) and skips the tile.
+    file (string, optional): the filename the tile data was read from,
+          named in warnings; defaults to "tiles.yaml".
 
   The tile is rendered as a grid item (<li>) with validated modifier
   classes; invalid tiles render nothing.
 */}}
 {{- $page := .page }}
 {{- $tile := .tile }}
+{{- $file := .file | default "tiles.yaml" }}
 {{- if not (reflect.IsMap $tile) }}
-  {{- warnf "radiance: tile on page %s is not a map; the tile is skipped." $page.RelPermalink }}
+  {{- warnf "radiance: tile in %s on page %s is not a map; the tile is skipped." $file $page.RelPermalink }}
 {{- else }}
-  {{- $types := dict "image" true "note" true "palette" true "link" true "audio" true "quote" true }}
+  {{- $registry := partial "site-data.html" (dict "key" "tiles") }}
   {{- $spans := dict "1x1" true "2x1" true "2x2" true }}
-  {{- $type := "" }}
-  {{- with $tile.type }}
-    {{- if eq (printf "%T" .) "string" }}
-      {{- if index $types . }}
-        {{- $type = . }}
-      {{- else }}
-        {{- warnf "radiance: tile on page %s has unsupported type %q; the tile is skipped." $page.RelPermalink . }}
-      {{- end }}
-    {{- else }}
-      {{- warnf "radiance: tile on page %s has an unsupported type value; the tile is skipped." $page.RelPermalink }}
+  {{- $typeName := "" }}
+  {{- if and (isset $tile "type") (eq (printf "%T" $tile.type) "string") }}
+    {{- $typeName = $tile.type }}
+  {{- end }}
+  {{- $typeEntry := "" }}
+  {{- if $typeName }}
+    {{- with $registry }}{{ $typeEntry = index . $typeName }}{{ end }}
+    {{- if not $typeEntry }}
+      {{- warnf "radiance: tile in %s on page %s has unsupported type %q; the tile is skipped." $file $page.RelPermalink $typeName }}
     {{- end }}
+  {{- else }}
+    {{- warnf "radiance: tile in %s on page %s has no usable type; the tile is skipped." $file $page.RelPermalink }}
   {{- end }}
   {{- $span := "1x1" }}
   {{- with $tile.span }}
@@ -39,15 +46,25 @@
       {{- if index $spans . }}
         {{- $span = . }}
       {{- else }}
-        {{- warnf "radiance: tile %q on page %s has unsupported span %q; falling back to 1x1." ($tile.title | default $tile.src | default "untitled") $page.RelPermalink . }}
+        {{- warnf "radiance: tile %q in %s on page %s has unsupported span %q; falling back to 1x1." ($tile.title | default $tile.src | default "untitled") $file $page.RelPermalink . }}
       {{- end }}
     {{- else }}
-      {{- warnf "radiance: tile %q on page %s has an unsupported span value; falling back to 1x1." ($tile.title | default $tile.src | default "untitled") $page.RelPermalink }}
+      {{- warnf "radiance: tile %q in %s on page %s has an unsupported span value; falling back to 1x1." ($tile.title | default $tile.src | default "untitled") $file $page.RelPermalink }}
     {{- end }}
   {{- end }}
-  {{- with $type }}
-  <li class="tile tile--{{ . }} tile--span-{{ $span }}">
-    {{- partial (printf "tiles/%s.html" .) (dict "page" $page "tile" $tile "span" $span) }}
+  {{- with $typeEntry }}
+    {{- $missing := slice }}
+    {{- range $field := index . "required" }}
+      {{- if not (isset $tile $field) }}
+        {{- $missing = $missing | append $field }}
+      {{- end }}
+    {{- end }}
+    {{- if $missing }}
+      {{- warnf "radiance: %s tile in %s on page %s is missing required field(s) %s; the tile is skipped." $typeName $file $page.RelPermalink (delimit $missing ", ") }}
+    {{- else }}
+  <li class="tile tile--{{ $typeName }} tile--span-{{ $span }}">
+    {{- partial (index . "partial") (dict "page" $page "tile" $tile "span" $span) }}
   </li>
+    {{- end }}
   {{- end }}
 {{- end }}

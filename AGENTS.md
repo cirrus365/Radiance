@@ -50,6 +50,11 @@ shadows, macOS traffic-light controls and generic dashboard styling.
   `data/schemes/`. `layouts/partials/schemes-css.html` generates the
   custom properties from them; no hex colour literals appear anywhere in
   `layouts/` or `assets/css/`.
+- Site parameters are read only through `layouts/partials/config/get.html`
+  against `data/schema.yaml`; a parameter absent from the schema is not
+  readable, and no template contains a literal default for a site param.
+- Tile types live in `data/tiles.yaml`; `layouts/partials/tile.html`
+  routes from it.
 - Exception: validated palette colours supplied by content authors may be
   rendered as inline CSS custom properties.
 - Never place unvalidated content in a `style` attribute or in a dynamically

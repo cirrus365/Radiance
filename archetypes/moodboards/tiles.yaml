@@ -1,9 +1,9 @@
 # Tile data for this moodboard: a list of tiles.
 #
 # The layout reads this file (the `tiles` front matter field may point at
-# a different filename). See the tile schema table in the theme README for
-# every field. Reference resources inside this bundle, e.g.
-# images/placeholder.png.
+# a different filename). The theme's data/tiles.yaml lists every tile
+# type, its partial and its required fields. Reference resources inside
+# this bundle, e.g. images/placeholder.png.
 
 - type: image
   span: 2x2

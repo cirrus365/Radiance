@@ -24,10 +24,11 @@
   {{- with .Title }}{{ $title = printf "%s · %s" . site.Title }}{{ end }}
 {{- end }}
 <title>{{ $title }}</title>
+{{- $siteDescription := partial "config/get.html" (dict "key" "description") }}
 {{- with .Description }}
 <meta name="description" content="{{ . }}">
 {{- else }}
-  {{- with site.Params.description }}
+  {{- with $siteDescription }}
 <meta name="description" content="{{ . }}">
   {{- end }}
 {{- end }}

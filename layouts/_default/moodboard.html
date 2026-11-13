@@ -14,8 +14,9 @@
             moodboard list layout (layouts/_default/moodboard-list.html).
     title, description, date, weight, draft: standard Hugo page fields.
 
-  The tile list itself is documented in the theme README; every tile is
-  dispatched and validated by partials/tile.html.
+  The tile list itself is documented by data/tiles.yaml (types, required
+  fields); every tile is dispatched and validated by partials/tile.html,
+  with warnings naming the tiles file.
 */}}
 {{- define "main" -}}
   {{- $page := . }}
@@ -34,7 +35,7 @@
   {{- with .Params.palette }}
     {{- $tiles = $tiles | append (dict "type" "palette" "span" "1x1" "title" "Palette" "colours" .) }}
   {{- end }}
-  {{- $grid := partial "tile-grid.html" (dict "page" $page "tiles" $tiles) -}}
+  {{- $grid := partial "tile-grid.html" (dict "page" $page "tiles" $tiles "file" $tilesFile) -}}
   {{- $content := printf "%s%s" .Content $grid | safeHTML -}}
   {{- partial "window.html" (dict "title" .Title "id" "window-moodboard" "icon" "document" "content" $content) -}}
 {{- end -}}

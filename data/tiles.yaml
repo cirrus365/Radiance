@@ -1,0 +1,36 @@
+# The theme's tile types: every type the tile dispatcher
+# (layouts/partials/tile.html) routes, the partial that renders it and
+# the fields it requires. This file is the single source of the type
+# list — the dispatcher and the reference appendix read it; nothing else
+# names tile types.
+#
+# Keys per type:
+#   partial    the rendering partial under layouts/partials/.
+#   required   fields the tile data must carry; the dispatcher warns with
+#              the field name and skips the tile when one is missing.
+#   description one line for the reference appendix.
+
+image:
+  partial: "tiles/image.html"
+  required: [src]
+  description: "An image from the board's page bundle, with responsive variants."
+note:
+  partial: "tiles/note.html"
+  required: [body]
+  description: "A short text note with an optional heading."
+palette:
+  partial: "tiles/palette.html"
+  required: [colours]
+  description: "A validated colour palette with copyable swatches."
+link:
+  partial: "tiles/link.html"
+  required: [title, href]
+  description: "A link with a title, an optional description and a subpath-safe href."
+audio:
+  partial: "tiles/audio.html"
+  required: [src, title]
+  description: "An audio file from the board's page bundle with native controls."
+quote:
+  partial: "tiles/quote.html"
+  required: [text]
+  description: "A quotation with an optional attribution."

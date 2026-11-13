@@ -77,11 +77,17 @@ Assumes the checkout directory is named `radiance` (see above).
 
 ## Site configuration the theme reads
 
-| Parameter              | Purpose                                                                  |
-|------------------------|--------------------------------------------------------------------------|
-| `title`                | Panel title, window and dialog text, footer, feed metadata.              |
-| `params.description`   | `<meta name="description">` and Open Graph fallback.                     |
-| `defaultContentLanguage` | Doubles as the document language; use the language key (e.g. `en-gb`). |
+The theme reads site parameters only through its schema:
+`data/schema.yaml` lists every parameter, its type and its default
+(applied by partials/config/get.html, which refuses parameters that are
+not listed). The schema is also rendered into the documentation's
+reference appendix.
+
+| Setting                  | Purpose                                                                  |
+|--------------------------|--------------------------------------------------------------------------|
+| `title`                  | Panel title, window and dialog text, footer, feed metadata.              |
+| `params.description`     | `<meta name="description">` and Open Graph fallback (see the schema).    |
+| `defaultContentLanguage` | Doubles as the document language; use the language key (e.g. `en-gb`).   |
 
 The example site also configures a custom `search` output format on the
 home page, which generates `index.json` for live search.
@@ -146,27 +152,15 @@ A moodboard is a page bundle under `content/moodboards/`. The section page
 | `draft`       | boolean       | no       | Standard Hugo draft handling.                                    |
 
 The tile list is read from the board's own bundle resource (never global
-site data) and is a YAML **list** of tiles:
+site data) and is a YAML **list** of tiles. Each tile has a `type`
+(`image`, `note`, `palette`, `link`, `audio` or `quote`), an optional
+`span` (`1x1` default, `2x1` or `2x2`) and type-specific fields.
 
-| Field   | Type   | Required | Values                                              |
-|---------|--------|----------|-----------------------------------------------------|
-| `type`  | string | yes      | `image`, `note`, `palette`, `link`, `audio`, `quote` |
-| `span`  | string | no       | `1x1` (default), `2x1` or `2x2`                     |
-| `title` | string | per type | Caption or heading; required for `link` and `audio` |
-
-Type-specific fields:
-
-| Type      | Field         | Required | Notes                                                              |
-|-----------|---------------|----------|--------------------------------------------------------------------|
-| `image`   | `src`         | yes      | Page-bundle resource; rasters get WebP variants via `srcset`.      |
-| `image`   | `alt`         | no       | Falls back to `title` (with a build warning) when absent.          |
-| `note`    | `body`        | yes      | Plain text.                                                        |
-| `palette` | `colours`     | yes      | List of validated hex values (`#rgb` or `#rrggbb`).                |
-| `link`    | `href`        | yes      | Site-absolute path (subpath-safe) or external URL.                 |
-| `link`    | `description` | no       | Short supporting text.                                             |
-| `audio`   | `src`         | yes      | Page-bundle resource.                                              |
-| `quote`   | `text`        | yes      | The quotation.                                                     |
-| `quote`   | `attribution` | no       | Quoted source, rendered with `cite`.                               |
+The tile types, their rendering partials and their required fields live
+in one place: `data/tiles.yaml`. The dispatcher (partials/tile.html)
+routes from that list and warns with the tiles file name on an unknown
+type and with the field name on a missing required field; the
+documentation's reference appendix renders from the same list.
 
 Invalid tiles are skipped with build warnings naming the board. New boards
 can be scaffolded with the bundle archetype:

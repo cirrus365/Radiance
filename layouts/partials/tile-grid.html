@@ -6,15 +6,18 @@
           to each tile for resource resolution and warnings.
     tiles (slice, required): tile data; each item is dispatched through
           partials/tile.html, which warns about and skips invalid tiles.
+    file  (string, optional): the filename the tile data was read from,
+          named in tile warnings; defaults to "tiles.yaml".
 
   The grid is a reusable component; its responsive column count comes from
   container queries (see assets/css/tiles.css).
 */}}
 {{- $page := .page }}
+{{- $file := .file }}
 {{- with .tiles }}
 <ul class="tile-grid">
   {{- range . }}
-    {{- partial "tile.html" (dict "page" $page "tile" .) }}
+    {{- partial "tile.html" (dict "page" $page "tile" . "file" $file) }}
   {{- end }}
 </ul>
 {{- end }}
