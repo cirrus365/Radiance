@@ -9,8 +9,16 @@
 
 .docs {
   display: grid;
-  grid-template-columns: 1fr;
+  /* minmax(0, 1fr): the chapter body may contain wide code blocks and
+     tables; without the zero minimum the grid track grows to their
+     min-content width and the page spills past the viewport on small
+     screens. */
+  grid-template-columns: minmax(0, 1fr);
   gap: 16px;
+}
+
+.docs__article {
+  min-width: 0;
 }
 
 /* Sidebar: wide screens only. */
@@ -143,10 +151,14 @@
   }
 }
 
-/* Reference appendix tables. */
+/* Reference appendix tables. A table whose columns cannot shrink would
+   otherwise widen the page; as a block it scrolls within itself on
+   narrow screens instead. */
 
 .reference__table {
+  display: block;
   width: 100%;
+  overflow-x: auto;
   margin: 0 0 1em;
   border: var(--radiance-border-width) solid var(--chrome-border);
   border-collapse: collapse;

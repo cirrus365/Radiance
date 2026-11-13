@@ -18,7 +18,8 @@
   .dialog__titlebar,
   .dialog__search,
   .dialog__status,
-  .dialog__actions {
+  .dialog__actions,
+  .code-copy {
     display: none !important;
   }
 

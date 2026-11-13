@@ -40,6 +40,10 @@ Put images next to the post as a [page bundle](https://gohugo.io/content-managem
 (`my-post/index.md` and `my-post/image.jpg`) so they travel with the
 post. Markdown alt text is carried through untouched.
 
+Code blocks scroll horizontally when a line is longer than the window
+and gain a small **Copy** button through JavaScript; without JavaScript
+the block is simply there to read and select.
+
 ## Sections, archive and taxonomies
 
 The archive (a page with `layout: archive`) lists every regular page

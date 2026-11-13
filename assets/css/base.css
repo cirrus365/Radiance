@@ -96,6 +96,11 @@ samp {
   font-size: 0.875em;
 }
 
+/* Inline code may break long tokens rather than spilling the line. */
+:not(pre) > code {
+  overflow-wrap: anywhere;
+}
+
 pre {
   font-family: var(--radiance-font-mono);
   font-size: 0.875em;
@@ -107,6 +112,38 @@ pre {
 
 pre code {
   font-size: inherit;
+}
+
+/* Copy control for code blocks, injected by assets/js/code-copy.js. The
+   wrapper carries the positioning so the button stays pinned while the
+   code scrolls horizontally underneath it. */
+
+.code-block {
+  position: relative;
+}
+
+.code-copy {
+  position: absolute;
+  top: 4px;
+  right: 4px;
+  padding: 1px 8px;
+  border: var(--radiance-border-width) solid var(--control-border);
+  border-radius: 3px;
+  background-color: var(--recessed);
+  color: var(--text-muted);
+  font-family: var(--radiance-font-sans);
+  font-size: 0.75rem;
+  line-height: 1.4;
+}
+
+.code-copy:hover {
+  background-color: var(--accent-selection);
+  color: var(--text-primary);
+}
+
+.code-copy:focus-visible {
+  outline: var(--radiance-border-width) dotted var(--text-primary);
+  outline-offset: -1px;
 }
 
 img,
