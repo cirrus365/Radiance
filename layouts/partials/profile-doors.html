@@ -15,7 +15,7 @@
   {{- if and (isset . "label") (eq (printf "%T" .label) "string") }}{{ $label = .label }}{{ end }}
   {{- if and (isset . "href") (eq (printf "%T" .href) "string") }}{{ $href = .href }}{{ end }}
   {{- if and $label $href }}
-    {{- $out = printf "%s<a class=\"profile-door\" href=\"%s\">%s</a>" $out ($href | relURL) ($label | transform.XMLEscape) }}
+    {{- $out = printf "%s<a class=\"profile-door\" href=\"%s\">%s</a>" $out (partial "resolve-href.html" (dict "href" $href)) ($label | transform.XMLEscape) }}
   {{- end }}
 {{- end }}
 {{- $result := "" }}

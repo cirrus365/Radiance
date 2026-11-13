@@ -1,0 +1,24 @@
+{{/*
+  resolve-href.html — resolves a content- or data-supplied href so that
+  deployments below a subpath work.
+
+  Parameters (single dictionary):
+    href (string, required): a site-absolute path ("", "/", "/posts/"),
+          an already-relative path or an absolute external URL.
+
+  Returns the URL to render:
+  - a site-absolute path (leading slash, or empty for the home page) is
+    resolved with relURL against the site's baseURL, so the configured
+    subpath is applied;
+  - external and protocol-relative URLs pass through unchanged;
+  - anything else (non-string or empty result) resolves to nothing.
+
+  Hugo's relURL only applies the baseURL path to relative inputs, which
+  is why root-relative paths are trimmed here first.
+*/}}
+{{- $href := .href }}
+{{- $result := "" }}
+{{- if and (eq (printf "%T" $href) "string") (ne $href "") }}
+  {{- $result = strings.TrimPrefix "/" $href | relURL }}
+{{- end }}
+{{- return $result }}

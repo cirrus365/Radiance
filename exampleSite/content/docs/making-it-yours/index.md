@@ -48,8 +48,9 @@ The left-hand desktop column is data, in `data/desktop.yaml`, sorted by
   weight: 10
 ```
 
-`href` is a site-absolute path (resolved with `relURL`, so deployments
-below a subpath work) or an absolute external URL. `icon` is optional:
+`href` is a site-absolute path (an empty string or `"/"` links home) or
+an absolute external URL; the theme resolves it against the configured
+base path, so deployments below a subpath work. `icon` is optional:
 `computer`, `home` or `trash` draw a glyph; anything else renders
 without one. Delete the file (or the entries) and the column disappears.
 

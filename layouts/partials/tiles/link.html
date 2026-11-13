@@ -7,10 +7,10 @@
       title       (string, required): the link text; without it the tile is
                   skipped with a build warning.
       description (string, optional): short supporting text.
-      href        (string, required): a site-absolute path, resolved with
-                  relURL so subpath deployments work, or an absolute
-                  external URL; without it the tile is skipped with a
-                  build warning.
+      href        (string, required): a site-absolute path (resolved
+                  through partials/resolve-href.html so subpath deployments
+                  work) or an absolute external URL; without it the tile is
+                  skipped with a build warning.
     span is accepted for a uniform signature and unused here.
 */}}
 {{- $page := .page }}
@@ -26,7 +26,7 @@
 {{- else if not $href }}
   {{- warnf "radiance: link tile %q on page %s has no usable href; the tile is skipped." $tile.title $page.RelPermalink }}
 {{- else }}
-<a class="tile__link" href="{{ $href | relURL }}">
+<a class="tile__link" href="{{ partial "resolve-href.html" (dict "href" $href) }}">
   <span class="tile__link-title">{{ $tile.title }}</span>
   {{- with $tile.description }}
   <span class="tile__link-description">{{ . }}</span>
