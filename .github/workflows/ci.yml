@@ -1,0 +1,33 @@
+# CI guardrails for the radiance theme.
+#
+# Runs the checks in scripts/checks.sh on push and pull request. Each
+# check fails deliberately when its condition is introduced:
+#
+# - hex colour literals in layouts/ or assets/css/
+# - a contrast failure from scripts/contrast.py
+# - a Hugo build warning, via --panicOnWarning on the example site
+#   (this also covers a scheme file whose key set differs from the
+#   others: partials/schemes-css.html warns on divergence)
+# - a site param read directly in a template instead of through
+#   partials/config/get.html against data/schema.yaml
+
+name: CI
+
+on:
+  push:
+  pull_request:
+
+jobs:
+  checks:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Install Hugo Extended (minimum supported version)
+        uses: peaceiris/actions-hugo@v3
+        with:
+          hugo-version: "0.128.0"
+          extended: true
+
+      - name: Guardrail checks
+        run: sh scripts/checks.sh
