@@ -2,28 +2,32 @@
   window.html — a desktop-style application window.
 
   Parameters (single dictionary):
-    title   (string, required): the titlebar text and the window's
-            accessible name.
-    id      (string, required): unique, stable, HTML-safe identifier,
-            supplied by the caller. It labels the section: it is applied to
-            the titlebar heading, which the section references through
-            aria-labelledby; the window body id is derived by appending
-            "-body".
-    icon    (string, optional): a supported decorative icon identifier (see
-            partials/glyph.html); anything else is omitted.
-    class   (string, optional): a supported modifier class — "dialog"
-            renders "window--dialog". Anything else is omitted. The value is
-            whitelisted here; never pass content-derived class names.
-    content (safe HTML, required): the window body, already rendered.
+    title     (string, required): the titlebar text and the window's
+              accessible name.
+    id        (string, required): unique, stable, HTML-safe identifier,
+              supplied by the caller. It labels the section: it is applied to
+              the titlebar heading, which the section references through
+              aria-labelledby; the window body id is derived by appending
+              "-body".
+    icon      (string, optional): a supported decorative icon identifier (see
+              partials/glyph.html); anything else is omitted.
+    class     (string, optional): a supported modifier class — "dialog"
+              renders "window--dialog". Anything else is omitted. The value is
+              whitelisted here; never pass content-derived class names.
+    content   (safe HTML, required): the window body, already rendered.
+    statusbar (safe HTML, optional): rendered as a bar along the bottom of
+              the window (for example the homepage profile card's word
+              count and last-modified date).
 
-   The titlebar heading is the page's h1 for single-window templates, so
-   content headings should start at h2.
+  The titlebar heading is the page's h1 for single-window templates, so
+  content headings should start at h2.
 */}}
 {{- $title := .title }}
 {{- $id := .id }}
 {{- $icon := .icon }}
 {{- $class := .class }}
 {{- $content := .content }}
+{{- $statusbar := .statusbar }}
 <section class="window{{ with $class }} window--{{ . }}{{ end }}" aria-labelledby="{{ $id }}">
   <header class="window__titlebar">
     {{- with $icon }}{{ partial "glyph.html" (dict "name" . "class" "window__icon") }}{{ end }}
@@ -32,4 +36,7 @@
   <div class="window__content" id="{{ $id }}-body">
 {{ $content }}
   </div>
+  {{- with $statusbar }}
+  <footer class="window__statusbar">{{ . }}</footer>
+  {{- end }}
 </section>

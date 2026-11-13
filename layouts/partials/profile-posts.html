@@ -1,0 +1,15 @@
+{{/*
+  profile-posts.html — the recent posts list of the homepage profile card.
+
+  Parameters (single dictionary):
+    pages (slice, required): the pages to list, already selected and
+          ordered by the caller (three recent dated pages).
+
+  Each entry is a title link with its long-form date.
+*/}}
+{{- $out := "<ul class=\"profile__posts\">" }}
+{{- range .pages }}
+  {{- $out = printf "%s<li class=\"profile__post\"><a class=\"profile__post-link\" href=\"%s\">%s</a><time class=\"profile__post-date\" datetime=\"%s\">%s</time></li>" $out .RelPermalink .Title (.Date.Format "2006-01-02") (.Date | time.Format ":date_long") }}
+{{- end }}
+{{- $out = printf "%s</ul>" $out }}
+{{- return ($out | safeHTML) }}

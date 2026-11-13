@@ -1,0 +1,88 @@
+/*
+ * radiance — profile card styles.
+ *
+ * The homepage profile card: a typed greeting line with reserved height,
+ * an ordinary Markdown intro, a short recent-posts list and a status bar
+ * along the bottom of the window. All colour values come from the scheme
+ * data in data/schemes.
+ */
+
+.profile__greeting {
+  min-height: 1.7em;
+  margin: 0 0 0.75em;
+  font-size: 1.25rem;
+  font-weight: 700;
+  line-height: 1.3;
+}
+
+/* The cursor exists only while typing (see assets/js/typed-greeting.js)
+   and is never the only state indicator: the text itself reveals. The
+   reduced-motion guard in base.css freezes the blink for visitors who
+   ask for less motion, and the script removes the cursor entirely. */
+
+.profile__typed.is-typing::after {
+  content: "▌";
+  margin-left: 2px;
+  animation: profile-cursor 1s steps(2, start) infinite;
+}
+
+@keyframes profile-cursor {
+  to {
+    visibility: hidden;
+  }
+}
+
+.profile__posts {
+  margin: 1em 0 0;
+  padding: 0;
+  list-style: none;
+}
+
+.profile__post {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 12px;
+  padding: 4px 0;
+  border-bottom: var(--radiance-border-width) solid var(--tile-border);
+}
+
+.profile__post:last-child {
+  border-bottom: 0;
+}
+
+.profile__post-link {
+  color: var(--text-primary);
+  font-weight: 700;
+  text-decoration: none;
+}
+
+.profile__post-link:hover {
+  text-decoration: underline;
+}
+
+.profile__post-date {
+  flex: none;
+  font-size: 0.8125rem;
+  color: var(--text-muted);
+  font-variant-numeric: tabular-nums;
+}
+
+/* Status bar along the bottom of the window. */
+
+.window__statusbar {
+  padding: 4px 12px;
+  border-top: var(--radiance-border-width) solid var(--chrome-border);
+  background-color: var(--recessed);
+  border-radius: 0 0 calc(var(--metric-radius) - var(--radiance-border-width)) calc(var(--metric-radius) - var(--radiance-border-width));
+}
+
+.window__statusbar-text {
+  display: flex;
+  justify-content: space-between;
+  gap: 12px;
+  margin: 0;
+  font-size: 0.75rem;
+  color: var(--text-muted);
+  font-variant-numeric: tabular-nums;
+}
