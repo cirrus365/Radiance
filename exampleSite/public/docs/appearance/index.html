@@ -16,7 +16,7 @@
 <meta property="og:description" content="The toggle, the shipped schemes, adding your own, contrast rules.">
 <meta name="twitter:card" content="summary">
 
-<link rel="stylesheet" href="/css/schemes.min.dd845b8c915a7e5c6a0c0b6c54beedb25a9977c3ac4afd4b286bef6208aa907b.css">
+<link rel="stylesheet" href="/css/schemes.min.530bbeab2672a7ba080f4090b83ed29b48645bc193b02a40ab8fc45770cc8871.css">
 <link rel="stylesheet" href="/css/radiance.min.css">
 <script>(function(){"use strict";var e,t=["ambiance","radiance"];try{e=localStorage.getItem("radiance-appearance")}catch{}e&&t.indexOf(e)!==-1&&document.documentElement.setAttribute("data-theme",e)})()</script>
 <script src="/js/radiance.js" defer></script>
@@ -211,9 +211,13 @@ the panel control automatically becomes a menu listing every scheme&rsquo;s
 <p><code>scripts/contrast.py</code> is dependency-free Python. It reads
 <code>data/schemes/*.yaml</code>, computes WCAG contrast ratios for the documented
 pairs and writes <code>data/generated/contrast.yaml</code>, which the reference
-appendix renders. Body text must reach <strong>4.5:1</strong>; borders and focus
-rings <strong>3:1</strong>. The script exits non-zero on a failure, so a bad colour
-combination cannot ship quietly.</p>
+appendix renders. Body text must reach <strong>4.5:1</strong>; focus rings <strong>3:1</strong>.
+The script exits non-zero on a failure, so a bad colour combination
+cannot ship quietly. The chrome border is deliberately excluded from
+the checked pairs: it is the pale window edge of the reference
+photograph, decorative rather than a control boundary — control
+boundaries use the derived <code>--control-border</code> instead, which keeps 3:1
+in both shipped schemes.</p>
 <p>A few derived colours — control borders, tile borders, bevels — are
 formulas over the scheme values (for example, control borders are a
 52% mix of <code>text.primary</code> over <code>surfaces.window</code>). Those percentages are

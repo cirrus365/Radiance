@@ -2,8 +2,11 @@
 # counterpart to radiance.yaml: identical key set (a build warning fires
 # if the two diverge), dark: true.
 #
-# chrome.border is lighter than the window surface so borders keep 3:1
-# non-text contrast in the dark scheme.
+#   chrome.border is lighter than the window surface so borders keep 3:1
+#   non-text contrast in the dark scheme.
+#
+# Keys mirror radiance.yaml exactly, including text.desktop (light text
+# on the dark desktop backdrop).
 
 label: Ambiance
 dark: true
@@ -20,6 +23,7 @@ text:
   primary: "#f0eeea"
   muted: "#b3aca2"
   inverse: "#f0eeea"
+  desktop: "#f0eeea"
 accents:
   selection: "#5a3c2c"
   focus: "#ef8f57"

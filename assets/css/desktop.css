@@ -58,7 +58,7 @@
   padding: 6px 4px;
   border: var(--radiance-border-width) solid transparent;
   border-radius: 3px;
-  color: var(--text-inverse);
+  color: var(--text-desktop);
   text-align: center;
   text-decoration: none;
 }
@@ -68,13 +68,13 @@
 }
 
 .desktop-shortcut:focus-visible {
-  outline: var(--radiance-border-width) dotted var(--text-inverse);
+  outline: var(--radiance-border-width) dotted var(--text-desktop);
   outline-offset: 1px;
 }
 
 .desktop-shortcut.is-selected {
   background-color: color-mix(in srgb, var(--surface-window) 28%, transparent);
-  outline: var(--radiance-border-width) solid color-mix(in srgb, var(--text-inverse) 70%, transparent);
+  outline: var(--radiance-border-width) solid color-mix(in srgb, var(--text-desktop) 70%, transparent);
   outline-offset: -1px;
 }
 
@@ -93,7 +93,7 @@
   display: block;
   max-width: 100%;
   line-height: 1.2;
-  color: var(--text-inverse);
+  color: var(--text-desktop);
   text-shadow: 0 1px 0 color-mix(in srgb, var(--surface-desktop) 55%, transparent);
   white-space: nowrap;
   overflow: hidden;

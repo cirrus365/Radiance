@@ -34,6 +34,11 @@ schemes:
         requirement: 4.5
         pass: true
         description: "Titlebar text on the titlebar"
+      desktop_text:
+        ratio: 17.04
+        requirement: 4.5
+        pass: true
+        description: "Desktop shortcut text on the desktop"
       selected_text:
         ratio: 8.56
         requirement: 4.5
@@ -54,61 +59,56 @@ schemes:
         requirement: 3.0
         pass: true
         description: "Focus ring on the panel surface"
-      border_window:
-        ratio: 3.87
-        requirement: 3.0
-        pass: true
-        description: "Chrome border on the window surface"
   radiance:
     label: "Radiance"
     pairs:
       body_text:
-        ratio: 12.16
+        ratio: 12.73
         requirement: 4.5
         pass: true
         description: "Body text on the window surface"
       tile_text:
-        ratio: 10.59
+        ratio: 13.30
         requirement: 4.5
         pass: true
         description: "Tile text on the tile surface"
       muted_text:
-        ratio: 4.84
+        ratio: 5.76
         requirement: 4.5
         pass: true
         description: "Muted text on the window surface"
       panel_text:
-        ratio: 10.14
+        ratio: 10.27
         requirement: 4.5
         pass: true
         description: "Panel text on the panel surface"
       titlebar_text:
-        ratio: 7.77
+        ratio: 9.27
         requirement: 4.5
         pass: true
         description: "Titlebar text on the titlebar"
+      desktop_text:
+        ratio: 10.41
+        requirement: 4.5
+        pass: true
+        description: "Desktop shortcut text on the desktop"
       selected_text:
         ratio: 10.45
         requirement: 4.5
         pass: true
         description: "Selected text on the selection colour"
       link_text:
-        ratio: 4.73
+        ratio: 4.95
         requirement: 4.5
         pass: true
         description: "Link text on the window surface"
       focus_window:
-        ratio: 3.09
+        ratio: 3.23
         requirement: 3.0
         pass: true
         description: "Focus ring on the window surface"
       focus_panel:
-        ratio: 3.17
+        ratio: 3.32
         requirement: 3.0
         pass: true
         description: "Focus ring on the panel surface"
-      border_window:
-        ratio: 13.01
-        requirement: 3.0
-        pass: true
-        description: "Chrome border on the window surface"

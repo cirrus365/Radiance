@@ -35,7 +35,7 @@ The tile list is the board's own bundle resource — never global site
 data — and is a YAML list. Every tile has a `type`, an optional `span`
 (`1x1` default, `2x1` or `2x2`) and type-specific fields. The complete
 type table lives in the theme's `data/tiles.yaml` and is rendered in the
-[reference appendix](/docs/reference/); in brief:
+[reference appendix]({{< relref "/docs/reference" >}}); in brief:
 
 - `image` — `src` (a bundle resource) and optional `alt`/`title`;
 - `note` — `body`, optional `title`;

@@ -1,7 +1,10 @@
-# The Radiance (light) colour scheme: the default appearance, inspired by
-# Ubuntu Radiance. One file per scheme; nothing else in the theme defines
-# a colour. The dark counterpart lives in ambiance.yaml and must keep an
-# identical key set (a build warning fires if the two diverge).
+# The Radiance (light) colour scheme: the default appearance, matched
+# against a photograph of a MATE desktop running light panels (see the
+# project notes): pale warm-grey panels and titlebars with dark text, a
+# deep aubergine-red desktop with a warm glow. One file per scheme;
+# nothing else in the theme defines a colour. The dark counterpart lives
+# in ambiance.yaml and must keep an identical key set (a build warning
+# fires if the two diverge).
 #
 # Keys:
 #   label    the scheme's display name (appearance toggle and docs).
@@ -10,31 +13,37 @@
 #   surfaces page surfaces: panel, panel_raised, desktop, window, tile.
 #   chrome   window chrome: titlebar background and chrome border colour.
 #   text     primary and muted body text on light surfaces; inverse text
-#            on dark chrome surfaces (panels, titlebars, desktop).
-#   accents selection highlight, focus ring and link colour.
+#            on surfaces of the opposite tone (panels and titlebars,
+#            which are dark in the dark scheme and light here); desktop
+#            text on the desktop backdrop.
+#   accents  selection highlight, focus ring and link colour.
 #   metrics  chrome measurements: panel_height, titlebar_height, radius
 #            and bevel.
 #
 # Hex values are #rgb or #rrggbb. Combinations are checked against WCAG
-# thresholds by scripts/contrast.py (4.5:1 body text, 3:1 borders and
-# focus rings). accents.link is darkened from the Ubuntu orange used by
-# accents.focus so links pass 4.5:1 on the window surface.
+# thresholds by scripts/contrast.py (4.5:1 body text, 3:1 focus rings).
+# accents.link is darkened from the Ubuntu orange used by accents.focus
+# so links pass 4.5:1 on the window surface. chrome.border matches the
+# pale window edge in the reference photograph; it is decorative, so it
+# is not one of the checked pairs — control boundaries use the derived
+# --control-border instead, which keeps 3:1 in both shipped schemes.
 
 label: Radiance
 dark: false
 surfaces:
-  panel: "#3a3935"
-  panel_raised: "#4c4a44"
-  desktop: "#4a3f52"
-  window: "#efece3"
-  tile: "#e2ddcf"
+  panel: "#f5f4f2"
+  panel_raised: "#faf9f7"
+  desktop: "#6b2140"
+  window: "#f2f1ef"
+  tile: "#f7f6f4"
 chrome:
-  titlebar: "#4c4a44"
-  border: "#26251f"
+  titlebar: "#ede8e2"
+  border: "#b2aba7"
 text:
   primary: "#2b2a26"
-  muted: "#6b6659"
-  inverse: "#f2f0e9"
+  muted: "#625d59"
+  inverse: "#3d3a38"
+  desktop: "#faf9f7"
 accents:
   selection: "#f3d9a4"
   focus: "#e95420"

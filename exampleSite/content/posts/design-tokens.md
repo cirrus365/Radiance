@@ -26,7 +26,7 @@ The starting palette takes its cues from Ubuntu's Radiance theme:
 
 These are starting values, not a guarantee of accessible contrast;
 `scripts/contrast.py` checks the documented pairs and fails when body
-text drops below 4.5:1 or borders and focus rings below 3:1.
+text drops below 4.5:1 or focus rings below 3:1.
 
 ## Dark appearance
 

@@ -12,11 +12,16 @@ Documented pairs (per scheme):
   muted_text     text.muted on surfaces.window        >= 4.5:1
   panel_text     text.inverse on surfaces.panel       >= 4.5:1
   titlebar_text  text.inverse on chrome.titlebar      >= 4.5:1
+  desktop_text   text.desktop on surfaces.desktop     >= 4.5:1
   selected_text  text.primary on accents.selection    >= 4.5:1
   link_text      accents.link on surfaces.window      >= 4.5:1
   focus_window   accents.focus on surfaces.window     >= 3:1
   focus_panel    accents.focus on surfaces.panel      >= 3:1
-  border_window  chrome.border on surfaces.window     >= 3:1
+
+The chrome border is decorative (it is the pale window edge of the
+reference photograph) and is not a checked pair; control boundaries use
+the derived --control-border, a formula over scheme values chosen to
+keep 3:1 in both shipped schemes.
 
 The script is dependency-free: it parses the restricted YAML dialect the
 scheme files use (two-level mappings, scalar values, comments) without a
@@ -47,11 +52,11 @@ PAIRS = [
     ("muted_text", "text.muted", "surfaces.window", BODY_THRESHOLD),
     ("panel_text", "text.inverse", "surfaces.panel", BODY_THRESHOLD),
     ("titlebar_text", "text.inverse", "chrome.titlebar", BODY_THRESHOLD),
+    ("desktop_text", "text.desktop", "surfaces.desktop", BODY_THRESHOLD),
     ("selected_text", "text.primary", "accents.selection", BODY_THRESHOLD),
     ("link_text", "accents.link", "surfaces.window", BODY_THRESHOLD),
     ("focus_window", "accents.focus", "surfaces.window", NON_TEXT_THRESHOLD),
     ("focus_panel", "accents.focus", "surfaces.panel", NON_TEXT_THRESHOLD),
-    ("border_window", "chrome.border", "surfaces.window", NON_TEXT_THRESHOLD),
 ]
 
 PAIR_LABELS = {
@@ -60,11 +65,11 @@ PAIR_LABELS = {
     "muted_text": "Muted text on the window surface",
     "panel_text": "Panel text on the panel surface",
     "titlebar_text": "Titlebar text on the titlebar",
+    "desktop_text": "Desktop shortcut text on the desktop",
     "selected_text": "Selected text on the selection colour",
     "link_text": "Link text on the window surface",
     "focus_window": "Focus ring on the window surface",
     "focus_panel": "Focus ring on the panel surface",
-    "border_window": "Chrome border on the window surface",
 }
 
 HEX = re.compile(r"^#(?:[0-9a-fA-F]{3}|[0-9a-fA-F]{6})$")

@@ -88,9 +88,12 @@
   {{- end }}
 
   {{- /* Derived properties: formulas resolved per element from the
-      active scheme's custom properties. Percentages are design values,
-      checked for 3:1 non-text contrast in both shipped schemes. */}}
-  {{- $css = printf "%s:root{--control-border:color-mix(in srgb, var(--text-primary) 52%%, var(--surface-window));--tile-border:color-mix(in srgb, var(--surface-tile) 80%%, var(--chrome-border));--recessed:color-mix(in srgb, var(--surface-window) 88%%, var(--chrome-border));--bevel-light:color-mix(in srgb, var(--chrome-titlebar) 82%%, var(--text-inverse));--bevel-dark:color-mix(in srgb, var(--chrome-titlebar) 76%%, black);--bevel:inset var(--metric-bevel) var(--metric-bevel) 0 var(--bevel-light),inset calc(-1 * var(--metric-bevel)) calc(-1 * var(--metric-bevel)) 0 var(--bevel-dark);--bevel-sunken:inset var(--metric-bevel) var(--metric-bevel) 0 var(--bevel-dark),inset calc(-1 * var(--metric-bevel)) calc(-1 * var(--metric-bevel)) 0 var(--bevel-light);}" $css }}
+      active scheme's custom properties. Percentages are design values:
+      control borders keep 3:1 non-text contrast against the surfaces
+      they sit on in both shipped schemes, and the bevel highlight and
+      shadow stay on the lighter and darker side of the titlebar
+      respectively. */}}
+  {{- $css = printf "%s:root{--control-border:color-mix(in srgb, var(--text-primary) 52%%, var(--surface-window));--tile-border:color-mix(in srgb, var(--surface-tile) 80%%, var(--chrome-border));--recessed:color-mix(in srgb, var(--surface-window) 88%%, var(--chrome-border));--bevel-light:color-mix(in srgb, var(--chrome-titlebar) 85%%, white);--bevel-dark:color-mix(in srgb, var(--chrome-titlebar) 76%%, black);--bevel:inset var(--metric-bevel) var(--metric-bevel) 0 var(--bevel-light),inset calc(-1 * var(--metric-bevel)) calc(-1 * var(--metric-bevel)) 0 var(--bevel-dark);--bevel-sunken:inset var(--metric-bevel) var(--metric-bevel) 0 var(--bevel-dark),inset calc(-1 * var(--metric-bevel)) calc(-1 * var(--metric-bevel)) 0 var(--bevel-light);}" $css }}
 
   {{- /* Print: force the first light scheme's values for any theme. */}}
   {{- $css = printf "%s@media print{:root,:root[data-theme]{color-scheme:light;%s}}" $css (partial "scheme-vars.html" (dict "scheme" $default)) }}

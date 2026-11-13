@@ -37,7 +37,7 @@ properties — `surfaces.panel_raised` becomes `--surface-panel-raised`,
 `metrics.panel_height` becomes `--metric-panel-height` — and the
 component stylesheets reference only those properties. The complete
 token list with each scheme's values is in the
-[reference appendix](/docs/reference/).
+[reference appendix]({{< relref "/docs/reference" >}}).
 
 ## Adding your own scheme
 
@@ -53,9 +53,13 @@ the panel control automatically becomes a menu listing every scheme's
 `scripts/contrast.py` is dependency-free Python. It reads
 `data/schemes/*.yaml`, computes WCAG contrast ratios for the documented
 pairs and writes `data/generated/contrast.yaml`, which the reference
-appendix renders. Body text must reach **4.5:1**; borders and focus
-rings **3:1**. The script exits non-zero on a failure, so a bad colour
-combination cannot ship quietly.
+appendix renders. Body text must reach **4.5:1**; focus rings **3:1**.
+The script exits non-zero on a failure, so a bad colour combination
+cannot ship quietly. The chrome border is deliberately excluded from
+the checked pairs: it is the pale window edge of the reference
+photograph, decorative rather than a control boundary — control
+boundaries use the derived `--control-border` instead, which keeps 3:1
+in both shipped schemes.
 
 A few derived colours — control borders, tile borders, bevels — are
 formulas over the scheme values (for example, control borders are a
