@@ -1,33 +1,38 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
-  <channel>
-    <title>Moodboards on radiance</title>
-    <link>http://localhost:1313/moodboards/</link>
-    <description>Recent content in Moodboards on radiance</description>
-    <generator>Hugo</generator>
-    <language>en-gb</language>
-    <lastBuildDate>Wed, 11 Nov 2026 00:00:00 +0000</lastBuildDate>
-    <atom:link href="http://localhost:1313/moodboards/index.xml" rel="self" type="application/rss+xml" />
-    <item>
-      <title>Dusk study</title>
-      <link>http://localhost:1313/moodboards/dusk-study/</link>
-      <pubDate>Thu, 05 Nov 2026 00:00:00 +0000</pubDate>
-      <guid>http://localhost:1313/moodboards/dusk-study/</guid>
-      <description>The first board looks at how the desktop colours sit together at dusk, when the purple light comes in from the right and the orange glow keeps to the corner.</description>
-    </item>
-    <item>
-      <title>Workshop sounds</title>
-      <link>http://localhost:1313/moodboards/workshop/</link>
-      <pubDate>Sun, 08 Nov 2026 00:00:00 +0000</pubDate>
-      <guid>http://localhost:1313/moodboards/workshop/</guid>
-      <description>A board for the workbench: a still-evening recording, last light over the harbour, and a line to keep by.</description>
-    </item>
-    <item>
-      <title>Reading room</title>
-      <link>http://localhost:1313/moodboards/reading-room/</link>
-      <pubDate>Wed, 11 Nov 2026 00:00:00 +0000</pubDate>
-      <guid>http://localhost:1313/moodboards/reading-room/</guid>
-      <description>Where the desktop conventions come from, and where to read more. This board keeps its tile data in board-tiles.yaml to show the optional tiles front matter field at work.</description>
-    </item>
-  </channel>
+	<channel>
+		<title>Moodboards on radiance</title>
+		<link>http://localhost:1313/moodboards/</link>
+		<description>Recent content in Moodboards on radiance</description>
+		<generator>Hugo</generator>
+		<language>en-gb</language>
+		
+		
+		
+		
+			<lastBuildDate>Wed, 11 Nov 2026 00:00:00 +0000</lastBuildDate>
+		
+			<atom:link href="http://localhost:1313/moodboards/index.xml" rel="self" type="application/rss+xml" />
+			<item>
+				<title>Dusk study</title>
+				<link>http://localhost:1313/moodboards/dusk-study/</link>
+				<pubDate>Thu, 05 Nov 2026 00:00:00 +0000</pubDate>
+				<guid>http://localhost:1313/moodboards/dusk-study/</guid>
+				<description>&lt;p&gt;The first board looks at how the desktop colours sit together at dusk,&#xA;when the purple light comes in from the right and the orange glow keeps to&#xA;the corner.&lt;/p&gt;</description>
+			</item>
+			<item>
+				<title>Workshop sounds</title>
+				<link>http://localhost:1313/moodboards/workshop/</link>
+				<pubDate>Sun, 08 Nov 2026 00:00:00 +0000</pubDate>
+				<guid>http://localhost:1313/moodboards/workshop/</guid>
+				<description>&lt;p&gt;A board for the workbench: a still-evening recording, last light over the&#xA;harbour, and a line to keep by.&lt;/p&gt;</description>
+			</item>
+			<item>
+				<title>Reading room</title>
+				<link>http://localhost:1313/moodboards/reading-room/</link>
+				<pubDate>Wed, 11 Nov 2026 00:00:00 +0000</pubDate>
+				<guid>http://localhost:1313/moodboards/reading-room/</guid>
+				<description>&lt;p&gt;Where the desktop conventions come from, and where to read more. This&#xA;board keeps its tile data in &lt;code&gt;board-tiles.yaml&lt;/code&gt; to show the optional&#xA;&lt;code&gt;tiles&lt;/code&gt; front matter field at work.&lt;/p&gt;</description>
+			</item>
+	</channel>
 </rss>

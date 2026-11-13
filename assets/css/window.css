@@ -2,9 +2,7 @@
  * radiance — window styles.
  *
  * Application windows: a warm light-grey frame, pale compact titlebar with
- * a subtle highlight and bevel, and a white content surface. The Minimise,
- * Maximise and Close controls stay hidden until the application script has
- * initialised; without JavaScript the full window body remains visible.
+ * a subtle highlight and bevel, and a white content surface.
  * All colour values come from tokens.css.
  */
 
@@ -53,61 +51,6 @@
   text-overflow: ellipsis;
 }
 
-.window__controls {
-  display: none;
-  align-items: center;
-  gap: 2px;
-}
-
-.js .window__controls {
-  display: flex;
-}
-
-.window__control {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  width: 20px;
-  height: 16px;
-  padding: 0;
-  border: var(--radiance-border-width) solid transparent;
-  border-radius: 3px;
-  background-color: transparent;
-  color: var(--radiance-text);
-  font: inherit;
-  cursor: default;
-}
-
-.window__control:hover {
-  background-color: var(--radiance-panel-raised);
-  border-color: var(--radiance-control-border);
-}
-
-.window__control:focus-visible {
-  outline: var(--radiance-border-width) dotted var(--radiance-panel-text);
-  outline-offset: -1px;
-}
-
-.window__control--close {
-  color: var(--radiance-accent);
-}
-
-.window__control--close:hover {
-  background-color: var(--radiance-selection);
-  border-color: var(--radiance-accent);
-}
-
-.window__control-glyph {
-  width: 14px;
-  height: 14px;
-  flex: none;
-  fill: none;
-  stroke: currentColor;
-  stroke-width: 1.5;
-  stroke-linecap: round;
-  stroke-linejoin: round;
-}
-
 /* Body */
 
 .window__content {
@@ -118,11 +61,4 @@
   /* The window content is the inline-size query container for the reusable
      tile grid (see assets/css/tiles.css). */
   container-type: inline-size;
-}
-
-/* Maximised state: the application script toggles has-maximised-window on
-   <html> and window--maximised on the current window. */
-
-html.has-maximised-window .window--maximised {
-  min-height: calc(100vh - 2 * var(--radiance-panel-height));
 }

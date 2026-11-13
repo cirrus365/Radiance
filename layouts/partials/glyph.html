@@ -3,8 +3,8 @@
 
   Parameters (single dictionary):
     name  (string, required): a supported glyph identifier — "computer",
-          "close", "document", "feed", "folder", "home", "info",
-          "maximise", "minimise" or "trash". Anything else renders nothing.
+          "document", "feed", "folder", "home", "info" or "trash". Anything
+          else renders nothing.
     class (string, required): the class attribute for the <svg> element;
           callers style the glyph through this class.
 
@@ -13,14 +13,11 @@
 */}}
 {{- $supported := dict
     "computer" true
-    "close" true
     "document" true
     "feed" true
     "folder" true
     "home" true
     "info" true
-    "maximise" true
-    "minimise" true
     "trash" true
 }}
 {{- $name := "" }}

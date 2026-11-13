@@ -3,7 +3,7 @@
 
   Child templates (single.html, list.html, index.html, 404.html) define the
   "main" block, which is rendered inside <main id="desktop"> after the
-  desktop shortcuts and before the bottom panel.
+  desktop shortcuts.
 
   The document starts with a `no-js` class on <html>; the external
   application script (assets/js/main.js) replaces it with `js` after
@@ -22,7 +22,6 @@
 {{ partial "desktop-icons.html" . }}
 {{ block "main" . }}{{ end }}
 </main>
-{{ partial "panel-bottom.html" . }}
 {{ partial "footer.html" . }}
 </body>
 </html>

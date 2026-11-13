@@ -31,12 +31,11 @@
     --radiance-control-border: #767676;
   }
 
-  /* Desktop chrome: panels, shortcuts and window controls. */
+  /* Desktop chrome: panels, shortcuts and window titlebars. */
   .panel,
   .desktop-icons,
   .skip-link,
   .window__titlebar,
-  .window__controls,
   .dialog__titlebar,
   .dialog__search,
   .dialog__status,
@@ -72,11 +71,6 @@
     padding: 0;
     border: 0;
     background: none;
-  }
-
-  /* A maximised window must not stretch the printout. */
-  html.has-maximised-window .window--maximised {
-    min-height: 0;
   }
 
   /* Tile grids print as one column with spans flattened. */

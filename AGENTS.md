@@ -66,7 +66,6 @@ shadows, macOS traffic-light controls and generic dashboard styling.
 ## 5. Layout vocabulary
 
 - **Top panel**: application menus and applets.
-- **Bottom panel**: window list, workspace links and an optional Trash link.
 - **Desktop**: the background and the left-hand shortcut column.
 - **Window**: a titled region containing page content.
 - **Dialog**: a desktop-styled listing panel. It is not a modal unless
@@ -74,8 +73,8 @@ shadows, macOS traffic-light controls and generic dashboard styling.
 
 ## 6. File conventions
 
-- Name partials for what they render: `panel-top.html`, `panel-bottom.html`,
-  `window.html`, `desktop-icons.html` and `tile.html`.
+- Name partials for what they render: `panel-top.html`, `window.html`,
+  `desktop-icons.html` and `tile.html`.
 - A partial that receives parameters takes a single dictionary, and documents
   its keys in a leading template comment.
 - Place tile-type partials under `layouts/partials/tiles/`.

@@ -12,7 +12,7 @@
   display: flex;
   align-items: flex-start;
   gap: 16px;
-  min-height: calc(100vh - 2 * var(--radiance-panel-height));
+  min-height: calc(100vh - var(--radiance-panel-height));
   padding: 16px;
   background-color: var(--radiance-desktop-aubergine);
   background-image:

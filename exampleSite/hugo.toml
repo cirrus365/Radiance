@@ -90,30 +90,6 @@ theme = "radiance"
     glyph = "feed"
     feed = true
 
-# Bottom panel workspaces (up to four). A workspace is current only when
-# the current page's relative permalink equals the target page's relative
-# permalink; child pages and taxonomy term pages do not match.
-[[params.workspaces]]
-  label = "Home"
-  pageRef = "/"
-
-[[params.workspaces]]
-  label = "Archive"
-  pageRef = "/archive"
-
-[[params.workspaces]]
-  label = "Tags"
-  pageRef = "/tags"
-
-[[params.workspaces]]
-  label = "About"
-  pageRef = "/about"
-
-# Bottom panel Trash link; rendered only when the target resolves.
-[params.trash]
-  label = "Trash"
-  pageRef = "/trash"
-
 # Search index: a custom output format on the home page renders index.json.
 [outputFormats]
   [outputFormats.search]

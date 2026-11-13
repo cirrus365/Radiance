@@ -5,7 +5,7 @@
 
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<meta name="generator" content="Hugo 0.128.0">
+<meta name="generator" content="Hugo 0.169.0">
 <title>Design tokens · radiance</title>
 <meta name="description" content="How radiance keeps its colours in one place.">
 <link rel="icon" type="image/svg+xml" href="/favicon.svg">
@@ -44,15 +44,6 @@
   <symbol id="radiance-glyph-feed" viewBox="0 0 16 16">
     <circle cx="4.25" cy="11.75" r="1.25" fill="currentColor" stroke="none"/>
     <path d="M3 8a5 5 0 0 1 5 5M3 4.5A8.5 8.5 0 0 1 11.5 13"/>
-  </symbol>
-  <symbol id="radiance-glyph-minimise" viewBox="0 0 16 16">
-    <path d="M4 11.5h8"/>
-  </symbol>
-  <symbol id="radiance-glyph-maximise" viewBox="0 0 16 16">
-    <rect x="3.5" y="3.5" width="9" height="9"/>
-  </symbol>
-  <symbol id="radiance-glyph-close" viewBox="0 0 16 16">
-    <path d="M4.5 4.5l7 7M11.5 4.5l-7 7"/>
   </symbol>
   <symbol id="radiance-glyph-computer" viewBox="0 0 16 16">
     <rect x="2" y="2.5" width="12" height="8.5"/>
@@ -259,7 +250,7 @@ RSS feed
       </details>
   </nav>
   <div class="panel__applets">
-      <time class="applet applet--clock" datetime="11:33" data-panel-clock>11:33</time>
+      <time class="applet applet--clock" datetime="20:54" data-panel-clock>20:54</time>
       <a class="applet applet--link" href="https://gohugo.io/">Hugo website</a>
       <span class="applet applet--meter">
         <span class="applet-meter__label">Disc</span>
@@ -302,23 +293,12 @@ RSS feed
 <svg class="window__icon" aria-hidden="true" focusable="false"><use href="#radiance-glyph-document"></use></svg>
 
     <h1 class="window__title" id="window-page">Design tokens</h1>
-    <div class="window__controls">
-      <button type="button" class="window__control window__control--minimise" title="Minimise" aria-label="Minimise" aria-expanded="true" aria-controls="window-page-body">
-<svg class="window__control-glyph" aria-hidden="true" focusable="false"><use href="#radiance-glyph-minimise"></use></svg>
-</button>
-      <button type="button" class="window__control window__control--maximise" title="Maximise" aria-label="Maximise" aria-pressed="false">
-<svg class="window__control-glyph" aria-hidden="true" focusable="false"><use href="#radiance-glyph-maximise"></use></svg>
-</button>
-      <a class="window__control window__control--close" title="Close" aria-label="Close" href="/">
-<svg class="window__control-glyph" aria-hidden="true" focusable="false"><use href="#radiance-glyph-close"></use></svg>
-</a>
-    </div>
   </header>
   <div class="window__content" id="window-page-body">
 <p class="page-meta">8 November 2026</p><p class="page-taxonomy">Tags <a href="/tags/colour/">Colour</a>, <a href="/tags/gnome/">Gnome</a></p><p>All authored colour values in radiance live in <code>assets/css/tokens.css</code>.
 Every other stylesheet refers to the custom properties defined there, for
 example:</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-css" data-lang="css"><span style="display:flex;"><span><span style="color:#f92672">a</span> {
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-css" data-lang="css"><span style="display:flex;"><span><span style="color:#f92672">a</span> {
 </span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">color</span>: <span style="color:#a6e22e">var</span>(<span style="color:#f92672">--</span>radiance<span style="color:#f92672">-</span>accent);
 </span></span><span style="display:flex;"><span>}
 </span></span></code></pre></div><h2 id="starting-palette">Starting palette</h2>
@@ -339,35 +319,6 @@ built from the same tokens file.</p>
 </section>
 
 </main>
-
-<div class="panel panel--bottom">
-  <nav class="window-list" aria-label="Window list">
-    <p class="window-list__status visually-hidden" aria-live="polite" data-window-list-status></p>
-    <ul class="window-list__entries" data-window-list>
-      <li class="window-list__entry window-list__entry--active" data-window-entry>
-        <a class="window-list__link" href="/posts/design-tokens/" aria-current="page" data-window-restore>Design tokens</a>
-      </li>
-    </ul>
-  </nav>
-  <nav class="workspaces" aria-label="Workspaces">
-    <ul class="workspaces__list">
-            <li class="workspaces__entry">
-              <a class="workspaces__link" href="/">Home</a>
-            </li>
-            <li class="workspaces__entry">
-              <a class="workspaces__link" href="/archive/">Archive</a>
-            </li>
-            <li class="workspaces__entry">
-              <a class="workspaces__link" href="/tags/">Tags</a>
-            </li>
-            <li class="workspaces__entry">
-              <a class="workspaces__link" href="/about/">About</a>
-            </li>
-    </ul>
-  </nav>
-      <a class="trash" href="/trash/">Trash</a>
-</div>
-
 
 <footer class="footer">
   <p>&copy; 2026 radiance. Powered by <a href="https://gohugo.io/">Hugo</a>.</p>

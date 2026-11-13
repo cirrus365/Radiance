@@ -81,8 +81,6 @@ Assumes the checkout directory is named `radiance` (see above).
 |------------------------|--------------------------------------------------------------------------|
 | `title`                | Panel title, window and dialog text, footer, feed metadata.              |
 | `params.description`   | `<meta name="description">` and Open Graph fallback.                     |
-| `params.workspaces`    | Up to four bottom-panel workspace entries (`label`, `pageRef`).          |
-| `params.trash`         | Optional bottom-panel Trash link (`label`, `pageRef`).                   |
 | `defaultContentLanguage` | Doubles as the document language; use the language key (e.g. `en-gb`). |
 
 The example site also configures a custom `search` output format on the
@@ -116,7 +114,7 @@ entry. Menu entries support:
 
 | Entry key (params) | Purpose                                                       |
 |--------------------|---------------------------------------------------------------|
-| `glyph`            | Decorative icon: `computer`, `close`, `document`, `feed`, `folder`, `home`, `info`, `maximise`, `minimise` or `trash`. |
+| `glyph`            | Decorative icon: `computer`, `document`, `feed`, `folder`, `home`, `info` or `trash`. |
 | `feed`             | Links the entry to the home page's RSS output instead of its URL. |
 
 ## Content models
@@ -191,14 +189,9 @@ listings and from the JSON search index. Drafts are always excluded.
   (site menus) on the left; applets (clock, link, meter) on the right.
 - **Desktop** — the page background and the left-hand shortcut column
   (`data/desktop.yaml`).
-- **Window** — every page's content, with titlebar and Minimise, Maximise
-  and Close controls.
+- **Window** — every page's content, with an icon-and-title titlebar.
 - **Dialog** — desktop-styled listing panels for the archive, tags and
   search; ordinary page regions, never modals.
-- **Window list** — bottom panel; the current page plus up to six visited
-  pages for the browser session (per tab, in `sessionStorage`).
-- **Workspaces** — bottom-panel links to key sections.
-- **Trash** — an optional bottom-panel link.
 
 ## Appearance
 
@@ -221,11 +214,10 @@ values regardless of the selection.
 
 ## JavaScript-disabled behaviour and accessibility
 
-- Core content, menus (native `<details>`), window lists, workspaces and
-  all listings work without JavaScript. JavaScript-only controls — the
-  appearance selector, window titlebar controls, search field, palette
-  copy buttons and window-list remove buttons — stay hidden until the
-  script initialises them.
+- Core content, menus (native `<details>`) and all listings work without
+  JavaScript. JavaScript-only controls — the appearance selector, search
+  field and palette copy buttons — stay hidden until the script
+  initialises them.
 - The application script is external and deferred; a small external script
   applies a stored appearance before first paint. There are no inline
   scripts.
@@ -234,9 +226,9 @@ values regardless of the selection.
   accessible names and are keyboard-operable.
 - Text combinations are checked at 4.5:1 and non-text controls and focus
   indicators at 3:1 in both appearances (see `AGENTS.md` conventions).
-  Non-colour cues mark the active window, selected shortcuts and current
-  workspaces; search-result and window-list changes are announced through
-  `aria-live` regions; `prefers-reduced-motion` is respected.
+  Non-colour cues mark the current menu entry and selected shortcuts;
+  search-result changes are announced through an `aria-live` region;
+  `prefers-reduced-motion` is respected.
 
 ## Assets, licensing and contributing
 
