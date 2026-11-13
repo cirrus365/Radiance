@@ -33,8 +33,13 @@ fi
 # 2. Contrast report.
 python3 scripts/contrast.py || fail "contrast check failed"
 
-# 3. Build without warnings (covers scheme key-set divergence).
-hugo --source exampleSite --themesDir ../.. --panicOnWarning >/dev/null || fail "hugo build failed or warned (including scheme key-set divergence)"
+# 3. Build without warnings (covers scheme key-set divergence). Hugo
+#    writes errors and warnings to stdout, so the output is captured and
+#    printed when the build fails.
+build_output="$(hugo --source exampleSite --themesDir ../.. --panicOnWarning 2>&1)" || {
+  printf '%s\n' "$build_output"
+  fail "hugo build failed or warned (including scheme key-set divergence)"
+}
 
 # 4. Site parameters go through the schema door.
 if grep -rn 'site\.Params\.' layouts; then

@@ -10,6 +10,10 @@
 #   others: partials/schemes-css.html warns on divergence)
 # - a site param read directly in a template instead of through
 #   partials/config/get.html against data/schema.yaml
+#
+# The checkout directory must be named "radiance": the example site
+# resolves the theme through themesDir by that name, and Linux is
+# case-sensitive.
 
 name: CI
 
@@ -22,6 +26,8 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
+        with:
+          path: radiance
 
       - name: Install Hugo Extended (minimum supported version)
         uses: peaceiris/actions-hugo@v3
@@ -31,3 +37,4 @@ jobs:
 
       - name: Guardrail checks
         run: sh scripts/checks.sh
+        working-directory: radiance
