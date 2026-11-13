@@ -1,6 +1,6 @@
 
 <!DOCTYPE html>
-<html class="no-js" lang="en-gb">
+<html lang="en-gb">
 <head>
 
 <meta charset="utf-8">
@@ -18,7 +18,9 @@
 This example site contains a small collection of sample posts. Use the links in the top panel or the …">
 <meta name="twitter:card" content="summary">
 
+<link rel="stylesheet" href="/css/schemes.min.dd845b8c915a7e5c6a0c0b6c54beedb25a9977c3ac4afd4b286bef6208aa907b.css">
 <link rel="stylesheet" href="/css/radiance.min.css">
+<script>(function(){"use strict";var e,t=["ambiance","radiance"];try{e=localStorage.getItem("radiance-appearance")}catch{}e&&t.indexOf(e)!==-1&&document.documentElement.setAttribute("data-theme",e)})()</script>
 <script src="/js/radiance.js" defer></script>
 
 </head>
@@ -89,9 +91,12 @@ This example site contains a small collection of sample posts. Use the links in 
   </nav>
   <div class="panel__end">
     <a class="panel__link" href="/search/">Search</a>
-    <button type="button" class="panel__appearance" hidden data-appearance-toggle aria-pressed="false">
+    <button type="button" class="panel__appearance" hidden data-appearance-toggle
+      data-appearance-schemes="ambiance,radiance"
+      data-appearance-dark="ambiance"
+      data-appearance-default="radiance" aria-pressed="false">
 <svg class="panel__appearance-glyph" aria-hidden="true" focusable="false"><use href="#radiance-glyph-appearance"></use></svg>
-<span class="visually-hidden">Dark appearance</span>
+<span class="visually-hidden">Appearance</span>
     </button>
   </div>
 </header>

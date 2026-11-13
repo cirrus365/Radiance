@@ -10,12 +10,6 @@ import { initPaletteCopy } from "./palette-copy.js";
 import { initSearch } from "./search.js";
 import { initAppearance } from "./appearance.js";
 
-const root = document.documentElement;
-
-// Signal that the application script has initialised successfully.
-root.classList.remove("no-js");
-root.classList.add("js");
-
 initDesktopShortcuts();
 initPaletteCopy();
 initSearch();

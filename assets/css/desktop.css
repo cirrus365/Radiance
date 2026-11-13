@@ -2,22 +2,22 @@
  * radiance — desktop styles.
  *
  * The desktop is the area behind the windows: a deep aubergine background
- * with purple towards the right and a soft orange glow towards the lower
- * left, drawn with local CSS gradients, plus the left-hand shortcut
- * column. The gradient colours are mixed from tokens; no remote assets.
- * All colour values come from tokens.css.
+ * with a warm glow towards the lower left and a warmer band towards the
+ * right, drawn with local CSS gradients mixed from the active scheme's
+ * properties, plus the left-hand shortcut column. No remote assets.
+ * All colour values come from the scheme data in data/schemes.
  */
 
 #desktop {
   display: flex;
   align-items: flex-start;
   gap: 16px;
-  min-height: calc(100vh - var(--radiance-panel-height));
+  min-height: calc(100vh - var(--metric-panel-height));
   padding: 16px;
-  background-color: var(--radiance-desktop-aubergine);
+  background-color: var(--surface-desktop);
   background-image:
-    radial-gradient(85% 70% at 5% 100%, color-mix(in srgb, var(--radiance-desktop-orange) 45%, transparent), transparent 65%),
-    linear-gradient(to right, transparent 35%, color-mix(in srgb, var(--radiance-desktop-purple) 85%, transparent) 100%);
+    radial-gradient(85% 70% at 5% 100%, color-mix(in srgb, var(--accent-focus) 45%, transparent), transparent 65%),
+    linear-gradient(to right, transparent 35%, color-mix(in srgb, var(--accent-focus) 14%, var(--surface-desktop)) 100%);
 }
 
 #desktop .window {
@@ -58,23 +58,23 @@
   padding: 6px 4px;
   border: var(--radiance-border-width) solid transparent;
   border-radius: 3px;
-  color: var(--radiance-desktop-text);
+  color: var(--text-inverse);
   text-align: center;
   text-decoration: none;
 }
 
 .desktop-shortcut:hover {
-  background-color: color-mix(in srgb, var(--radiance-desktop-purple) 30%, transparent);
+  background-color: color-mix(in srgb, var(--surface-window) 14%, transparent);
 }
 
 .desktop-shortcut:focus-visible {
-  outline: var(--radiance-border-width) dotted var(--radiance-desktop-text);
+  outline: var(--radiance-border-width) dotted var(--text-inverse);
   outline-offset: 1px;
 }
 
 .desktop-shortcut.is-selected {
-  background-color: color-mix(in srgb, var(--radiance-desktop-purple) 45%, transparent);
-  outline: var(--radiance-border-width) solid color-mix(in srgb, var(--radiance-desktop-text) 70%, transparent);
+  background-color: color-mix(in srgb, var(--surface-window) 28%, transparent);
+  outline: var(--radiance-border-width) solid color-mix(in srgb, var(--text-inverse) 70%, transparent);
   outline-offset: -1px;
 }
 
@@ -93,8 +93,8 @@
   display: block;
   max-width: 100%;
   line-height: 1.2;
-  color: var(--radiance-desktop-text);
-  text-shadow: 0 1px 0 var(--radiance-desktop-aubergine);
+  color: var(--text-inverse);
+  text-shadow: 0 1px 0 color-mix(in srgb, var(--surface-desktop) 55%, transparent);
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;

@@ -11,7 +11,7 @@ content website feel like an Ubuntu desktop running GNOME 2.
 
 - The default light appearance is inspired by Ubuntu Radiance.
 - The Ambiance dark appearance is its darker companion.
-- All authored colour values live in `assets/css/tokens.css`.
+- All authored colour values live in the scheme files under `data/schemes/`.
 
 ## This site
 

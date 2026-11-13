@@ -1,0 +1,102 @@
+{{/*
+  schemes-css.html — generated colour-scheme CSS from data/schemes.
+
+  Parameters: none. Returns a processed CSS resource (minified and
+  fingerprinted) whose RelPermalink goes in the head before component
+  stylesheets; returns nil when no schemes are defined (and warns).
+
+  Each scheme file defines label, dark and any number of colour groups
+  (surfaces, chrome, text, accents) plus a metrics group; see
+  scheme-vars.html for the custom-property naming rule.
+
+  Emitted blocks, in order:
+  - the first light scheme (alphabetically by file name) as the plain
+    :root default, so the page renders sensibly without JavaScript;
+  - the first dark scheme under @media (prefers-color-scheme: dark) for
+    :root:not([data-theme]), so visitors with no stored choice follow the
+    operating system without JavaScript;
+  - one :root[data-theme="<file name>"] block per scheme, carrying
+    color-scheme (from the dark flag) and every custom property;
+  - one :root block of derived properties — formulas over the scheme
+    properties above (control borders, tile borders, recessed surfaces
+    and bevels) — resolved per element, so they follow the active scheme
+    automatically;
+  - a print block that maps every custom property to the first light
+    scheme's values for any active theme, so printouts stay light and
+    readable regardless of the selection.
+
+  Guards (build warnings, fatal under --panicOnWarning): a scheme whose
+  key set differs from the first scheme's, and a non-hex value in any
+  group other than metrics.
+*/}}
+{{- $schemes := partial "site-data.html" (dict "key" "schemes") }}
+{{- $css := "" }}
+{{- with $schemes }}
+  {{- $all := . }}
+  {{- $names := slice }}
+  {{- range $name, $_ := $all }}{{ $names = $names | append $name }}{{ end }}
+  {{- $names = sort $names }}
+
+  {{- /* Guards: identical key sets and hex-only colour groups. */}}
+  {{- $referenceKeys := "" }}
+  {{- $hexPattern := "^#[0-9a-fA-F]{6}$|^#[0-9a-fA-F]{3}$" }}
+  {{- range $name := $names }}
+    {{- $scheme := index $all $name }}
+    {{- $keys := slice }}
+    {{- range $group, $entries := $scheme }}
+      {{- if eq (printf "%T" $entries) "map[string]interface {}" }}
+        {{- range $key, $value := $entries }}
+          {{- $keys = $keys | append (printf "%s.%s" $group $key) }}
+          {{- if and (ne $group "metrics") (not (findRE $hexPattern (printf "%v" $value))) }}
+            {{- warnf "schemes-css: %s.%s in scheme %q is not a hex colour (got %q)" $group $key $name (printf "%v" $value) }}
+          {{- end }}
+        {{- end }}
+      {{- end }}
+    {{- end }}
+    {{- $keySet := delimit (sort $keys) " " }}
+    {{- if eq $referenceKeys "" }}
+      {{- $referenceKeys = $keySet }}
+    {{- else if ne $referenceKeys $keySet }}
+      {{- warnf "schemes-css: scheme %q has a different key set than the first scheme: %s" $name $keySet }}
+    {{- end }}
+  {{- end }}
+
+  {{- /* First light scheme and first dark scheme, by file name. */}}
+  {{- $lightName := "" }}
+  {{- $darkName := "" }}
+  {{- range $names }}
+    {{- $scheme := index $all . }}
+    {{- $isDark := and (isset $scheme "dark") $scheme.dark }}
+    {{- if and (not $lightName) (not $isDark) }}{{ $lightName = . }}{{ end }}
+    {{- if and (not $darkName) $isDark }}{{ $darkName = . }}{{ end }}
+  {{- end }}
+  {{- if not $lightName }}{{ $lightName = index $names 0 }}{{ end }}
+  {{- $default := index $all $lightName }}
+
+  {{- /* Plain :root default: the first light scheme. */}}
+  {{- $css = printf ":root{color-scheme:%s;%s}" (cond $default.dark "dark" "light") (partial "scheme-vars.html" (dict "scheme" $default)) }}
+
+  {{- /* Operating-system fallback for visitors with no stored choice. */}}
+  {{- if and $darkName (ne $darkName $lightName) }}
+    {{- $css = printf "%s@media (prefers-color-scheme: dark){:root:not([data-theme]){color-scheme:dark;%s}}" $css (partial "scheme-vars.html" (dict "scheme" (index $all $darkName))) }}
+  {{- end }}
+
+  {{- /* One explicit block per scheme. */}}
+  {{- range $names }}
+    {{- $scheme := index $all . }}
+    {{- $css = printf "%s:root[data-theme=%q]{color-scheme:%s;%s}" $css . (cond $scheme.dark "dark" "light") (partial "scheme-vars.html" (dict "scheme" $scheme)) }}
+  {{- end }}
+
+  {{- /* Derived properties: formulas resolved per element from the
+      active scheme's custom properties. Percentages are design values,
+      checked for 3:1 non-text contrast in both shipped schemes. */}}
+  {{- $css = printf "%s:root{--control-border:color-mix(in srgb, var(--text-primary) 52%%, var(--surface-window));--tile-border:color-mix(in srgb, var(--surface-tile) 80%%, var(--chrome-border));--recessed:color-mix(in srgb, var(--surface-window) 88%%, var(--chrome-border));--bevel-light:color-mix(in srgb, var(--chrome-titlebar) 82%%, var(--text-inverse));--bevel-dark:color-mix(in srgb, var(--chrome-titlebar) 76%%, black);--bevel:inset var(--metric-bevel) var(--metric-bevel) 0 var(--bevel-light),inset calc(-1 * var(--metric-bevel)) calc(-1 * var(--metric-bevel)) 0 var(--bevel-dark);--bevel-sunken:inset var(--metric-bevel) var(--metric-bevel) 0 var(--bevel-dark),inset calc(-1 * var(--metric-bevel)) calc(-1 * var(--metric-bevel)) 0 var(--bevel-light);}" $css }}
+
+  {{- /* Print: force the first light scheme's values for any theme. */}}
+  {{- $css = printf "%s@media print{:root,:root[data-theme]{color-scheme:light;%s}}" $css (partial "scheme-vars.html" (dict "scheme" $default)) }}
+{{- else }}
+  {{- warnf "schemes-css: no colour schemes found under data/schemes" }}
+{{- end }}
+{{- with $css }}
+  {{- return (resources.FromString "css/schemes.css" . | minify | fingerprint) }}
+{{- end }}

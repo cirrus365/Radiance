@@ -1,0 +1,28 @@
+{{/*
+  scheme-vars.html — the custom properties of one colour scheme.
+
+  Parameters (single dictionary):
+    scheme (map, required): one scheme from data/schemes (label, dark and
+          any number of groups of values).
+
+  Returns a CSS declarations string: every group key becomes one custom
+  property — the group name minus its trailing "s" is the prefix and
+  underscores become dashes — so surfaces.panel_raised becomes
+  --surface-panel-raised and metrics.panel_height becomes
+  --metric-panel-height. The label and dark keys are metadata and are not
+  emitted.
+*/}}
+{{- $scheme := .scheme }}
+{{- $out := "" }}
+{{- range $group, $entries := $scheme }}
+  {{- if eq (printf "%T" $entries) "map[string]interface {}" }}
+    {{- $prefix := $group }}
+    {{- if strings.HasSuffix $prefix "s" }}{{ $prefix = strings.TrimSuffix "s" $prefix }}{{ end }}
+    {{- $keys := slice }}
+    {{- range $key, $_ := $entries }}{{ $keys = $keys | append $key }}{{ end }}
+    {{- range sort $keys }}
+      {{- $out = printf "%s--%s-%s: %v; " $out $prefix (replace . "_" "-") (index $entries .) }}
+    {{- end }}
+  {{- end }}
+{{- end }}
+{{- return $out }}

@@ -1,16 +1,16 @@
 /*
  * radiance — panel styles.
  *
- * The pale, compact top panel: site navigation in desktop-panel styling.
- * All colour values come from tokens.css.
+ * The compact top panel: site navigation in desktop-panel styling. All
+ * colour values come from the scheme data in data/schemes.
  */
 
 .panel {
   display: flex;
   align-items: center;
-  height: var(--radiance-panel-height);
-  background-color: var(--radiance-panel-bg);
-  color: var(--radiance-panel-text);
+  height: var(--metric-panel-height);
+  background-color: var(--surface-panel);
+  color: var(--text-inverse);
   font-size: 0.8125rem;
   line-height: 1;
 }
@@ -23,7 +23,7 @@
   position: relative;
   z-index: 20;
   gap: 4px;
-  border-bottom: var(--radiance-border-width) solid var(--radiance-panel-border);
+  border-bottom: var(--radiance-border-width) solid var(--chrome-border);
 }
 
 /* The panel is a single row at every width: items shrink and truncate
@@ -34,7 +34,7 @@
   max-width: 40%;
   padding: 0 8px;
   overflow: hidden;
-  color: var(--radiance-panel-text);
+  color: var(--text-inverse);
   font-weight: 700;
   white-space: nowrap;
   text-overflow: ellipsis;
@@ -74,7 +74,7 @@
   padding: 2px 8px;
   border: var(--radiance-border-width) solid transparent;
   border-radius: 3px;
-  color: var(--radiance-panel-text);
+  color: var(--text-inverse);
   line-height: 1;
   white-space: nowrap;
   text-decoration: none;
@@ -82,21 +82,22 @@
 
 .panel__nav-link:hover,
 .panel__link:hover {
-  background-color: var(--radiance-panel-raised);
+  background-color: var(--surface-panel-raised);
 }
 
 .panel__nav-link[aria-current] {
-  background-color: var(--radiance-panel-raised);
-  border-color: var(--radiance-control-border);
-  box-shadow: var(--radiance-bevel-sunken);
+  background-color: var(--surface-panel-raised);
+  border-color: var(--control-border);
+  box-shadow: var(--bevel-sunken);
   font-weight: 700;
 }
 
 .panel__nav-link:focus-visible,
 .panel__link:focus-visible,
 .panel__title:focus-visible,
-.panel__appearance:focus-visible {
-  outline: var(--radiance-border-width) dotted var(--radiance-panel-text);
+.panel__appearance:focus-visible,
+.panel__appearance-option:focus-visible {
+  outline: var(--radiance-border-width) dotted var(--text-inverse);
   outline-offset: -1px;
 }
 
@@ -125,7 +126,7 @@
   border: var(--radiance-border-width) solid transparent;
   border-radius: 3px;
   background-color: transparent;
-  color: var(--radiance-panel-text);
+  color: var(--text-inverse);
   font: inherit;
   cursor: default;
 }
@@ -135,14 +136,15 @@
 }
 
 .panel__appearance:hover {
-  background-color: var(--radiance-panel-raised);
-  border-color: var(--radiance-control-border);
+  background-color: var(--surface-panel-raised);
+  border-color: var(--control-border);
 }
 
-.panel__appearance[aria-pressed="true"] {
-  background-color: var(--radiance-panel-raised);
-  border-color: var(--radiance-control-border);
-  box-shadow: var(--radiance-bevel-sunken);
+.panel__appearance[aria-pressed="true"],
+.panel__appearance[aria-expanded="true"] {
+  background-color: var(--surface-panel-raised);
+  border-color: var(--control-border);
+  box-shadow: var(--bevel-sunken);
 }
 
 .panel__appearance-glyph {
@@ -154,6 +156,57 @@
   stroke-width: 1.25;
   stroke-linecap: round;
   stroke-linejoin: round;
+}
+
+.panel__appearance[aria-pressed="true"] .panel__appearance-glyph {
+  transform: rotate(180deg);
+}
+
+/* Scheme menu: only rendered with three or more schemes. */
+
+.panel__appearance-menu {
+  position: absolute;
+  top: 100%;
+  right: 0;
+  z-index: 10;
+  min-width: 10rem;
+  margin: 0;
+  padding: 2px 0;
+  list-style: none;
+  background-color: var(--surface-window);
+  border: var(--radiance-border-width) solid var(--chrome-border);
+}
+
+.panel__appearance-menu[hidden] {
+  display: none;
+}
+
+.panel__appearance-option {
+  display: block;
+  width: 100%;
+  padding: 3px 10px;
+  border: 0;
+  background-color: transparent;
+  color: var(--text-primary);
+  font: inherit;
+  text-align: left;
+  text-decoration: none;
+  white-space: nowrap;
+  cursor: default;
+}
+
+.panel__appearance-option:hover {
+  background-color: var(--accent-selection);
+}
+
+.panel__appearance-option[aria-pressed="true"] {
+  font-weight: 700;
+}
+
+.panel__appearance-option[aria-pressed="true"]::after {
+  content: "·";
+  float: right;
+  margin-left: 12px;
 }
 
 /* Below 480px the panel compacts to 24px. */

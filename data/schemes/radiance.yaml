@@ -1,0 +1,46 @@
+# The Radiance (light) colour scheme: the default appearance, inspired by
+# Ubuntu Radiance. One file per scheme; nothing else in the theme defines
+# a colour. The dark counterpart lives in ambiance.yaml and must keep an
+# identical key set (a build warning fires if the two diverge).
+#
+# Keys:
+#   label    the scheme's display name (appearance toggle and docs).
+#   dark     true for a dark scheme; drives color-scheme and the
+#            prefers-color-scheme fallback.
+#   surfaces page surfaces: panel, panel_raised, desktop, window, tile.
+#   chrome   window chrome: titlebar background and chrome border colour.
+#   text     primary and muted body text on light surfaces; inverse text
+#            on dark chrome surfaces (panels, titlebars, desktop).
+#   accents selection highlight, focus ring and link colour.
+#   metrics  chrome measurements: panel_height, titlebar_height, radius
+#            and bevel.
+#
+# Hex values are #rgb or #rrggbb. Combinations are checked against WCAG
+# thresholds by scripts/contrast.py (4.5:1 body text, 3:1 borders and
+# focus rings). accents.link is darkened from the Ubuntu orange used by
+# accents.focus so links pass 4.5:1 on the window surface.
+
+label: Radiance
+dark: false
+surfaces:
+  panel: "#3a3935"
+  panel_raised: "#4c4a44"
+  desktop: "#4a3f52"
+  window: "#efece3"
+  tile: "#e2ddcf"
+chrome:
+  titlebar: "#4c4a44"
+  border: "#26251f"
+text:
+  primary: "#2b2a26"
+  muted: "#6b6659"
+  inverse: "#f2f0e9"
+accents:
+  selection: "#f3d9a4"
+  focus: "#e95420"
+  link: "#b93e12"
+metrics:
+  panel_height: 28px
+  titlebar_height: 26px
+  radius: 4px
+  bevel: 1px

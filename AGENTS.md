@@ -8,7 +8,7 @@ Instructions for agents working in this repository.
 desktop running GNOME 2.
 
 - The default light appearance is inspired by Ubuntu Radiance.
-- An Ambiance-inspired dark appearance is planned for later.
+- An Ambiance-inspired dark appearance is its darker companion.
 
 This is a website with desktop-inspired chrome, not a desktop simulator.
 Build content pages that sit inside desktop-style panels, windows and dialogs.
@@ -46,14 +46,18 @@ shadows, macOS traffic-light controls and generic dashboard styling.
 
 ## 4. Engineering rules
 
-- All authored colour values live in `assets/css/tokens.css`. Other
-  stylesheets reference the custom properties defined there.
+- All authored colour values live in the scheme files under
+  `data/schemes/`. `layouts/partials/schemes-css.html` generates the
+  custom properties from them; no hex colour literals appear anywhere in
+  `layouts/` or `assets/css/`.
 - Exception: validated palette colours supplied by content authors may be
   rendered as inline CSS custom properties.
 - Never place unvalidated content in a `style` attribute or in a dynamically
   constructed class name.
-- No inline scripts. Controls that require JavaScript stay hidden until the
-  relevant external JavaScript has initialised them.
+- No inline scripts, with one exception: the generated scheme-init script
+  (partials/scheme-init.html) sets a stored scheme before first paint.
+  Controls that require JavaScript stay hidden until the relevant
+  external JavaScript has initialised them.
 - Core content and navigation must work without JavaScript.
 - Every interactive control has an accessible name and is operable with a
   keyboard.

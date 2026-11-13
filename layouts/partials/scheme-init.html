@@ -1,0 +1,22 @@
+{{/*
+  scheme-init.html — the generated inline script applying a stored scheme
+  before first paint.
+
+  Parameters: none. Returns a minified script resource whose Content is
+  emitted as an inline <script> in the head (see partials/head.html), so
+  a stored explicit choice (data/schemes file name) applies to <html> as
+  data-theme before first paint, preventing a flash of the wrong scheme.
+  The valid scheme names are embedded from data/schemes, so an unknown
+  stored value is ignored. The preference lives in localStorage under the
+  single namespaced key "radiance-appearance"; it is never sent to a
+  server. With no stored choice the page follows prefers-color-scheme
+  through CSS (see partials/schemes-css.html). The toggle itself is
+  wired by assets/js/appearance.js.
+*/}}
+{{- $schemes := partial "site-data.html" (dict "key" "schemes") }}
+{{- $names := slice }}
+{{- with $schemes }}
+  {{- range $name, $_ := . }}{{ $names = $names | append $name }}{{ end }}
+{{- end }}
+{{- $script := printf "(function(){\"use strict\";var n=%s,t;try{t=localStorage.getItem(\"radiance-appearance\")}catch(e){}if(t&&n.indexOf(t)!==-1){document.documentElement.setAttribute(\"data-theme\",t)}})();" ($names | jsonify) }}
+{{- return (resources.FromString "js/scheme-init.js" $script | minify) }}

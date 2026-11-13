@@ -1,0 +1,31 @@
+# The Ambiance (dark) colour scheme, inspired by Ubuntu Ambiance. The dark
+# counterpart to radiance.yaml: identical key set (a build warning fires
+# if the two diverge), dark: true.
+#
+# chrome.border is lighter than the window surface so borders keep 3:1
+# non-text contrast in the dark scheme.
+
+label: Ambiance
+dark: true
+surfaces:
+  panel: "#33312e"
+  panel_raised: "#3d3a35"
+  desktop: "#1c0114"
+  window: "#2b2926"
+  tile: "#363431"
+chrome:
+  titlebar: "#3d3a35"
+  border: "#8a8378"
+text:
+  primary: "#f0eeea"
+  muted: "#b3aca2"
+  inverse: "#f0eeea"
+accents:
+  selection: "#5a3c2c"
+  focus: "#ef8f57"
+  link: "#ef8f57"
+metrics:
+  panel_height: 28px
+  titlebar_height: 26px
+  radius: 4px
+  bevel: 1px

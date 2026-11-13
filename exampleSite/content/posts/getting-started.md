@@ -28,4 +28,4 @@ theme.
 ## Next steps
 
 - Read the other sample post listed under *Posts*.
-- Adjust the colours in `assets/css/tokens.css`.
+- Adjust the colours in `data/schemes/radiance.yaml`.

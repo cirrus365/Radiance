@@ -4,7 +4,7 @@
  * Moodboard tiles: warm grey surfaces, one-pixel borders and square
  * corners in a dense grid with an 8px gap and a 56px base row unit. Rows
  * grow for content; tiles are never clipped to force a gapless grid. All
- * colour values come from tokens.css.
+ * colour values come from the scheme data in data/schemes.
  */
 
 .tile-grid {
@@ -21,8 +21,8 @@
   margin: 0;
   padding: 8px;
   min-width: 0;
-  background-color: var(--radiance-tile-bg);
-  border: var(--radiance-border-width) solid var(--radiance-tile-border);
+  background-color: var(--surface-tile);
+  border: var(--radiance-border-width) solid var(--tile-border);
 }
 
 .tile--span-2x1 {
@@ -49,7 +49,7 @@
 .tile__caption {
   margin: 4px 0 0;
   font-size: 0.8125rem;
-  color: var(--radiance-text-muted);
+  color: var(--text-muted);
 }
 
 /* Notes */
@@ -93,7 +93,7 @@
   height: 24px;
   flex: none;
   background-color: var(--tile-swatch, transparent);
-  border: var(--radiance-border-width) solid var(--radiance-tile-border);
+  border: var(--radiance-border-width) solid var(--tile-border);
 }
 
 .tile__swatch-value {
@@ -104,21 +104,21 @@
 .tile__swatch-copy {
   margin-left: auto;
   padding: 1px 6px;
-  border: var(--radiance-border-width) solid var(--radiance-control-border);
-  background-color: var(--radiance-window-surface);
-  color: var(--radiance-text);
+  border: var(--radiance-border-width) solid var(--control-border);
+  background-color: var(--surface-window);
+  color: var(--text-primary);
   font: inherit;
   font-size: 0.75rem;
   cursor: default;
 }
 
 .tile__swatch-copy:hover {
-  background-color: var(--radiance-panel-raised);
-  border-color: var(--radiance-panel-border);
+  background-color: var(--recessed);
+  border-color: var(--chrome-border);
 }
 
 .tile__swatch-copy:focus-visible {
-  outline: var(--radiance-border-width) dotted var(--radiance-panel-text);
+  outline: var(--radiance-border-width) dotted var(--text-primary);
   outline-offset: -1px;
 }
 
@@ -145,14 +145,14 @@
 .tile__quote-attribution {
   margin: 4px 0 0;
   font-size: 0.8125rem;
-  color: var(--radiance-text-muted);
+  color: var(--text-muted);
 }
 
 /* Links */
 
 .tile__link {
   display: block;
-  color: var(--radiance-text);
+  color: var(--text-primary);
   text-decoration: none;
 }
 
@@ -160,7 +160,7 @@
   display: block;
   font-size: 0.875rem;
   font-weight: 700;
-  color: var(--radiance-accent);
+  color: var(--accent-link);
 }
 
 .tile__link:hover .tile__link-title {
@@ -171,7 +171,7 @@
   display: block;
   margin-top: 2px;
   font-size: 0.8125rem;
-  color: var(--radiance-text-muted);
+  color: var(--text-muted);
   overflow-wrap: break-word;
 }
 

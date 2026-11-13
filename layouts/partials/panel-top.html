@@ -17,10 +17,27 @@
           output is configured.
 
   The current section is marked with aria-current through Hugo's menu
-  matching. The appearance toggle is hidden until the application script
-  initialises it; without JavaScript the theme follows
-  prefers-color-scheme through CSS and no unusable control is shown.
+  matching.
+
+  The appearance toggle reads the schemes in data/schemes. With two
+  schemes it swaps between them and carries aria-pressed; with three or
+  more it opens a small scheme menu instead. The control stays hidden
+  until the application script initialises it; without JavaScript the
+  theme follows prefers-color-scheme through CSS and no unusable control
+  is shown.
 */}}
+{{- $schemes := partial "site-data.html" (dict "key" "schemes") }}
+{{- $names := slice }}
+{{- $darkName := "" }}
+{{- $lightName := "" }}
+{{- with $schemes }}
+  {{- range $name, $_ := . }}{{ $names = $names | append $name }}{{ end }}
+  {{- $names = sort $names }}
+  {{- range $names }}
+    {{- $scheme := index $schemes . }}
+    {{- if $scheme.dark }}{{ if not $darkName }}{{ $darkName = . }}{{ end }}{{ else }}{{ if not $lightName }}{{ $lightName = . }}{{ end }}{{ end }}
+  {{- end }}
+{{- end }}
 <header class="panel panel--top">
   <a class="panel__title" href="{{ site.Home.RelPermalink }}">{{ site.Title }}</a>
   {{- with site.Menus.main }}
@@ -49,9 +66,23 @@
     {{- with site.GetPage "search" }}
     <a class="panel__link" href="{{ .RelPermalink }}">Search</a>
     {{- end }}
-    <button type="button" class="panel__appearance" hidden data-appearance-toggle aria-pressed="false">
+    {{- with $names }}
+    <button type="button" class="panel__appearance" hidden data-appearance-toggle
+      data-appearance-schemes="{{ delimit $names "," }}"
+      data-appearance-dark="{{ $darkName }}"
+      data-appearance-default="{{ or $lightName (index $names 0) }}"
+      {{- if gt (len $names) 2 }} aria-expanded="false"{{ else }} aria-pressed="false"{{ end }}>
       {{- partial "glyph.html" (dict "name" "appearance" "class" "panel__appearance-glyph") -}}
-      <span class="visually-hidden">Dark appearance</span>
+      <span class="visually-hidden">Appearance</span>
     </button>
+    {{- if gt (len $names) 2 }}
+    <ul class="panel__appearance-menu" hidden data-appearance-menu>
+      {{- range $names }}
+        {{- $scheme := index $schemes . }}
+      <li><button type="button" class="panel__appearance-option" data-appearance-option="{{ . }}" aria-pressed="false">{{ $scheme.label }}</button></li>
+      {{- end }}
+    </ul>
+    {{- end }}
+    {{- end }}
   </div>
 </header>

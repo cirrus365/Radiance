@@ -9,7 +9,7 @@ licenselink = "https://github.com/OWNER/radiance/blob/main/LICENSE"
 min_version = "0.128.0"
 
 tags = ["desktop", "gnome", "ubuntu", "blog", "light", "dark"]
-features = ["accessible", "works-without-javascript", "colour-tokens"]
+features = ["accessible", "works-without-javascript", "colour-schemes-as-data"]
 
 [author]
   name = "The radiance contributors"

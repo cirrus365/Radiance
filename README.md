@@ -97,6 +97,26 @@ home page, which generates `index.json` for live search.
 | `icon`   | `computer`, `home` or `trash`; anything else renders without a glyph. |
 | `weight` | Optional sort order.                                                |
 
+### Colour schemes
+
+`data/schemes/*.yaml` — one file per colour scheme, each with the same
+key set (a build warning fires when schemes diverge):
+
+| Group      | Keys                                                            |
+|------------|-----------------------------------------------------------------|
+| top level  | `label` (display name), `dark` (drives `color-scheme` and the prefers-colour-scheme fallback) |
+| `surfaces` | `panel`, `panel_raised`, `desktop`, `window`, `tile`             |
+| `chrome`   | `titlebar`, `border`                                             |
+| `text`     | `primary`, `muted` (body text), `inverse` (text on dark chrome)  |
+| `accents`  | `selection`, `focus`, `link`                                     |
+| `metrics`  | `panel_height`, `titlebar_height`, `radius`, `bevel`             |
+
+Every scheme value becomes a custom property
+(`surfaces.panel_raised` → `--surface-panel-raised`,
+`metrics.panel_height` → `--metric-panel-height`); component stylesheets
+reference only custom properties. `scripts/contrast.py` checks the
+documented pairs and writes `data/generated/contrast.yaml`.
+
 ### Menus
 
 The top panel reads one primary menu, `main`. It renders only when the
@@ -185,20 +205,28 @@ listings and from the JSON search index. Drafts are always excluded.
 
 ## Appearance
 
-Two appearances (Radiance, light, and Ambiance, dark), chosen with the
-toggle at the right edge of the top panel:
+Two colour schemes ship as data files, `data/schemes/radiance.yaml`
+(light) and `data/schemes/ambiance.yaml` (dark). Nothing else in the
+theme defines a colour: a generated stylesheet
+(partials/schemes-css.html) turns the scheme files into custom
+properties, and component stylesheets reference only those properties.
 
 - With no stored choice the site follows the operating system through the
   `prefers-color-scheme` media query, including live changes.
-- Activating the toggle overrides the system preference; the choice is
-  stored in `localStorage` under `radiance-appearance` and applied before
-  first paint by a small blocking script. If storage is blocked the
-  choice still applies to the current page. Preferences are never sent to
-  a server and no cookies are used.
+- The toggle at the right edge of the top panel overrides the system
+  preference. With two schemes it swaps between them; with three or more
+  it opens a small menu. The choice is stored in `localStorage` under
+  `radiance-appearance` and applied before first paint by the generated
+  inline scheme-init script. If storage is blocked the choice still
+  applies to the current page. Preferences are never sent to a server and
+  no cookies are used.
 
-Both appearances share one set of component styles; only the token values
-in `assets/css/tokens.css` differ. Print output forces light, print-friendly
-values regardless of the selection.
+Both schemes share one set of component styles; only the generated custom
+properties differ. `scripts/contrast.py` (dependency-free) reports WCAG
+contrast ratios for the documented pairs into
+`data/generated/contrast.yaml` and fails when body text drops below
+4.5:1 or borders and focus rings below 3:1. Print output forces the
+light scheme's values regardless of the selection.
 
 ## JavaScript-disabled behaviour and accessibility
 
@@ -206,9 +234,9 @@ values regardless of the selection.
   JavaScript. JavaScript-only controls — the appearance toggle, search
   field and palette copy buttons — stay hidden until the script
   initialises them.
-- The application script is external and deferred; a small external script
-  applies a stored appearance before first paint. There are no inline
-  scripts.
+- The application script is external and deferred. The one inline script
+  is the generated scheme-init script, which applies a stored scheme
+  before first paint.
 - A skip link targets the main content; every page has one `h1` and
   ordered headings; landmarks are named; all interactive controls have
   accessible names and are keyboard-operable.
@@ -229,8 +257,8 @@ values regardless of the selection.
 - No external fonts, scripts, tracking or image services are used; the
   favicon and all fonts are local (the font stacks prefer locally
   installed Ubuntu faces with system fallbacks).
-- Contributions: keep all authored colour values in
-  `assets/css/tokens.css`, document partial contracts in leading template
+- Contributions: keep all authored colour values in the scheme files
+  under `data/schemes/`, document partial contracts in leading template
   comments, and verify changes with the example-site build. See
   `AGENTS.md` for the engineering conventions.
 
@@ -239,16 +267,20 @@ values regardless of the selection.
 Measured on the example site production build, sizes are the raw minified
 bytes **before transfer compression**:
 
-- Minified CSS: under **30 KB** — currently ≈ 22.7 KB.
-- Minified JavaScript (both bundles combined): under **8 KB** — currently
-  ≈ 7.7 KB.
-- No render-blocking third-party requests: the only blocking request is
-  the small local appearance script; fonts and icons are local.
+- Minified CSS (component bundle and generated scheme CSS combined):
+  under **30 KB** — currently ≈ 18.4 KB.
+- Minified JavaScript: under **8 KB** — currently ≈ 5.1 KB.
+- No render-blocking third-party requests: the only render-blocking code
+  is the tiny generated inline scheme-init script; fonts and icons are
+  local.
 
 ## Development notes
 
-- All authored colour values live in `assets/css/tokens.css`; other
-  stylesheets reference the custom properties defined there.
+- All authored colour values live in the scheme files under
+  `data/schemes/`; `layouts/partials/schemes-css.html` generates the
+  custom properties the stylesheets reference.
+- `scripts/contrast.py` regenerates `data/generated/contrast.yaml` and
+  must pass.
 - JavaScript lives under `assets/js` and is bundled with Hugo's `js.Build`.
 - Verify changes with the example-site build (see *Previewing the theme
   locally*).

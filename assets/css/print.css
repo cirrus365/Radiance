@@ -3,34 +3,13 @@
  *
  * Printing hides the desktop panels, shortcuts and window chrome, shows
  * page content in normal flow, and prints tile grids as one column.
- * Printing forces light, print-friendly token values so the output stays
- * readable in either appearance, without printing dark backgrounds. All
- * colour values come from tokens.css.
+ * Colour values are not defined here: partials/schemes-css.html emits a
+ * print block that maps every scheme custom property to the first light
+ * scheme's values, so output stays readable in either appearance without
+ * printing dark backgrounds.
  */
 
 @media print {
-  :root,
-  :root[data-appearance="dark"] {
-    color-scheme: light;
-    --radiance-panel-bg: #ffffff;
-    --radiance-panel-raised: #ffffff;
-    --radiance-panel-text: #000000;
-    --radiance-panel-border: #767676;
-    --radiance-window-bg: #ffffff;
-    --radiance-window-surface: #ffffff;
-    --radiance-window-chrome: #ffffff;
-    --radiance-window-border: #767676;
-    --radiance-tile-bg: #ffffff;
-    --radiance-tile-border: #767676;
-    --radiance-text: #000000;
-    --radiance-text-muted: #444444;
-    --radiance-accent: #c2410e;
-    --radiance-selection: #ffffff;
-    --radiance-bevel-light: #ffffff;
-    --radiance-bevel-dark: #ffffff;
-    --radiance-control-border: #767676;
-  }
-
   /* Desktop chrome: panels, shortcuts and window titlebars. */
   .panel,
   .desktop-icons,
