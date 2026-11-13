@@ -2,9 +2,9 @@
   glyph.html — a decorative glyph from the shared icon sprite.
 
   Parameters (single dictionary):
-    name  (string, required): a supported glyph identifier — "computer",
-          "document", "feed", "folder", "home", "info" or "trash". Anything
-          else renders nothing.
+    name  (string, required): a supported glyph identifier — "appearance",
+          "computer", "document", "feed", "folder", "home", "info" or
+          "trash". Anything else renders nothing.
     class (string, required): the class attribute for the <svg> element;
           callers style the glyph through this class.
 
@@ -12,6 +12,7 @@
   keyboard-focusable. Requires partials/icon-sprite.html in the document.
 */}}
 {{- $supported := dict
+    "appearance" true
     "computer" true
     "document" true
     "feed" true

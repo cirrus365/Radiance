@@ -1,12 +1,12 @@
 # radiance
 
 `radiance` is a Hugo theme that makes a content website feel like an
-Ubuntu desktop running GNOME 2: pale compact panels, application windows
-with titlebars, a left-hand desktop with shortcuts, and utility-dialog
-listings. The light appearance is inspired by Ubuntu Radiance and the dark
-appearance by Ubuntu Ambiance — related GTK-era themes, not reproductions
-of either. It is a website with desktop-inspired chrome, not a desktop
-simulator.
+Ubuntu desktop running GNOME 2: a pale compact top panel, application
+windows with titlebars, a left-hand desktop with shortcuts, and
+utility-dialog listings. The light appearance is inspired by Ubuntu
+Radiance and the dark appearance by Ubuntu Ambiance — related GTK-era
+themes, not reproductions of either. It is a website with desktop-inspired
+chrome, not a desktop simulator.
 
 ## Previewing the theme locally
 
@@ -88,14 +88,6 @@ home page, which generates `index.json` for live search.
 
 ### Data files (site data)
 
-`data/applets.yaml` — top-panel applets, sorted by `weight`:
-
-| Type    | Keys                                             |
-|---------|--------------------------------------------------|
-| `clock` | none; build-time fallback, updated by JavaScript  |
-| `link`  | `label` (visible text and accessible name), `url` |
-| `meter` | `label`, `value` (compact text readout)           |
-
 `data/desktop.yaml` — desktop shortcuts, sorted by `weight`:
 
 | Key      | Purpose                                                            |
@@ -107,14 +99,11 @@ home page, which generates `index.json` for live search.
 
 ### Menus
 
-The top panel reads three named menus: `applications`, `places` and
-`system`. A menu button renders only when its menu has entries. Below
-1024px the three menus are replaced by one combined menu containing every
-entry. Menu entries support:
+The top panel reads one primary menu, `main`. It renders only when the
+menu has entries. Menu entries support:
 
 | Entry key (params) | Purpose                                                       |
 |--------------------|---------------------------------------------------------------|
-| `glyph`            | Decorative icon: `computer`, `document`, `feed`, `folder`, `home`, `info` or `trash`. |
 | `feed`             | Links the entry to the home page's RSS output instead of its URL. |
 
 ## Content models
@@ -185,8 +174,9 @@ listings and from the JSON search index. Drafts are always excluded.
 
 ## How the desktop metaphor maps to site structure
 
-- **Top panel** — site navigation: Applications, Places and System menus
-  (site menus) on the left; applets (clock, link, meter) on the right.
+- **Top panel** — site navigation: the site title on the left, the
+  primary links (`site.Menus.main`) beside it, and a search link and the
+  appearance toggle at the right edge.
 - **Desktop** — the page background and the left-hand shortcut column
   (`data/desktop.yaml`).
 - **Window** — every page's content, with an icon-and-title titlebar.
@@ -195,18 +185,16 @@ listings and from the JSON search index. Drafts are always excluded.
 
 ## Appearance
 
-Three modes, selected from the System menu (System, Radiance (light),
-Ambiance (dark)):
+Two appearances (Radiance, light, and Ambiance, dark), chosen with the
+toggle at the right edge of the top panel:
 
-- **System** (default) follows the operating system through the
-  `prefers-color-scheme` media query, including live changes, and works
-  without JavaScript.
-- **Radiance** and **Ambiance** override the system preference; the choice
-  is stored in `localStorage` under `radiance-appearance` and applied
-  before first paint by a small blocking script. Choosing System removes
-  the stored override. If storage is blocked the choice still applies to
-  the current page. Preferences are never sent to a server and no cookies
-  are used.
+- With no stored choice the site follows the operating system through the
+  `prefers-color-scheme` media query, including live changes.
+- Activating the toggle overrides the system preference; the choice is
+  stored in `localStorage` under `radiance-appearance` and applied before
+  first paint by a small blocking script. If storage is blocked the
+  choice still applies to the current page. Preferences are never sent to
+  a server and no cookies are used.
 
 Both appearances share one set of component styles; only the token values
 in `assets/css/tokens.css` differ. Print output forces light, print-friendly
@@ -214,8 +202,8 @@ values regardless of the selection.
 
 ## JavaScript-disabled behaviour and accessibility
 
-- Core content, menus (native `<details>`) and all listings work without
-  JavaScript. JavaScript-only controls — the appearance selector, search
+- Core content, the top panel navigation and all listings work without
+  JavaScript. JavaScript-only controls — the appearance toggle, search
   field and palette copy buttons — stay hidden until the script
   initialises them.
 - The application script is external and deferred; a small external script

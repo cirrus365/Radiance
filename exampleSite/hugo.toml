@@ -10,84 +10,40 @@ theme = "radiance"
 [params]
   description = "A Hugo theme that makes a content website feel like an Ubuntu desktop running GNOME 2."
 
-# Top panel menus: Applications, Places and System.
+# Primary navigation for the top panel (layouts/partials/panel-top.html).
+# A search link is rendered by the theme itself when a "search" page
+# exists.
 
-[[menus.applications]]
+[[menus.main]]
   name = "Posts"
   pageRef = "/posts"
   weight = 10
-  [menus.applications.params]
-    glyph = "document"
 
-[[menus.applications]]
-  name = "Getting started"
-  pageRef = "/posts/getting-started"
-  weight = 20
-  [menus.applications.params]
-    glyph = "document"
-
-[[menus.applications]]
-  name = "Design tokens"
-  pageRef = "/posts/design-tokens"
-  weight = 30
-  [menus.applications.params]
-    glyph = "document"
-
-[[menus.applications]]
+[[menus.main]]
   name = "Moodboards"
   pageRef = "/moodboards"
-  weight = 40
-  [menus.applications.params]
-    glyph = "folder"
-
-[[menus.places]]
-  name = "Home"
-  pageRef = "/"
-  weight = 10
-  [menus.places.params]
-    glyph = "home"
-
-[[menus.places]]
-  name = "Posts"
-  pageRef = "/posts"
   weight = 20
-  [menus.places.params]
-    glyph = "folder"
 
-[[menus.places]]
+[[menus.main]]
   name = "Archive"
   pageRef = "/archive"
   weight = 30
-  [menus.places.params]
-    glyph = "folder"
 
-[[menus.places]]
-  name = "Search"
-  pageRef = "/search"
-  weight = 40
-  [menus.places.params]
-    glyph = "document"
-
-[[menus.places]]
+[[menus.main]]
   name = "Tags"
   pageRef = "/tags"
-  weight = 50
-  [menus.places.params]
-    glyph = "folder"
+  weight = 40
 
-[[menus.system]]
-  name = "About this site"
+[[menus.main]]
+  name = "About"
   pageRef = "/about"
-  weight = 10
-  [menus.system.params]
-    glyph = "info"
+  weight = 50
 
-[[menus.system]]
-  name = "RSS feed"
+[[menus.main]]
+  name = "RSS"
   pageRef = "/"
-  weight = 20
-  [menus.system.params]
-    glyph = "feed"
+  weight = 60
+  [menus.main.params]
     feed = true
 
 # Search index: a custom output format on the home page renders index.json.

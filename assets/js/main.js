@@ -5,8 +5,6 @@
  * this script; it only applies progressive enhancements.
  */
 
-import { initPanelMenus } from "./panel-menu.js";
-import { initPanelClock } from "./panel-clock.js";
 import { initDesktopShortcuts } from "./desktop-shortcuts.js";
 import { initPaletteCopy } from "./palette-copy.js";
 import { initSearch } from "./search.js";
@@ -18,8 +16,6 @@ const root = document.documentElement;
 root.classList.remove("no-js");
 root.classList.add("js");
 
-initPanelMenus();
-initPanelClock();
 initDesktopShortcuts();
 initPaletteCopy();
 initSearch();

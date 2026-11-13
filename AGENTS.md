@@ -65,7 +65,8 @@ shadows, macOS traffic-light controls and generic dashboard styling.
 
 ## 5. Layout vocabulary
 
-- **Top panel**: application menus and applets.
+- **Top panel**: site navigation (site title, primary links, search and
+  appearance toggle).
 - **Desktop**: the background and the left-hand shortcut column.
 - **Window**: a titled region containing page content.
 - **Dialog**: a desktop-styled listing panel. It is not a modal unless

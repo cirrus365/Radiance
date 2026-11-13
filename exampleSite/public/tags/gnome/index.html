@@ -44,6 +44,10 @@
     <circle cx="4.25" cy="11.75" r="1.25" fill="currentColor" stroke="none"/>
     <path d="M3 8a5 5 0 0 1 5 5M3 4.5A8.5 8.5 0 0 1 11.5 13"/>
   </symbol>
+  <symbol id="radiance-glyph-appearance" viewBox="0 0 16 16">
+    <circle cx="8" cy="8" r="6"/>
+    <path d="M8 2a6 6 0 0 1 0 12z" fill="currentColor" stroke="none"/>
+  </symbol>
   <symbol id="radiance-glyph-computer" viewBox="0 0 16 16">
     <rect x="2" y="2.5" width="12" height="8.5"/>
     <path d="M8 11v2.5M5 13.5h6"/>
@@ -58,203 +62,35 @@
 
 
 <header class="panel panel--top">
-  <nav class="panel__menus" aria-label="Panel menus">
-      <details class="panel-menu" data-panel-menu>
-        <summary class="panel-menu__summary">Applications</summary>
-        <ul class="panel-menu__list">
-  <li class="panel-menu__item">
-    <a class="panel-menu__link" href="/posts/">
-<svg class="panel-menu__glyph" aria-hidden="true" focusable="false"><use href="#radiance-glyph-document"></use></svg>
-Posts
-    </a>
-  </li>
-  <li class="panel-menu__item">
-    <a class="panel-menu__link" href="/posts/getting-started/">
-<svg class="panel-menu__glyph" aria-hidden="true" focusable="false"><use href="#radiance-glyph-document"></use></svg>
-Getting started
-    </a>
-  </li>
-  <li class="panel-menu__item">
-    <a class="panel-menu__link" href="/posts/design-tokens/">
-<svg class="panel-menu__glyph" aria-hidden="true" focusable="false"><use href="#radiance-glyph-document"></use></svg>
-Design tokens
-    </a>
-  </li>
-  <li class="panel-menu__item">
-    <a class="panel-menu__link" href="/moodboards/">
-<svg class="panel-menu__glyph" aria-hidden="true" focusable="false"><use href="#radiance-glyph-folder"></use></svg>
-Moodboards
-    </a>
-  </li>
-
-        </ul>
-      </details>
-      <details class="panel-menu" data-panel-menu>
-        <summary class="panel-menu__summary">Places</summary>
-        <ul class="panel-menu__list">
-  <li class="panel-menu__item">
-    <a class="panel-menu__link" href="/">
-<svg class="panel-menu__glyph" aria-hidden="true" focusable="false"><use href="#radiance-glyph-home"></use></svg>
-Home
-    </a>
-  </li>
-  <li class="panel-menu__item">
-    <a class="panel-menu__link" href="/posts/">
-<svg class="panel-menu__glyph" aria-hidden="true" focusable="false"><use href="#radiance-glyph-folder"></use></svg>
-Posts
-    </a>
-  </li>
-  <li class="panel-menu__item">
-    <a class="panel-menu__link" href="/archive/">
-<svg class="panel-menu__glyph" aria-hidden="true" focusable="false"><use href="#radiance-glyph-folder"></use></svg>
-Archive
-    </a>
-  </li>
-  <li class="panel-menu__item">
-    <a class="panel-menu__link" href="/search/">
-<svg class="panel-menu__glyph" aria-hidden="true" focusable="false"><use href="#radiance-glyph-document"></use></svg>
-Search
-    </a>
-  </li>
-  <li class="panel-menu__item">
-    <a class="panel-menu__link" href="/tags/">
-<svg class="panel-menu__glyph" aria-hidden="true" focusable="false"><use href="#radiance-glyph-folder"></use></svg>
-Tags
-    </a>
-  </li>
-
-        </ul>
-      </details>
-      <details class="panel-menu" data-panel-menu>
-        <summary class="panel-menu__summary">System</summary>
-        <ul class="panel-menu__list">
-  <li class="panel-menu__item">
-    <a class="panel-menu__link" href="/about/">
-<svg class="panel-menu__glyph" aria-hidden="true" focusable="false"><use href="#radiance-glyph-info"></use></svg>
-About this site
-    </a>
-  </li>
-  <li class="panel-menu__item">
-    <a class="panel-menu__link" href="http://localhost:1313/index.xml">
-<svg class="panel-menu__glyph" aria-hidden="true" focusable="false"><use href="#radiance-glyph-feed"></use></svg>
-RSS feed
-    </a>
-  </li>
-
-          <li class="panel-menu__rule" aria-hidden="true"></li>
-          <li class="panel-menu__appearance" hidden data-appearance-control>
-<fieldset class="appearance" data-appearance-fieldset>
-  <legend class="appearance__legend">Appearance</legend>
-  <div class="appearance__options">
-    <input class="appearance__option" type="radio" id="system-menu-system" name="appearance" value="system" checked>
-    <label class="appearance__label" for="system-menu-system">System</label>
-    <input class="appearance__option" type="radio" id="system-menu-light" name="appearance" value="light">
-    <label class="appearance__label" for="system-menu-light">Radiance (light)</label>
-    <input class="appearance__option" type="radio" id="system-menu-dark" name="appearance" value="dark">
-    <label class="appearance__label" for="system-menu-dark">Ambiance (dark)</label>
-  </div>
-</fieldset>
-
-          </li>
-        </ul>
-      </details>
-      <details class="panel-menu panel-menu--combined" data-panel-menu>
-        <summary class="panel-menu__summary">Applications</summary>
-        <ul class="panel-menu__list">
-  <li class="panel-menu__item">
-    <a class="panel-menu__link" href="/posts/">
-<svg class="panel-menu__glyph" aria-hidden="true" focusable="false"><use href="#radiance-glyph-document"></use></svg>
-Posts
-    </a>
-  </li>
-  <li class="panel-menu__item">
-    <a class="panel-menu__link" href="/posts/getting-started/">
-<svg class="panel-menu__glyph" aria-hidden="true" focusable="false"><use href="#radiance-glyph-document"></use></svg>
-Getting started
-    </a>
-  </li>
-  <li class="panel-menu__item">
-    <a class="panel-menu__link" href="/posts/design-tokens/">
-<svg class="panel-menu__glyph" aria-hidden="true" focusable="false"><use href="#radiance-glyph-document"></use></svg>
-Design tokens
-    </a>
-  </li>
-  <li class="panel-menu__item">
-    <a class="panel-menu__link" href="/moodboards/">
-<svg class="panel-menu__glyph" aria-hidden="true" focusable="false"><use href="#radiance-glyph-folder"></use></svg>
-Moodboards
-    </a>
-  </li>
-
-  <li class="panel-menu__item">
-    <a class="panel-menu__link" href="/">
-<svg class="panel-menu__glyph" aria-hidden="true" focusable="false"><use href="#radiance-glyph-home"></use></svg>
-Home
-    </a>
-  </li>
-  <li class="panel-menu__item">
-    <a class="panel-menu__link" href="/posts/">
-<svg class="panel-menu__glyph" aria-hidden="true" focusable="false"><use href="#radiance-glyph-folder"></use></svg>
-Posts
-    </a>
-  </li>
-  <li class="panel-menu__item">
-    <a class="panel-menu__link" href="/archive/">
-<svg class="panel-menu__glyph" aria-hidden="true" focusable="false"><use href="#radiance-glyph-folder"></use></svg>
-Archive
-    </a>
-  </li>
-  <li class="panel-menu__item">
-    <a class="panel-menu__link" href="/search/">
-<svg class="panel-menu__glyph" aria-hidden="true" focusable="false"><use href="#radiance-glyph-document"></use></svg>
-Search
-    </a>
-  </li>
-  <li class="panel-menu__item">
-    <a class="panel-menu__link" href="/tags/">
-<svg class="panel-menu__glyph" aria-hidden="true" focusable="false"><use href="#radiance-glyph-folder"></use></svg>
-Tags
-    </a>
-  </li>
-
-  <li class="panel-menu__item">
-    <a class="panel-menu__link" href="/about/">
-<svg class="panel-menu__glyph" aria-hidden="true" focusable="false"><use href="#radiance-glyph-info"></use></svg>
-About this site
-    </a>
-  </li>
-  <li class="panel-menu__item">
-    <a class="panel-menu__link" href="http://localhost:1313/index.xml">
-<svg class="panel-menu__glyph" aria-hidden="true" focusable="false"><use href="#radiance-glyph-feed"></use></svg>
-RSS feed
-    </a>
-  </li>
-
-          <li class="panel-menu__rule" aria-hidden="true"></li>
-          <li class="panel-menu__appearance" hidden data-appearance-control>
-<fieldset class="appearance" data-appearance-fieldset>
-  <legend class="appearance__legend">Appearance</legend>
-  <div class="appearance__options">
-    <input class="appearance__option" type="radio" id="combined-menu-system" name="appearance" value="system" checked>
-    <label class="appearance__label" for="combined-menu-system">System</label>
-    <input class="appearance__option" type="radio" id="combined-menu-light" name="appearance" value="light">
-    <label class="appearance__label" for="combined-menu-light">Radiance (light)</label>
-    <input class="appearance__option" type="radio" id="combined-menu-dark" name="appearance" value="dark">
-    <label class="appearance__label" for="combined-menu-dark">Ambiance (dark)</label>
-  </div>
-</fieldset>
-
-          </li>
-        </ul>
-      </details>
+  <a class="panel__title" href="/">radiance</a>
+  <nav class="panel__nav" aria-label="Primary">
+    <ul class="panel__nav-list">
+        <li class="panel__nav-item">
+          <a class="panel__nav-link" href="/posts/">Posts</a>
+        </li>
+        <li class="panel__nav-item">
+          <a class="panel__nav-link" href="/moodboards/">Moodboards</a>
+        </li>
+        <li class="panel__nav-item">
+          <a class="panel__nav-link" href="/archive/">Archive</a>
+        </li>
+        <li class="panel__nav-item">
+          <a class="panel__nav-link" href="/tags/">Tags</a>
+        </li>
+        <li class="panel__nav-item">
+          <a class="panel__nav-link" href="/about/">About</a>
+        </li>
+        <li class="panel__nav-item">
+          <a class="panel__nav-link" href="http://localhost:1313/index.xml">RSS</a>
+        </li>
+    </ul>
   </nav>
-  <div class="panel__applets">
-      <time class="applet applet--clock" datetime="20:54" data-panel-clock>20:54</time>
-      <a class="applet applet--link" href="https://gohugo.io/">Hugo website</a>
-      <span class="applet applet--meter">
-        <span class="applet-meter__label">Disc</span>
-        <span class="applet-meter__value">62 GiB free</span>
-      </span>
+  <div class="panel__end">
+    <a class="panel__link" href="/search/">Search</a>
+    <button type="button" class="panel__appearance" hidden data-appearance-toggle aria-pressed="false">
+<svg class="panel__appearance-glyph" aria-hidden="true" focusable="false"><use href="#radiance-glyph-appearance"></use></svg>
+<span class="visually-hidden">Dark appearance</span>
+    </button>
   </div>
 </header>
 

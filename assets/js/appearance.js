@@ -1,20 +1,20 @@
 /*
- * radiance — appearance control.
+ * radiance — appearance toggle.
  *
- * Wires the appearance selector (System, Radiance, Ambiance) and reveals
- * it once initialised. System removes any stored override so the page
- * follows prefers-color-scheme through CSS — including live operating
- * system changes. Explicit choices are stored in localStorage; when
- * storage is blocked the choice still applies to the current page.
+ * A single compact button at the far right of the top panel. Activating
+ * it swaps between the light and dark appearances; the choice is stored
+ * in localStorage under one namespaced key and applied before first paint
+ * by the early appearance script. With no stored choice the page follows
+ * prefers-color-scheme through CSS — including live operating system
+ * changes — and the button state tracks the resolved appearance.
  */
 
 const STORAGE_KEY = "radiance-appearance";
-const MODES = ["system", "light", "dark"];
 
 function readStored() {
   try {
     const value = window.localStorage.getItem(STORAGE_KEY);
-    return MODES.indexOf(value) !== -1 ? value : null;
+    return value === "light" || value === "dark" ? value : null;
   } catch {
     return null;
   }
@@ -22,58 +22,49 @@ function readStored() {
 
 function writeStored(mode) {
   try {
-    if (mode === "system") {
-      window.localStorage.removeItem(STORAGE_KEY);
-    } else {
-      window.localStorage.setItem(STORAGE_KEY, mode);
-    }
+    window.localStorage.setItem(STORAGE_KEY, mode);
   } catch {
     // Storage blocked: the choice still applies to the current page.
   }
 }
 
-function apply(mode) {
-  const root = document.documentElement;
-  if (mode === "system") {
-    root.removeAttribute("data-appearance");
-  } else {
-    root.setAttribute("data-appearance", mode);
-  }
-}
-
 export function initAppearance() {
-  const controls = document.querySelectorAll("[data-appearance-control]");
-  const fieldsets = document.querySelectorAll("[data-appearance-fieldset]");
-  if (controls.length === 0) {
+  const button = document.querySelector("[data-appearance-toggle]");
+  if (!button) {
     return;
   }
 
-  const stored = readStored();
-  const mode = stored || "system";
-  apply(mode);
+  const root = document.documentElement;
+  const media = window.matchMedia("(prefers-color-scheme: dark)");
 
-  const syncRadios = (value) => {
-    fieldsets.forEach((fieldset) => {
-      fieldset.querySelectorAll("input").forEach((radio) => {
-        radio.checked = radio.value === value;
-      });
-    });
+  const resolved = () => {
+    const stored = readStored();
+    if (stored) {
+      return stored;
+    }
+    return media.matches ? "dark" : "light";
   };
-  syncRadios(mode);
 
-  controls.forEach((control) => {
-    control.hidden = false;
+  const sync = () => {
+    button.setAttribute("aria-pressed", String(resolved() === "dark"));
+  };
+
+  button.hidden = false;
+  sync();
+
+  button.addEventListener("click", () => {
+    const next = resolved() === "dark" ? "light" : "dark";
+    writeStored(next);
+    root.setAttribute("data-appearance", next);
+    sync();
   });
 
-  fieldsets.forEach((fieldset) => {
-    fieldset.addEventListener("change", (event) => {
-      const value = event.target.value;
-      if (MODES.indexOf(value) === -1) {
-        return;
-      }
-      writeStored(value);
-      apply(value);
-      syncRadios(value);
-    });
+  // With no stored choice, keep the button state in step with live
+  // operating-system changes.
+  media.addEventListener("change", () => {
+    if (!readStored()) {
+      root.removeAttribute("data-appearance");
+      sync();
+    }
   });
 }

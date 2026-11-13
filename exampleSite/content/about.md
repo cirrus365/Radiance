@@ -15,6 +15,6 @@ content website feel like an Ubuntu desktop running GNOME 2.
 
 ## This site
 
-The top panel provides Applications, Places and System menus; the applets
-on the right show the time, a link and a text meter. The sample posts cover
-getting started and the design tokens.
+The top panel carries the site title, the primary navigation links, a
+search link and the appearance toggle. The sample posts cover getting
+started and the design tokens.
